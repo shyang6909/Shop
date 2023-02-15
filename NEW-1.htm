@@ -17,242 +17,165 @@
 
 
   
-  <title>法式餐桌藝術</title>
-  
-  
+  <title>CodePen - React Vertical Carousel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
   
   
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Allura&family=Poppins:wght@300&display=swap");
-
-* {
+@import 'https://fonts.googleapis.com/css?family=Antic+Didone|Montserrat:700';
+:root {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  font-family: "Antic Didone";
+  font-size: 13px;
 }
 
-:root {
-  --green: #ecfaec;
-  --dark-green: #166639;
-  --white: #ffffff;
-  --black: #202020;
+@media screen and (min-width: 760px) {
+  :root {
+    font-size: 15px;
+  }
 }
-
-body {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  font-family: "Poppins", sans-serif;
-  background-color: var(--green);
-  background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
-  color: var(--black);
+@media screen and (min-width: 820px) {
+  :root {
+    font-size: 16px;
+  }
 }
-
-ul {
-  list-style: none;
+@media screen and (min-width: 900px) {
+  :root {
+    font-size: 17px;
+  }
 }
-
-a {
-  text-decoration: none;
-  color: inherit;
+@media screen and (min-width: 980px) {
+  :root {
+    font-size: 18px;
+  }
 }
-
-.container {
+@media screen and (min-width: 1060px) {
+  :root {
+    font-size: 19px;
+  }
+}
+@media screen and (min-width: 1220px) {
+  :root {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  :root {
+    font-size: 22px;
+  }
+}
+html,
+body,
+#app {
   width: 100%;
-  max-width: 900px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-header {
-  padding: 2em 1em;
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  align-items: center;
-}
-header h1 {
-  font-family: "Allura", serif;
-  color: var(--dark-green);
-}
-header ul {
-  display: flex;
-}
-header li {
-  margin-right: 3em;
-  font-size: 0.85rem;
-  font-weight: bold;
-}
-
-section {
-  width: 100%;
-  padding: 1em;
-}
-
-section h4 {
-  opacity: 0.8;
-}
-
-li.active {
-  color: var(--dark-green);
-  border-bottom: 1px solid var(--dark-green);
-}
-
-.card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: auto;
-  background-color: var(--white);
-  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
-    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-}
-
-.card-info {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  padding: 1em 2em;
-}
-.card-info h1 {
-  font-family: "Allura", serif;
-  font-size: 5rem;
-  color: var(--dark-green);
-  align-self: center;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-}
-.card-info p {
-  font-size: 0.8rem;
-  font-weight: bold;
-  align-self: center;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  line-height: 22px;
-}
-.card-info a {
-  display: grid;
-  grid-template-columns: max-content 20px;
-  align-items: center;
-  column-gap: 7px;
-  color: var(--dark-green);
-  font-size: 0.85rem;
-  font-weight: bold;
-  align-self: center;
-  justify-self: flex-end;
-  transform: translateX(0px);
-  transition: transform 0.3s 0.1s ease-out;
-}
-.card-info a:hover {
-  transform: translateX(5px);
-}
-.card-info a:hover svg {
-  transform: translateX(5px);
-}
-.card-info svg {
-  width: 20px;
-  height: 10px;
-  transform: translateX(0px);
-  transition: transform 0.3s ease-out;
-}
-.card-info svg line {
-  stroke: var(--dark-green);
-}
-
-.card-photo {
-  width: 450px;
-  object-fit: cover;
+#app {
   position: relative;
-  overflow: hidden;
+  -webkit-animation: fadeIn 500ms ease-in-out forwards;
+          animation: fadeIn 500ms ease-in-out forwards;
 }
-.card-photo img {
-  display: block;
-  max-width: 100%;
-  aspect-ratio: 1/1;
-}
-.card-photo a {
-  display: grid;
-  grid-template-columns: max-content 20px;
-  align-items: center;
-  column-gap: 7px;
-  color: var(--white);
-  font-size: 1rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  align-self: flex-start;
-  transform: translateX(0px);
-  transition: transform 0.3s 0.1s ease-out;
-  position: absolute;
-  z-index: 10;
-  bottom: 5%;
-  right: 8%;
-}
-.card-photo a:hover {
-  transform: translateX(5px);
-}
-.card-photo a:hover svg {
-  transform: translateX(5px);
-}
-.card-photo svg {
-  width: 20px;
-  height: 10px;
-  transform: translateX(0px);
-  transition: transform 0.3s ease-out;
-}
-.card-photo svg line {
-  stroke: var(--white);
-  stroke-width: 2;
-}
-.card-photo .mask {
+
+.selectors {
   position: absolute;
   top: 0;
-  height: 100%;
-  width: 50%;
-  z-index: 5;
-  background-color: var(--white);
-}
-#mask-1 {
   left: 0;
-  transform: translateY(-100%);
+  width: 30px;
+  background: rgba(0, 0, 0, 0.1);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
-#mask-2 {
-  right: 0;
-  transform: translateY(100%);
+.selectors .selector {
+  border: 1px solid #fff;
+  background: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  margin: 5px 0;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
-
-@media (max-width: 600px) {
-  .card {
-    grid-template-columns: 1fr;
-    justify-items: center;
-  }
-
-  .card-info {
-    order: 2;
-    height: 400px;
-  }
-  .card-photo {
-    width: 100%;
-    order: 1;
-  }
-
-  .card-photo img {
-    width: 100%;
-  }
-
-  .card-photo .mask {
-    height: 100%;
-  }
+.selectors .selector:hover, .selectors .selector.active {
+  background: white;
+  opacity: 0.9;
 }
 
-@media (max-width: 500px) {
-  header {
-    padding: 1em;
-    grid-template-columns: 1fr 1fr;
-    align-items: flex-start;
+section.wrapper {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  transition: background-image 500ms ease-in-out;
+}
+
+aside.panel {
+  width: 40vw;
+  height: 100%;
+  opacity: 0.9;
+  color: #fff;
+  box-shadow: 5px 0 25px 0 rgba(0, 0, 0, 0.3);
+  transition: background 500ms ease-in-out;
+}
+aside.panel h2.panel-header,
+aside.panel p.panel-info {
+  margin: 0;
+  padding: 1.3rem 3.5rem;
+}
+aside.panel h2.panel-header {
+  padding-top: 2em;
+  font-weight: normal;
+  font-size: 2.5rem;
+  text-transform: capitalize;
+}
+aside.panel p.panel-info {
+  font-size: 1.2rem;
+  line-height: 1.8em;
+}
+aside.panel button.panel-button {
+  margin: 1.3rem 3.5rem;
+  padding: 0.8em 1.3em;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Montserrat";
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: box-shadow 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+aside.panel button.panel-button:hover {
+  box-shadow: inset 0 0 1.5em 1.5em #fff;
+}
+aside.panel button.panel-button:focus {
+  outline: none;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-  header ul {
-    flex-direction: column;
+  100% {
+    opacity: 1;
   }
-  header li {
-    width: min-content;
-    margin-right: 0;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-  .card-info h1 {
-    font-size: 3rem;
+  100% {
+    opacity: 1;
   }
 }
 </style>
@@ -273,185 +196,161 @@ li.active {
 </head>
 
 <body translate="no" >
-  <div class="container" id="app">
-  <header>
-    <h1>MM .</h1>
-    <ul>
-      <li>Latest</li>
-      <li>Brands</li>
-      <li>Collections</li>
-      <li class="active">Clearance</li>
-    </ul>
-  </header>
-
-  <section>
-    <a href="法式餐桌藝術首頁.htm" class="aBord-none text-secondary nav-link "><h4>法式餐桌藝術 - <span>首頁</span></h4></a>
-  </section>
-
-  <section>
-    <div class="card">
-      <div class="card-info">
-        <h1 id="card-info-title">{{ currentCard.title }}</h1>
-        <p id="card-info-desc">{{ currentCard.desc }}</p>
-        <a href="#">
-          <p>More details</p>
-          <svg viewBox="0 0 20 10">
-            <line x1="0" y1="5" x2="20" y2="5" />
-            <line x1="15" y1="0" x2="20" y2="5" />
-            <line x1="15" y1="10" x2="20" y2="5" />
-          </svg>
-        </a>
-      </div>
-      <div class="card-photo">
-        <div id="mask-1" class="mask"></div>
-        <div id="mask-2" class="mask"></div>
-        <a href="#" @click="nextCard">
-          <p>Next</p>
-          <svg viewBox="0 0 20 10">
-            <line x1="0" y1="5" x2="20" y2="5" />
-            <line x1="15" y1="0" x2="20" y2="5" />
-            <line x1="15" y1="10" x2="20" y2="5" />
-          </svg>
-        </a>
-        <img :src="currentCard.photo">
-      </div>
-    </div>
-  </section>
-</div>
+  <div id="app"></div>
     <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
 
-  <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js'></script>
+  <script src='https://npmcdn.com/react@15.3.0/dist/react.min.js'></script>
+<script src='https://npmcdn.com/react-dom@15.3.0/dist/react-dom.min.js'></script>
       <script id="rendered-js" >
-const { createApp } = Vue;
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeID: 0,
+      wrapperStyle: {
+        backgroundImage: `url('${this.props.data[0].img}')` },
 
-createApp({
-  data() {
-    return {
-      cards: [
-      {
-        id: 1,
-        title: "Cincinnati",
-        desc:
-        "In different heights and shapes, the four versions of Floema low tables offer a variety of surfaces to satisfy different needs and uses in a contract environment, from work to moments of relaxation.",
-        photo:
-        "https://images.unsplash.com/photo-1649011327045-624a1bd2c3e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=853&q=80" },
+      panelStyle: {
+        background: this.props.data[0].colour },
 
-      {
-        id: 2,
-        title: "Daytona",
-        desc:
-        "The Circle Coffee table from Wendelbo emulates almost a visual trick. A frame where mass and gravity is suspended, and the slim and delicate structure support the marble top, like a hovering platform.",
-        photo:
-        "https://images.unsplash.com/photo-1615529182904-14819c35db37?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" },
-
-      {
-        id: 3,
-        title: "Indiana",
-        desc:
-        "With an appearance that is at once light and elegant, the Workshop Coffee Table fits perfectly into any living room, serving as a traditional coffee table as well as side table.",
-        photo:
-        "https://images.unsplash.com/flagged/photo-1588262516915-e342186ecdf6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" },
-
-      {
-        id: 4,
-        title: "Amarillo",
-        desc:
-        "Made from sustainably sourced solid American Oak, the Duo Table is composed of two seperate tops joined together on one side. The tops are solid and carved out to create a gentle lip. ",
-        photo:
-        "https://images.unsplash.com/photo-1622372738946-62e02505feb3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=832&q=80" }],
+      buttonHover: false,
+      buttonStyle: {
+        color: '#ffffff' } };
 
 
-      currentNum: 0 };
+  }
+  _changeActive(id) {
+    this.setState({
+      activeID: id,
+      wrapperStyle: {
+        backgroundImage: `url('${this.props.data[id].img}')` },
 
-  },
-  computed: {
-    currentCard() {
-      return this.cards[this.currentNum];
-    } },
-
-  methods: {
-    playFoward() {
-      let tl = gsap.timeline({
-        defaults: {
-          duration: 0.7,
-          ease: "sine.out" },
-
-        onComplete: () => {
-          this.playReverse();
-          if (this.currentNum >= 3) {
-            this.currentNum = 0;
-          } else {
-            this.currentNum++;
-          }
-        } });
-
-      tl.to("#mask-1", {
-        yPercent: 100,
-        scaleY: 1.4 }).
-
-      to(
-      "#mask-2",
-      {
-        yPercent: -100,
-        scaleY: 1.4 },
-
-      "<").
-
-      to(
-      "#card-info-title",
-      {
-        clipPath: `polygon(0 0, 100% 0, 100% 0%, 0% 0%)` },
-
-      "<0.4").
-
-      to(
-      "#card-info-desc",
-      {
-        clipPath: `polygon(0 0, 100% 0, 100% 0%, 0% 0%)` },
-
-      "<0.3");
-
-    },
-    playReverse() {
-      let tl = gsap.timeline({
-        defaults: {
-          duration: 0.7,
-          ease: "sine.in" } });
+      panelStyle: {
+        backgroundColor: this.props.data[id].colour } });
 
 
-      tl.to("#mask-1", {
-        yPercent: -100,
-        scaleY: 1.4 }).
+  }
+  _buttonColour() {
+    if (!this.state.buttonHover) {
+      this.setState({
+        buttonHover: true,
+        buttonStyle: {
+          color: this.props.data[this.state.activeID].colour } });
 
-      to(
-      "#mask-2",
-      {
-        yPercent: 100,
-        scaleY: 1.4 },
 
-      "<").
+    } else {
+      this.setState({
+        buttonHover: false,
+        buttonStyle: {
+          color: '#ffffff' } });
 
-      to(
-      "#card-info-title",
-      {
-        clipPath: `polygon(0 0, 100% 0, 100% 100%, 0% 100%)` },
 
-      "<0.2").
+    }
+  }
+  render() {
+    return /*#__PURE__*/(
+      React.createElement("section", { className: "wrapper", style: this.state.wrapperStyle }, /*#__PURE__*/
+      React.createElement(Selectors, {
+        data: this.props.data,
+        activeID: this.state.activeID,
+        _changeActive: this._changeActive.bind(this) }), /*#__PURE__*/
 
-      to(
-      "#card-info-desc",
-      {
-        clipPath: `polygon(0 0, 100% 0, 100% 100%, 0% 100%)` },
+      React.createElement(Panel, {
+        data: this.props.data[this.state.activeID],
+        panelStyle: this.state.panelStyle,
+        buttonStyle: this.state.buttonStyle,
+        _buttonColour: this._buttonColour.bind(this) })));
 
-      "<0.3");
 
-    },
-    nextCard() {
-      this.playFoward();
-    } } }).
 
-mount("#app");
+  }}
+
+class Panel extends React.Component {
+  render() {
+    return /*#__PURE__*/(
+      React.createElement("aside", { className: "panel", style: this.props.panelStyle }, /*#__PURE__*/
+      React.createElement("h2", { className: "panel-header" }, this.props.data.header), /*#__PURE__*/
+      React.createElement("p", { className: "panel-info" }, this.props.data.body), /*#__PURE__*/
+      React.createElement("button", { className: "panel-button",
+        style: this.props.buttonStyle,
+        onMouseEnter: this.props._buttonColour,
+        onMouseLeave: this.props._buttonColour }, "Read More")));
+
+
+
+
+  }}
+
+class Selectors extends React.Component {
+  _handleClick(e) {
+    if (this.props.id !== this.props.activeID) {
+      this.props._changeActive(this.props.id);
+    } else {
+      return;
+    }
+  }
+  render() {
+    return /*#__PURE__*/(
+      React.createElement("div", { className: "selectors" },
+      this.props.data.map((item) => /*#__PURE__*/
+      React.createElement(Selector, {
+        key: item.id,
+        id: item.id,
+        _handleClick: this._handleClick,
+        _changeActive: this.props._changeActive,
+        activeID: this.props.activeID }))));
+
+
+
+
+  }}
+
+class Selector extends React.Component {
+  render() {
+    let componentClass = 'selector';
+    if (this.props.activeID === this.props.id) {
+      componentClass = 'selector active';
+    }
+    return /*#__PURE__*/(
+      React.createElement("div", { className: componentClass, onClick: this.props._handleClick.bind(this) }));
+
+  }}
+
+
+const data = [{
+  id: 0,
+  header: 'Gluten-free Bicycle',
+  body: 'Chillwave knausgaard chambray flannel tumblr, narwhal microdosing blog...',
+  colour: '#242846',
+  img: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/735173/rvc1.jpg' },
+{
+  id: 1,
+  header: 'Post-ironic Disrupt',
+  body: 'Swag biodiesel disrupt retro fashion, salvia food truck kitsch wolf DIY...',
+  colour: '#ba9077',
+  img: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/735173/rvc2.jpg' },
+{
+  id: 2,
+  header: 'Lumber-Sexual Roof Party ',
+  body: 'Flexitarian 3 wolf moon cliche, migas scenester street art...',
+  colour: '#1ABC9C',
+  img: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/735173/rvc3.jpg' },
+{
+  id: 3,
+  header: 'Vegan hoodie trust fund',
+  body: 'Farm-to-table tousled try-hard, normcore ethical tilde iPhone...',
+  colour: '#C0392B',
+  img: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/735173/rvc4.jpg' },
+{
+  id: 4,
+  header: 'cliche craft beer',
+  body: 'Tote bag flannel normcore polaroid +1. Quinoa actually 90s sustainable...',
+  colour: '#513B56',
+  img: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/735173/rvc5.jpg' }];
+
+
+
+ReactDOM.render( /*#__PURE__*/React.createElement(App, { data: data }), document.querySelector('#app'));
 //# sourceURL=pen.js
     </script>
 
