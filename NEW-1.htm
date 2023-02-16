@@ -17,398 +17,266 @@
 
 
   
-  <title>CodePen - Portfolio Carousel with Synchronized Sliders</title>
+  <title>CodePen - Expandable Animated Card Slider</title>
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
   
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css'>
   
 <style>
-.ms--images {
-  position: relative;
-  overflow: hidden;
-}
-.ms--images.ms-container--horizontal {
-  width: 100%;
-  height: 400px;
-  max-width: 100%;
-}
-.ms--images.ms-container--horizontal .ms-track {
-  left: calc(50% - 350px);
-}
-.ms--images.ms-container--horizontal .ms-slide {
-  display: inline-flex;
-}
-.ms--images .ms-track {
-  display: flex;
-  position: absolute;
-  white-space: nowrap;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.ms--images .ms-slide {
-  align-items: center;
-  justify-content: center;
-  width: 700px;
-  height: 400px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
+@charset "utf-8";
 
-.ms--images {
-  left: calc(50% - 280px);
-}
-.ms--images.ms-container--horizontal .ms-track {
-  left: -70px;
-}
-.ms--images .ms-slide:nth-child(1) .ms-slide__image {
-  background-image: url("https://cdn.jsdelivr.net/gh/lmgonzalves/momentum-slider@3b3037f7f1bab402fe3c75cd20ab18e04e1cbe0b/portfolio-carousel/img/harvey-gibson-498362-unsplash.jpg");
-}
-.ms--images .ms-slide:nth-child(2) .ms-slide__image {
-  background-image: url("https://cdn.jsdelivr.net/gh/lmgonzalves/momentum-slider@3b3037f7f1bab402fe3c75cd20ab18e04e1cbe0b/portfolio-carousel/img/andre-hunter-461305-unsplash.jpg");
-}
-.ms--images .ms-slide:nth-child(3) .ms-slide__image {
-  background-image: url("https://cdn.jsdelivr.net/gh/lmgonzalves/momentum-slider@3b3037f7f1bab402fe3c75cd20ab18e04e1cbe0b/portfolio-carousel/img/joanna-nix-389128-unsplash.jpg");
-}
-.ms--images .ms-slide:nth-child(4) .ms-slide__image {
-  background-image: url("https://cdn.jsdelivr.net/gh/lmgonzalves/momentum-slider@3b3037f7f1bab402fe3c75cd20ab18e04e1cbe0b/portfolio-carousel/img/jurica-koletic-321003-unsplash.jpg");
-}
-.ms--images .ms-slide__image-container {
-  width: 80%;
-  height: 80%;
-  background-color: rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-}
-.ms--images .ms-slide__image {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-}
+/******* Fonts Import Start **********/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+/********* Fonts Face CSS End **********/
 
-.ms--numbers {
-  position: relative;
-  overflow: hidden;
+/******* Common Element CSS Start ******/
+* {
+  margin: 0px;
+  padding: 0px;
 }
-.ms--numbers.ms-container--horizontal {
-  width: 240px;
-  height: 240px;
-  max-width: 100%;
-}
-.ms--numbers.ms-container--horizontal .ms-track {
-  left: calc(50% - 120px);
-}
-.ms--numbers.ms-container--horizontal .ms-slide {
-  display: inline-flex;
-}
-.ms--numbers .ms-track {
-  display: flex;
-  position: absolute;
-  white-space: nowrap;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.ms--numbers .ms-slide {
-  align-items: center;
-  justify-content: center;
-  width: 240px;
-  height: 240px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.ms--numbers {
-  position: absolute;
-  left: calc(50% - 380px);
-  top: calc(50% - 300px);
-  z-index: -1;
-  pointer-events: none;
-}
-.ms--numbers .ms-slide {
-  font-size: 9em;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.2);
-}
-
-.ms--titles {
-  position: relative;
-  overflow: hidden;
-}
-.ms--titles.ms-container--vertical {
-  width: 400px;
-  height: 170px;
-  max-height: 100%;
-}
-.ms--titles.ms-container--vertical .ms-track {
-  flex-direction: column;
-  top: calc(50% - 85px);
-}
-.ms--titles.ms-container--vertical.ms-container--reverse .ms-track {
-  flex-direction: column-reverse;
-  top: auto;
-  bottom: calc(50% - 85px);
-}
-.ms--titles.ms-container--vertical .ms-slide {
-  display: flex;
-}
-.ms--titles .ms-track {
-  display: flex;
-  position: absolute;
-  white-space: nowrap;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.ms--titles .ms-slide {
-  align-items: center;
-  justify-content: center;
-  width: 400px;
-  height: 170px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.ms--titles {
-  position: absolute;
-  left: calc(50% - 420px);
-  top: calc(50% - 85px);
-  z-index: 1;
-  pointer-events: none;
-}
-.ms--titles .ms-track {
-  white-space: normal;
-}
-.ms--titles .ms-slide {
-  font-size: 3.3em;
-  font-weight: 600;
-}
-.ms--titles .ms-slide h3 {
-  margin: 0;
-  text-shadow: 1px 1px 2px black;
-}
-
-.ms--links {
-  position: relative;
-  overflow: hidden;
-}
-.ms--links.ms-container--vertical {
-  width: 120px;
-  height: 60px;
-  max-height: 100%;
-}
-.ms--links.ms-container--vertical .ms-track {
-  flex-direction: column;
-  top: calc(50% - 30px);
-}
-.ms--links.ms-container--vertical .ms-slide {
-  display: flex;
-}
-.ms--links .ms-track {
-  display: flex;
-  position: absolute;
-  white-space: nowrap;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.ms--links .ms-slide {
-  align-items: center;
-  justify-content: center;
-  width: 120px;
-  height: 60px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.ms--links {
-  position: absolute;
-  left: calc(50% - 420px);
-  top: calc(50% + 105px);
-  z-index: 1;
-}
-.ms--links .ms-track {
-  white-space: normal;
-}
-.ms--links .ms-slide__link {
-  font-weight: 600;
-  padding: 5px 0 8px;
-  border-bottom: 2px solid white;
-  cursor: pointer;
-}
-
-.pagination {
-  display: flex;
-  position: absolute;
-  left: calc(50% - 420px);
-  top: calc(100%);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  z-index: 1;
-}
-.pagination__button {
-  display: inline-block;
-  position: relative;
-  width: 36px;
-  height: 20px;
-  margin: 0 5px;
-  cursor: pointer;
-}
-.pagination__button:before, .pagination__button:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: calc(50% - 1px);
-  width: 100%;
-  box-shadow: 0 1px 0 #0B0D14;
-}
-.pagination__button:before {
-  height: 2px;
-  background-color: #6A3836;
-}
-.pagination__button:after {
-  height: 3px;
-  background-color: #DC4540;
-  opacity: 0;
-  transition: 0.5s opacity;
-}
-
-.pagination__item--active .pagination__button:after {
-  opacity: 1;
-}
-
-@media screen and (max-width: 860px) {
-  .ms--numbers {
-    left: calc(50% - 120px);
-  }
-
-  .ms--titles {
-    left: calc(50% - 200px);
-    top: calc(50% - 135px);
-    text-align: center;
-  }
-
-  .ms--links {
-    left: calc(50% - 60px);
-    top: calc(50% + 80px);
-  }
-
-  .pagination {
-    left: 50%;
-    top: calc(100% - 50px);
-    transform: translateX(-50%);
-  }
-}
-@media screen and (max-width: 600px) {
-  .ms--images {
-    overflow: visible;
-  }
-}
-@media screen and (max-width: 400px) {
-  .ms--titles .ms-slide {
-    transform: scale(0.8);
-  }
-}
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
 body {
-  color: white;
-  background-color: #1B1C21;
-  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
 }
-
+.clear {
+  clear: both;
+}
+img {
+  max-width: 100%;
+  border: 0px;
+}
+ul,
+ol {
+  list-style: none;
+}
 a {
-  color: white;
   text-decoration: none;
-  cursor: pointer;
+  color: inherit;
+  outline: none;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
 }
-
-.container {
+a:focus,
+a:active,
+a:visited,
+a:hover {
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  color: #e73700;
+}
+h2 {
+  margin-bottom: 48px;
+  padding-bottom: 16px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 700;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.1);
+  text-transform: capitalize;
 }
-.container:before {
+h3 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  line-height: 36px;
+}
+/******* Common Element CSS End *********/
+
+/* -------- title style ------- */
+.line-title {
+  position: relative;
+  width: 400px;
+}
+.line-title::before,
+.line-title::after {
   content: "";
   position: absolute;
-  left: -150%;
-  top: 0;
-  width: 300%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  transform: rotate(45deg);
-  z-index: -1;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  border-radius: 2px;
+}
+.line-title::before {
+  width: 100%;
+  background: #f2f2f2;
+}
+.line-title::after {
+  width: 32px;
+  background: #e73700;
 }
 
-.header {
+/******* Middle section CSS Start ******/
+/* -------- Landing page ------- */
+.game-section {
+  padding: 60px 50px;
+}
+.game-section .owl-stage {
+  margin: 15px 0;
   display: flex;
-  align-items: center;
-  padding: 30px;
+  display: -webkit-flex;
 }
-
-.header__logo {
-  font-size: 1.3em;
-  font-weight: 900;
-  letter-spacing: -1px;
-}
-.header__logo span {
-  display: inline-block;
-  transform: translateY(4px) rotate(180deg);
-  pointer-events: none;
-}
-
-.header__menu {
-  margin-left: auto;
-}
-
-.header__menu__list, .footer__menu__list {
+.game-section .item {
+  margin: 0 15px 60px;
+  width: 320px;
+  height: 400px;
   display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.header__menu__link {
-  margin-left: 50px;
-}
-
-.footer {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 30px;
-}
-
-.footer__menu__link {
-  margin-left: 50px;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.sliders-container {
+  display: -webkit-flex;
+  align-items: flex-end;
+  -webkit-align-items: flex-end;
+  background: #343434 no-repeat center center / cover;
+  border-radius: 16px;
+  overflow: hidden;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  cursor: pointer;
+}
+.game-section .item.active {
+  width: 500px;
+  box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+}
+.game-section .item:after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+}
+.game-section .item-desc {
+  padding: 0 24px 12px;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transform: translateY(calc(100% - 54px));
+  -webkit-transform: translateY(calc(100% - 54px));
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+}
+.game-section .item.active .item-desc {
+  transform: none;
+  -webkit-transform: none;
+}
+.game-section .item-desc p {
+  opacity: 0;
+  -webkit-transform: translateY(32px);
+  transform: translateY(32px);
+  transition: all 0.4s ease-in-out 0.2s;
+  -webkit-transition: all 0.4s ease-in-out 0.2s;
+}
+.game-section .item.active .item-desc p {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+.game-section .owl-theme.custom-carousel .owl-dots {
+  margin-top: -20px;
+  position: relative;
+  z-index: 5;
+}
+/******** Middle section CSS End *******/
+
+/***** responsive css Start ******/
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  h2 {
+    margin-bottom: 32px;
+  }
+  h3 {
+    margin: 0 0 8px;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  /* -------- Landing page ------- */
+  .game-section {
+    padding: 50px 30px;
+  }
+  .game-section .item {
+    margin: 0 12px 60px;
+    width: 260px;
+    height: 360px;
+  }
+  .game-section .item.active {
+    width: 400px;
+  }
+  .game-section .item-desc {
+    transform: translateY(calc(100% - 46px));
+    -webkit-transform: translateY(calc(100% - 46px));
+  }
 }
 
-@media screen and (max-width: 860px) {
-  .header__menu, .footer {
-    display: none;
+@media (min-width: 768px) and (max-width: 991px) {
+  h2 {
+    margin-bottom: 32px;
+  }
+  h3 {
+    margin: 0 0 8px;
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .line-title {
+    width: 330px;
+  }
+
+  /* -------- Landing page ------- */
+  .game-section {
+    padding: 50px 30px 40px;
+  }
+  .game-section .item {
+    margin: 0 12px 60px;
+    width: 240px;
+    height: 330px;
+  }
+  .game-section .item.active {
+    width: 360px;
+  }
+  .game-section .item-desc {
+    transform: translateY(calc(100% - 42px));
+    -webkit-transform: translateY(calc(100% - 42px));
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 14px;
+  }
+  h2 {
+    margin-bottom: 20px;
+  }
+  h3 {
+    margin: 0 0 8px;
+    font-size: 19px;
+    line-height: 24px;
+  }
+  .line-title {
+    width: 250px;
+  }
+
+  /* -------- Landing page ------- */
+  .game-section {
+    padding: 30px 15px 20px;
+  }
+  .game-section .item {
+    margin: 0 10px 40px;
+    width: 200px;
+    height: 280px;
+  }
+  .game-section .item.active {
+    width: 270px;
+    box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
+  }
+  .game-section .item-desc {
+    padding: 0 14px 5px;
+    transform: translateY(calc(100% - 42px));
+    -webkit-transform: translateY(calc(100% - 42px));
   }
 }
 </style>
@@ -429,139 +297,69 @@ a {
 </head>
 
 <body translate="no" >
-  <div class="container">
-    <header class="header">
-        <a class="header__logo">mir<span>r</span>or</a>
-        <nav class="header__menu">
-            <ul class="header__menu__list">
-                <li class="header__menu__item"><a class="header__menu__link">works</a></li>
-                <li class="header__menu__item"><a class="header__menu__link">culture</a></li>
-                <li class="header__menu__item"><a class="header__menu__link">news</a></li>
-                <li class="header__menu__item"><a class="header__menu__link">careers</a></li>
-                <li class="header__menu__item"><a class="header__menu__link">contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <!-- Container for all sliders, and pagination -->
-    <main class="sliders-container">
-        <!-- Here will be injected sliders for images, numbers, titles and links -->
-
-        <!-- Simple pagination for the slider -->
-        <ul class="pagination">
-            <li class="pagination__item"><a class="pagination__button"></a></li>
-            <li class="pagination__item"><a class="pagination__button"></a></li>
-            <li class="pagination__item"><a class="pagination__button"></a></li>
-            <li class="pagination__item"><a class="pagination__button"></a></li>
-        </ul>
-    </main>
-    <footer class="footer">
-        <nav class="footer__menu">
-            <ul class="footer__menu__list">
-                <li class="footer__menu__item"><a class="footer__menu__link">facebook</a></li>
-                <li class="footer__menu__item"><a class="footer__menu__link">dribbble</a></li>
-                <li class="footer__menu__item"><a class="footer__menu__link">instagram</a></li>
-            </ul>
-        </nav>
-    </footer>
-</div>
+  <section class="game-section">
+  <h2 class="line-title">trending games</h2>
+  <div class="owl-carousel custom-carousel owl-theme">
+    <div class="item active" style="background-image: url(https://ucarecdn.com/75d7700d-c102-40ff-9ba1-f0641444c616/dota2.jpg);">
+      <div class="item-desc">
+        <h3>Dota 2</h3>
+        <p>Dota 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
+          Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+      </div>
+    </div>
+    <div class="item" style="background-image: url(https://ucarecdn.com/2a5f69bc-befa-49f4-acc6-ab1dcae514c7/winter3.jpg);">
+      <div class="item-desc">
+        <h3>The Witcher 3</h3>
+        <p>The Witcher 3 is a multiplayer online battle arena by Valve. The game is a sequel to Defense
+          of the Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+      </div>
+    </div>
+    <div class="item" style="background-image: url(https://ucarecdn.com/ec1918b1-2674-452c-bf61-8f73d8cc40c6/rdr2.jpg);">
+      <div class="item-desc">
+        <h3>RDR 2</h3>
+        <p>RDR 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
+          Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+      </div>
+    </div>
+    <div class="item" style="background-image: url(https://ucarecdn.com/6ba9052d-6105-4491-917b-e1a65b68f920/pubg.jpg);">
+      <div class="item-desc">
+        <h3>PUBG Mobile</h3>
+        <p>PUBG 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
+          Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+      </div>
+    </div>
+    <div class="item" style="background-image: url(https://ucarecdn.com/77598be3-c67f-40de-83d3-71a0f2f76c56/fortnite.jpg);">
+      <div class="item-desc">
+        <h3>Fortnite</h3>
+        <p>Battle royale where 100 players fight to be the last person standing. which was a community-created mod
+          for Blizzard Entertainment's Warcraft III.</p>
+      </div>
+    </div>
+    <div class="item" style="background-image: url(https://ucarecdn.com/ed548880-32e4-42af-9d4e-632623903256/farcry5.jpg);">
+      <div class="item-desc">
+        <h3>Far Cry 5</h3>
+        <p>Far Cry 5 is a 2018 first-person shooter game developed by Ubisoft.
+          which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
     <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
 
-  <script src='https://rawgit.com/lmgonzalves/momentum-slider/master/dist/momentum-slider.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script>
       <script id="rendered-js" >
-(function () {
+$(".custom-carousel").owlCarousel({
+  autoWidth: true,
+  loop: true });
 
-  var slidersContainer = document.querySelector('.sliders-container');
-
-  // Initializing the numbers slider
-  var msNumbers = new MomentumSlider({
-    el: slidersContainer,
-    cssClass: 'ms--numbers',
-    range: [1, 4],
-    rangeContent: function (i) {
-      return '0' + i;
-    },
-    style: {
-      transform: [{ scale: [0.4, 1] }],
-      opacity: [0, 1] },
-
-    interactive: false });
-
-
-  // Initializing the titles slider
-  var titles = [
-  'King of the Ring Fight',
-  'Sound of Streets',
-  'Urban Fashion',
-  'Windy Sunset'];
-
-  var msTitles = new MomentumSlider({
-    el: slidersContainer,
-    cssClass: 'ms--titles',
-    range: [0, 3],
-    rangeContent: function (i) {
-      return '<h3>' + titles[i] + '</h3>';
-    },
-    vertical: true,
-    reverse: true,
-    style: {
-      opacity: [0, 1] },
-
-    interactive: false });
-
-
-  // Initializing the links slider
-  var msLinks = new MomentumSlider({
-    el: slidersContainer,
-    cssClass: 'ms--links',
-    range: [0, 3],
-    rangeContent: function () {
-      return '<a class="ms-slide__link">View Case</a>';
-    },
-    vertical: true,
-    interactive: false });
-
-
-  // Get pagination items
-  var pagination = document.querySelector('.pagination');
-  var paginationItems = [].slice.call(pagination.children);
-
-  // Initializing the images slider
-  var msImages = new MomentumSlider({
-    // Element to append the slider
-    el: slidersContainer,
-    // CSS class to reference the slider
-    cssClass: 'ms--images',
-    // Generate the 4 slides required
-    range: [0, 3],
-    rangeContent: function () {
-      return '<div class="ms-slide__image-container"><div class="ms-slide__image"></div></div>';
-    },
-    // Syncronize the other sliders
-    sync: [msNumbers, msTitles, msLinks],
-    // Styles to interpolate as we move the slider
-    style: {
-      '.ms-slide__image': {
-        transform: [{ scale: [1.5, 1] }] } },
-
-
-    // Update pagination if slider change
-    change: function (newIndex, oldIndex) {
-      if (typeof oldIndex !== 'undefined') {
-        paginationItems[oldIndex].classList.remove('pagination__item--active');
-      }
-      paginationItems[newIndex].classList.add('pagination__item--active');
-    } });
-
-
-  // Select corresponding slider item when a pagination button is clicked
-  pagination.addEventListener('click', function (e) {
-    if (e.target.matches('.pagination__button')) {
-      var index = paginationItems.indexOf(e.target.parentNode);
-      msImages.select(index);
-    }
+$(document).ready(function () {
+  $(".custom-carousel .item").click(function () {
+    $(".custom-carousel .item").not($(this)).removeClass("active");
+    $(this).toggleClass("active");
   });
-
-})();
+});
 //# sourceURL=pen.js
     </script>
 
