@@ -17,120 +17,334 @@
 
 
   
-  <title>CodePen - Carousel Slider With Owl.js</title>
+  <title>CodePen - Clip Image transition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Old+Standard+TT|Oranienbaum|Oswald:200,300,400" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
   
-  
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css'>
   
 <style>
-:root {
-  --main-white-color: white;
-  --main-black-color: black;
+body {
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 * {
-  padding: 0;
+  color: white;
+}
+
+.wrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.intro-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #333938;
+  z-index: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  overflow: hidden;
+  opacity: 1;
+}
+.intro-title {
+  color: white;
+  font-size: 48px;
+  font-family: "Oranienbaum", serif;
+  font-weight: 200;
+}
+.intro-title span {
+  opacity: 0.1;
+  font-family: "Oranienbaum", serif;
+  font-weight: 200;
+}
+.intro-title span:nth-child(2n+1) {
+  display: inline-block;
+  transform: translateY(-100%);
+}
+.intro-title span:nth-child(2n) {
+  display: inline-block;
+  transform: translateY(100%);
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.square {
+  background: #d78a0b;
+  width: 250px;
+  height: 250px;
+  transform: scaleY(0);
+}
+
+.gallery {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.gallery-background {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.gallery-title {
+  color: white;
+  text-align: center;
+  font-size: 84px;
   margin: 0;
+  margin-bottom: 0.3em;
+  font-weight: 200;
+  transform: translateY(-40%);
+  opacity: 0;
+  font-family: "Oranienbaum", serif;
+}
+.gallery-subtitle {
+  color: white;
+  text-align: center;
+  font-size: 21px;
+  margin: 0;
+  transform: translateY(-150%);
+  opacity: 0;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+.gallery-content {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.gallery-content-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.gallery-content-wrapper.enter .gallery-title {
+  opacity: 1;
+  transition: all 400ms ease-in-out;
+  transform: translateY(0);
+  transition-delay: 300ms;
+}
+.gallery-content-wrapper.enter .gallery-subtitle {
+  opacity: 1;
+  transition: all 400ms ease-in-out;
+  transition-delay: 400ms;
+  transform: translateY(0);
+}
+.gallery-content-wrapper.leave .gallery-title {
+  transition: all 400ms ease-in-out;
+  transition-delay: 100ms;
+  transform: translateY(40%);
+}
+.gallery-content-wrapper.leave .gallery-subtitle {
+  transition: all 400ms ease-in-out;
+  transform: translateY(150%);
+}
+
+* {
   box-sizing: border-box;
 }
 
-.static {
-  position: static;
-}
-
-.cover {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.owl-carousel .owl-slide {
-  position: relative;
+.image {
+  width: 100vw;
   height: 100vh;
-  background-color: lightgray;
+  background-image: url("https://images.unsplash.com/photo-1530909721090-79afae6368d7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bddf670374b9f72e045cce2da9f4e707&auto=format&fit=crop&w=1489&q=80");
+  background-size: cover;
+  transform-origin: center center;
 }
 
-.owl-carousel .owl-slide-animated {
-  transform: translateX(20px);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.05s;
-}
-
-.owl-carousel .owl-slide-animated.is-transitioned {
-  transform: none;
-  opacity: 1;
-  visibility: visible;
-  transition: all 0.5s;
-}
-
-.owl-carousel .owl-slide-title.is-transitioned {
-  transition-delay: 0.2s;
-}
-
-.owl-carousel .owl-slide-subtitle.is-transitioned {
-  transition-delay: 0.35s;
-}
-
-.owl-carousel .owl-slide-cta.is-transitioned {
-  transition-delay: 0.5s;
-}
-
-.owl-carousel .owl-dots,
-.owl-carousel .owl-nav {
+.bottom, .top {
   position: absolute;
+  top: 0;
+  left: 0;
 }
 
-.owl-carousel .owl-dots .owl-dot,
-.owl-carousel .owl-nav [class*="owl-"]:focus {
-  outline: none;
+.image-clip {
+  -webkit-clip-path: polygon(0 40%, 0 100%, 0 100%, 0 40%);
+          clip-path: polygon(0 40%, 0 100%, 0 100%, 0 40%);
 }
 
-.owl-carousel .owl-dots .owl-dot span {
-  background: transparent;
-  border: 1px solid var(--main-black-color);
-  transition: all 0.2s ease;
+.top {
+  -webkit-clip-path: polygon(0 0, 0 40%, 0 40%, 0 0);
+          clip-path: polygon(0 0, 0 40%, 0 40%, 0 0);
 }
 
-.owl-carousel .owl-dots .owl-dot:hover span,
-.owl-carousel .owl-dots .owl-dot.active span {
-  background: var(--main-black-color);
+.bottom {
+  -webkit-clip-path: polygon(0 100%, 0 100%, 0 100%, 0 100%);
+          clip-path: polygon(0 100%, 0 100%, 0 100%, 0 100%);
 }
 
-.owl-carousel .owl-nav {
-  left: 50%;
-  top: 10%;
-  transform: translateX(-50%);
+.image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.img-2 {
+  background-image: url("https://images.unsplash.com/photo-1530499694566-d0f8338170ee?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a38a2976a45d8558a83840a7b702ef7b&auto=format&fit=crop&w=1350&q=80");
+}
+
+.img-3 {
+  background-image: url("https://images.unsplash.com/photo-1530645561283-171581f1b1cb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=271fde7565ac9796e08a6e012eb09e20&auto=format&fit=crop&w=1350&q=80");
+}
+
+.slider-ldn {
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  z-index: 500;
+  margin-left: 80px;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.1em;
+}
+.slider-ldn span {
+  display: inline-block;
+  opacity: 0;
+}
+.slider-ldn h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-size: 52px;
+  transform: translateX(-50%) rotate(-90deg) translateY(50%);
+  margin: 0;
+  line-height: 0.8em;
+}
+
+.slider-nyc {
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  z-index: 500;
+  margin-right: 80px;
+  font-family: "Oswald", sans-serif;
+}
+.slider-nyc span {
+  display: inline-block;
+  opacity: 0;
+}
+.slider-nyc h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-size: 52px;
+  transform: translateX(50%) rotate(90deg) translateY(50%);
+  margin: 0;
+  line-height: 0.8em;
+}
+
+.slider-shop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  opacity: 0;
+}
+.slider-shop h1 {
+  font-family: "Oranienbaum", serif;
+  letter-spacing: 0em;
+  font-weight: 600;
+  font-size: 24px;
+  text-decoration: underline;
   margin: 0;
 }
 
-.owl-carousel .owl-nav svg {
-  opacity: 0.3;
-  transition: opacity 0.3s;
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  z-index: 10;
+  padding: 2em 80px;
+}
+.nav-logo {
+  margin: 0;
+  font-family: serif;
+  font-size: 48px;
+  font-style: italic;
+  color: white;
+  opacity: 0;
+  font-family: "Oranienbaum", serif;
+  font-weight: 200;
 }
 
-.owl-carousel .owl-nav button:hover svg {
-  opacity: 1;
+ul {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.owl-carousel .owl-nav [class*="owl-"]:hover {
-  background: transparent;
+li {
+  display: inline-block;
+  padding-right: 2em;
+}
+li:last-of-type {
+  padding-right: 0;
 }
 
-section {
-  display: none;
+.nav-links, .nav-lang {
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  top: 0;
+  align-items: center;
+  color: white;
+  font-weight: 700;
+  font-size: 21px;
+  height: 100%;
+}
+.nav-links li, .nav-lang li {
+  opacity: 0;
+  font-weight: 400;
 }
 
-@media screen and (max-width: 575px) {
-  .owl-carousel .owl-nav {
-    top: 5%;
-  }
-  
-  .owl-carousel .owl-nav svg {
-    width: 24px;
-    height: 24px;
+.nav-links {
+  padding-left: inherit;
+  left: 0;
+}
+
+.nav-lang {
+  padding-right: inherit;
+  right: 0;
+}
+
+@media (max-width: 800px) {
+  .nav-links, .nav-lang, .slider-nyc, .slider-ldn {
+    display: none;
   }
 }
 </style>
@@ -151,132 +365,383 @@ section {
 </head>
 
 <body translate="no" >
-  <div class="owl-carousel owl-theme">
-  <div class="owl-slide d-flex align-items-center cover" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/owlcarousel1.jpg);">
-    <div class="container">
-      <div class="row justify-content-center justify-content-md-start">
-        <div class="col-10 col-md-6 static">
-          <div class="owl-slide-text">
-            <h2 class="owl-slide-animated owl-slide-title">The bedding was hardly able to cover it</h2>
-            <div class="owl-slide-animated owl-slide-subtitle mb-3">
-              One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.
-            </div>
-            <a class="btn btn-primary owl-slide-animated owl-slide-cta" href="https://unsplash.com/photos/pgR4yBMjum8" target="_blank" role="button">See Original Image</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div><!--/owl-slide-->
-
-  <div class="owl-slide d-flex align-items-center cover" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/owlcarousel2.jpg);">
-    <div class="container">
-      <div class="row justify-content-center justify-content-md-start">
-        <div class="col-10 col-md-6 static">
-          <div class="owl-slide-text">
-            <h2 class="owl-slide-animated owl-slide-title">Samsa was a travelling salesman.</h2>
-            <div class="owl-slide-animated owl-slide-subtitle mb-3">
-              It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look out the window at the dull weather.
-            </div>
-            <a class="btn btn-primary owl-slide-animated owl-slide-cta" href="https://unsplash.com/photos/Ijx8OxvKrgM" target="_blank" role="button">See Original Image</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div><!--/owl-slide-->
-
-  <div class="owl-slide d-flex align-items-center cover" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/owlcarousel3.jpg);">
-    <div class="container">
-      <div class="row justify-content-center justify-content-md-start">
-        <div class="col-10 col-md-6 static">
-          <div class="owl-slide-text">
-            <h2 class="owl-slide-animated owl-slide-title">A collection of textile samples.</h2>
-            <div class="owl-slide-animated owl-slide-subtitle mb-3">
-              He lay on his armour-like back, and if he lifted his head a little he could see his brown belly.
-            </div>
-            <a class="btn btn-primary owl-slide-animated owl-slide-cta" href="https://unsplash.com/photos/7uwbhGSH5Fg" target="_blank" role="button">See Original Image</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div><!--/owl-slide-->
+  <nav class='nav'>
+  <ul class='nav-links'>
+    <li>Shop</li>
+    <li>Collection</li>
+    <li>Journal</li>
+  </ul>
+  <h1 class='nav-logo'>
+    MM .
+  </h1>
+  <ul class='nav-lang'>
+    <li>Sek</li>
+    <li>Eur</li>
+    <li>Usd</li>
+  </ul>
+</nav>
+<div class='intro-wrapper'>
+  <div class='centered'>
+    <div class='square'></div>
+  </div>
+  <div class='centered'>
+    <h1 class='intro-title'><span>J</span><span>4</span><span>3</span></h1>
+  </div>
 </div>
-
-<section>
-  <div class="container">
-    <div class="row">
-      <div class="col p-5">
-        <p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment.</p>
-        <p>His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. "What's happened to me? " he thought. It wasn't a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame. It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look out the window at the dull weather.</p>
-        <a class="btn btn-primary owl-slide-cta" href="http://www.blindtextgenerator.com/lorem-ipsum" target="_blank" role="button">Get Dummy Text</a>
+<div class='wrapper'>
+  <div class='gallery'>
+    <div class='gallery-background'>
+      <div class='image-wrapper' id='wrapper-1'>
+        <div class='image-clip middle'>
+          <div class='image img-1'> </div>
+        </div>
+        <div class='image-clip top'>
+          <div class='image img-1'> </div>
+        </div>
+        <div class='image-clip bottom'>
+          <div class='image img-1'> </div>
+        </div>
+      </div>
+      <div class='image-wrapper' id='wrapper-2'>
+        <div class='image-clip middle'>
+          <div class='image img-2'> </div>
+        </div>
+        <div class='image-clip top'>
+          <div class='image img-2'> </div>
+        </div>
+        <div class='image-clip bottom'>
+          <div class='image img-2'> </div>
+        </div>
+      </div>
+      <div class='image-wrapper' id='wrapper-3'>
+        <div class='image-clip middle'>
+          <div class='image img-3'> </div>
+        </div>
+        <div class='image-clip top'>
+          <div class='image img-3'> </div>
+        </div>
+        <div class='image-clip bottom'>
+          <div class='image img-3'> </div>
+        </div>
+      </div>
+    </div>
+    <div class='gallery-content'>
+      <div class='gallery-content-wrapper' id='content-1'>
+        <h1 class='gallery-title'>Calm & Earthy</h1>
+        <h1 class='gallery-subtitle'>Spring summer collection 2018</h1>
+      </div>
+      <div class='gallery-content-wrapper' id='content-2'>
+        <h1 class='gallery-title'>NEXT & NEXT</h1>
+        <h1 class='gallery-subtitle'>Spring summer collection 2018</h1>
+      </div>
+      <div class='gallery-content-wrapper' id='content-3'>
+        <h1 class='gallery-title'>Calm & END</h1>
+        <h1 class='gallery-subtitle'>Spring summer collection 2018</h1>
       </div>
     </div>
   </div>
-</section>
+  <div class='slider-ldn'>
+    <h1><span>l</span><span>d</span><span>n</span></h1>
+  </div>
+  <div class='slider-nyc'>
+    <h1><span>N</span><span>Y</span><span>C</span></h1>
+  </div>
+  <div class='slider-shop'>
+    <h1>Shop now</h1>
+  </div>
+</div>
     <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js'></script>
       <script id="rendered-js" >
-/*JS way for setting height: 100vh to slides' height*/
-/*const $slides = $(".owl-carousel .owl-slide");
-$slides.css("height", $(window).height());
-$(window).resize(() => {
-  $slides.css("height", $(window).height());
-});*/
+let last = 0;
+let current = 0;
 
-$(".owl-carousel").on("initialized.owl.carousel", () => {
-  setTimeout(() => {
-    $(".owl-item.active .owl-slide-animated").addClass("is-transitioned");
-    $("section").show();
-  }, 200);
-});
+const slides = [1, 2, 3].map(c => document.getElementById(`wrapper-${c}`));
+const content = [1, 2, 3].map(c => document.getElementById(`content-${c}`));
 
-const $owlCarousel = $(".owl-carousel").owlCarousel({
-  items: 1,
-  loop: true,
-  nav: true,
-  navText: [
-  '<svg width="50" height="50" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"/></svg>',
-  '<svg width="50" height="50" viewBox="0 0 24 24"><path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"/></svg>' /* icons from https://iconmonstr.com */] });
+const calcScale = (itemRect, targetRect) => {
+  const scaleX = targetRect.width / itemRect.width;
+  const scaleY = targetRect.height / itemRect.height;
+  return { x: scaleX, y: scaleY };
+};
+let ableToClick = false;
+
+const initialAnimation = () => {
+  const timeline = anime.timeline();
+  timeline.add({
+    targets: '.intro-wrapper',
+    scaleX: [0, 1],
+    opacity: [0, 1],
+    easing: 'easeInOutQuad',
+    duration: 900 }).
+
+  add({
+    targets: '.intro-title span:nth-child(2n+1)',
+    translateY: ['-100%', '0%'],
+    duration: 420,
+    opacity: [0, 1],
+    easing: 'easeOutSine',
+    offset: '-=180' }).
+
+  add({
+    targets: '.intro-title span:nth-child(2n)',
+    translateY: ['100%', '0%'],
+    duration: 420,
+    opacity: [0, 1],
+    easing: 'easeOutSine',
+    offset: '-=420' }).
+
+  add({
+    targets: '.square',
+    scaleY: {
+      value: [0, 1],
+      duration: 1000,
+      easing: 'easeInOutQuad' },
+
+    begin: anim => {
+      console.log('whole', anim);
+      anim.animatables[0].target.style.transformOrigin = 'bottom center';
+    } }).
+  add({
+    targets: '.square',
+    rotate: [0, 45],
+    duration: 1000,
+    easing: 'easeInOutQuad',
+    begin: anim => {
+      console.log('rotate', anim);
+      anim.animatables[0].target.style.transformOrigin = 'center center';
+    } }).
+  add({
+    targets: '.square',
+    rotate: [45, 90],
+    duration: 1000,
+    easing: 'easeInOutQuad' }).
+
+  add({
+    targets: '.square',
+    scaleX: [1, 2],
+    scaleY: [1, 2],
+    duration: 1000,
+    easing: 'easeInOutQuad',
+    begin: anim => {
+      // Need to get current size and calculate its scale
+      // Also called. Spagethi
+      const rect = anim.animatables[0].target.getBoundingClientRect();
+      const windowRect = { width: window.innerWidth, height: window.innerHeight };
+      const scale = calcScale(rect, windowRect);
+      anim.animations[0].tweens[0].to.original = `${scale.x}`;
+      anim.animations[0].tweens[0].to.numbers[0] = scale.x;
+      anim.animations[1].tweens[0].to.original = `${scale.y}`;
+      anim.animations[1].tweens[0].to.numbers[0] = scale.y;
+    } }).
+
+  add({
+    targets: '.intro-title span:nth-child(2n+1)',
+    translateY: ['0%', '-100%'],
+    duration: 750,
+    opacity: [1, 0],
+    easing: 'easeInOutQuad' }).
+
+  add({
+    targets: '.intro-title span:nth-child(2n)',
+    translateY: ['0%', '100%'],
+    duration: 750,
+    opacity: [1, 0],
+    easing: 'easeInOutQuad',
+    offset: '-=750',
+    complete: anim => {
+      enterImage(1, 2, true);
+    } });
+
+};
+
+const enterImage = (current, last, initial = false) => {
+  console.log(current, last);
+  const timeline = anime.timeline();
+  timeline.add({
+    targets: `#wrapper-${current}`,
+    zIndex: 2,
+    duration: 0 }).
+
+  add({
+    targets: `#wrapper-${last}`,
+    zIndex: 1,
+    duration: 0 }).
+
+  add({
+    targets: `#wrapper-${current} .top`,
+    clipPath: ['polygon(0 0, 0 40%, 0 40%, 0 0)', 'polygon(100% 0%, 100% 1%, 0 40%, 0 0%)'],
+    easing: 'easeOutSine',
+    duration: 420,
+    complete: anim => {
+      if (!initial) {
+        enterText(current);
+        leaveText(last);
+      }
+    } }).
+
+  add({
+    targets: `#wrapper-${current} .top .image`,
+    scale: [1.2, 1],
+    easing: 'easeOutSine',
+    duration: 420,
+    offset: 0 }).
+
+  add({
+    targets: `#wrapper-${current} .middle`,
+    clipPath: ['polygon(0 40%, 0 100%, 0 100%, 0 40%)', 'polygon(100% -1%, 100% 61%, 0 100%, 0 39%)'],
+    easing: 'easeOutSine',
+    duration: 420,
+    offset: 99.999,
+    complete: anim => {
+      if (initial) initialTextEnter();
+    } }).
+
+  add({
+    targets: `#wrapper-${current} .middle .image`,
+    scale: [1.2, 1],
+    easing: 'easeOutSine',
+    duration: 420,
+    offset: 99.999 }).
+
+  add({
+    targets: `#wrapper-${current} .bottom`,
+    clipPath: ['polygon(0 100%, 0 100%, 0 100%, 0 100%)', 'polygon(100% 59%, 100% 100%, 0 100%, 0 99%)'],
+    easing: 'easeOutSine',
+    duration: 420,
+    offset: 166.666,
+    complete: () => {
+    } }).
+
+  add({
+    targets: `#wrapper-${current} .bottom .image`,
+    scale: [1.2, 1],
+    easing: 'easeOutSine',
+    duration: 420,
+    offset: 166.666 }).
+
+  add({
+    targets: `#wrapper-${last}`,
+    zIndex: 0,
+    duration: 0 });
+
+};
+
+const enterText = (index, initial = false) => {
+  ableToClick = true;
+  const timeline = anime.timeline();
+  timeline.add({
+    targets: `#content-${index} .gallery-title`,
+    opacity: [0, 1],
+    translateY: ['-50%', '0%'],
+    easing: 'easeOutSine',
+    duration: 433.333,
+    offset: initial ? 0 : 433.333 }).
+
+  add({
+    targets: `#content-${index} .gallery-subtitle`,
+    opacity: [0, 1],
+    translateY: ['-120%', '0%'],
+    easing: 'easeOutSine',
+    duration: 433.333,
+    offset: initial ? 99.999 : 433.333333 + 99.999999 });
+
+};
+
+const leaveText = index => {
+  const timeline = anime.timeline();
+  timeline.add({
+    targets: `#content-${index} .gallery-subtitle`,
+    opacity: [1, 0],
+    translateY: ['0%', '120%'],
+    easing: 'easeOutSine',
+    duration: 433.333 }).
+  add({
+    targets: `#content-${index} .gallery-title`,
+    opacity: [1, 0],
+    translateY: ['0%', '50%'],
+    easing: 'easeOutSine',
+    duration: 433.333,
+    offset: 99.999 });
+
+
+};
+const initialTextEnter = () => {
+
+  const timeline = anime.timeline();
+  timeline.add({
+    targets: '.nav-links li',
+    translateY: ['-100%', '0%'],
+    opacity: [0, 1],
+    easing: 'easeOutSine',
+    duration: 433.333 }).
+
+  add({
+    targets: '.nav-logo',
+    translateY: ['-100%', '0%'],
+    opacity: [0, 1],
+    easing: 'easeOutSine',
+    duration: 433.333,
+    offset: 99.999 }).
+
+  add({
+    targets: '.slider-shop',
+    translateY: ['-100%', '0%'],
+    opacity: [0, 1],
+    easing: 'easeOutSine',
+    duration: 433.333,
+    offset: 166.666 }).
+
+
+  add({
+    targets: '.nav-lang li',
+    translateY: ['-100%', '0%'],
+    opacity: [0, 1],
+    easing: 'easeInOutSine',
+    duration: 433.333,
+    offset: 199.999 }).
+
+  add({
+    targets: ['.slider-ldn span', '.slider-nyc span'],
+    translateX: ['100%', '0%'],
+    opacity: [0, 1],
+    easing: 'easeInOutSine',
+    duration: 433.333,
+    offset: 266.666,
+    begin: anim => {
+      enterText(1, true);
+    } }).
+
+  add({
+    targets: ['.slider-nyc span'],
+    translateX: ['-100%', '0%'],
+    opacity: [0, 1],
+    easing: 'easeInOutSine',
+    duration: 433.333,
+    offset: 266.666 });
 
 
 
-$owlCarousel.on("changed.owl.carousel", e => {
-  $(".owl-slide-animated").removeClass("is-transitioned");
+};
 
-  const $currentOwlItem = $(".owl-item").eq(e.item.index);
-  $currentOwlItem.find(".owl-slide-animated").addClass("is-transitioned");
+window.onload = function () {
+  initialAnimation();
+  const hammerElement = new Hammer(window);
+  hammerElement.on('tap', function () {
+    if (!ableToClick) return;
+    ableToClick = false;
 
-  const $target = $currentOwlItem.find(".owl-slide-text");
-  doDotsCalculations($target);
-});
+    last = current;
+    current++;
+    if (current >= slides.length) {
+      current = 0;
+    }
 
-$owlCarousel.on("resize.owl.carousel", () => {
-  setTimeout(() => {
-    setOwlDotsPosition();
-  }, 50);
-});
-
-/*if there isn't content underneath the carousel*/
-//$owlCarousel.trigger("refresh.owl.carousel");
-
-setOwlDotsPosition();
-
-function setOwlDotsPosition() {
-  const $target = $(".owl-item.active .owl-slide-text");
-  doDotsCalculations($target);
-}
-
-function doDotsCalculations(el) {
-  const height = el.height();
-  const { top, left } = el.position();
-  const res = height + top + 20;
-
-  $(".owl-carousel .owl-dots").css({
-    top: `${res}px`,
-    left: `${left}px` });
-
-}
+    enterImage(current + 1, last + 1);
+  });
+};
 //# sourceURL=pen.js
     </script>
 
