@@ -17,299 +17,183 @@
 
 
   
-  <title>CodePen - Vertical Parallax Swiper slider</title>
+  <title>CodePen - CSS Grid Magazine Layout</title>
+  <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Lato" rel="stylesheet">
   
   
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css'>
   
 <style>
-:root {
-      --dark-green: #9cc675;
-      --dark-yellow: #e89a3d;
-      --extra-light-brown:#fdf0d7;
-      --light-brown: #ecd5ab;
-      --dark-brown:#915b40;
-      --light-yellow:#f8e3a8;
-      --light-red:#f3ac99;
-      --light-teal:#a6c8cc;
-      --light-gray:#ddd5d6;
-
-      --default-color: #a6c8cc;
-      --secondry-color:   #e89a3d;
-    }
-
-    html, body {
-      position: relative;
-      height: 100%;
-      font-family: sans-serif;
-    }
-    body {
-      background: #eee;
-      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-      font-size: 14px;
-      color:#000;
-      margin: 0;
-      padding: 0;
-    }
-    .swiper-container {
-      width: 100%;
-      height: 100%;
-      
-    }
-    .swiper-slide {
-      font-size: 18px;
-      color:#fff;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      padding: 40px 60px;
-    }
-    .parallax-bg {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 130%;
-      height: 100%;
-      -webkit-background-size: cover;
-      background-size: cover;
-      background-position: center;
-    }
-   
-    .swiper-slide .subtitle {
-      padding-left: 60px;
-     
-    }
-    
-
-    .colored-container {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      background: #fff;
-
-    }
-    .halfbox {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: var(--default-color);
-    width: 50%;
-    height: 100%;
-    padding: 50px 50px;
-    box-sizing: border-box;
-    }
-    .slidebox {
-      position: relative;
-      width: 450px;
-    }
-  
-  .bordered-img {
-    width: 350px;
-    position: relative;
-  }
-
-  .bordered-img img{
-    width: 100%;
-    height: 100%;
-    padding: 2px;
-  }
-
-.bordered-img:before, .bordered-img:after {
-    content: '';
-    border: 8px solid #fff;
-    width: 100%;
-    height: 96%;
-    position: absolute;
-    display: block;
-  }
- .bordered-img:after {
-  border-color: var(--secondry-color);
-    top: 0;
-    /* left: 2px; */
-    width: 29%;
-    right: -10px;
-    border-left-width: 0;
- }
-
- .title {
-  font-size: 50px;
-  
-    text-transform: uppercase;
-    position: relative;
-    
-    letter-spacing: 3px;
-    font-weight: bold;
-    margin-left: 18px;
-    color: var(--secondry-color);
-
- }
-  .title >span {
-    color: var(--default-color);
-    margin-right: 15px;
-  }
-
-  .tag-box {
-    --size: 110px;
-    background: var(--default-color);
-    /*color: var(--dark-brown);*/
-    border: 5px solid #fff;
-    width: var(--size);
-    height: var(--size);
-    position: absolute;
-    left: -95px;
-    top: 70px;
-    font-size: 30px;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    box-shadow: 0 0 22px #00000029;
-  }
-
-.swiper-slide .subtitle {
-    font-size: 18px;
-    color: #888;
-    font-weight: 300;
-    padding: top;
-    margin: 15px 0;
-    margin-bottom: 50px;
+*, *:before, *:after { 
+  box-sizing: border-box;
 }
 
-.content-box {
-       position: absolute;
-    left: 62%;
-    width: 300px;
-    top: 8%;
-    text-align: right;
+body {
+  background: #eee;
+  color: #191919;
+  font-family: 'Lato', sans-serif;
 }
 
-.btn.btn-main {
-  background: var(--secondry-color);
-  color: #fff;
-  font-size: 16px;
-  font-weight: 400;
-  outline: none;
-  border:none;
+h1, h2 {
+  font-family: 'Fjalla One', sans-serif;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+figure {
+  margin: 0;
+}
+
+img {
+  height: auto;
+  width: 100%;  
+}
+
+.wrapper {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 2fr;
+  grid-auto-rows: minmax(100px, auto);
+  margin: 24px;
+  max-width: 1000px;
   position: relative;
-  padding: 15px 40px;
-
-}
-.btn.btn-main:before {
-  content: '';
-  width: 5px;
-  background: var(--dark-brown);
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
-.slider-nav-wrapper {
-    width: 10%;
-    position: absolute;
-   top: 85%;
-    margin: auto;
-    left: 0;
-    right: 0;
+.wrapper > * {
+  grid-column: 1 / span 2;
 }
 
-.swiper-button-next, .swiper-button-prev {
-    position: absolute;
-    top: 50%;
-    z-index: 10;
-    cursor: pointer;
-    background-position: center;
-    background-repeat: no-repeat;
-    background: var(--secondry-color);
-    padding: 0px;
-    background-repeat: no-repeat;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-position: center;
-    padding: 3px;
-    box-shadow: bord;
-    box-sizing: border-box;
-    background-size: 17px !important;
+.header {
+  font-size: 1.5em;
+  grid-row: 1 / 2;
 }
 
-.verticle-animation .swiper-slide {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.slidebox {
-  margin-right: 100px;
-  margin-top: 50px;
-}
-
-.swiper-pagination  {
-  position: absolute;
-  left: 0;
-  right: inherit !important;
-}
-
-.swiper-pagination-bullet {
-    width: 20px;
-    height: 4px;
-    display: inline-block;
-    border-radius: 100%;
-    background: #000;
-   
-    border-radius: 0;
-    opacity: 1;
-    margin: 14px 0 !important;
-    transition: all .3s;
-}
-
-.swiper-pagination-bullet-active {
-    opacity: 1;
-    background: #000000;
-    width: 30px;
-}
-
-.team-info .team-info-item {
-    font-size: 22px;
-    padding: 15px 30px;
-    display: none;
-    position: absolute;
-  display: none;
-}
-
-.team-info .team-info-item.active {
+header:after {
+  background: #6817ba;
+  content: "";
   display: block;
+  height: 20px;
+  width: auto;
 }
 
-
-@-webkit-keyframes team-info-item {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 50px, 0);
-  }
-
-  to {
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-  }
+.article {
+  text-align: right;
 }
 
+.featured-image-1 {
+  grid-row: 2 / 3;
+}
 
-.team-info-item.active .heading, .team-info-item.active .content{
-  -webkit-animation-name: team-info-item;
-  animation-name: team-info-item;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation-delay: 0s;
+.number-1 {
+  grid-row: 2 / 4;
+}
+
+.featured-image-2, .number-2 {
+  grid-row: 4 / 5;
+}
+
+.number-1, .number-4 {
+  align-self: end;
+  color: rgba(104,23,186,0.5);
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 480px;
+  line-height: 480px;
+  grid-column: 1 / 2;
+}
+
+.article-1, .article-4 {
+  grid-column: 2 / 3;
+}
+
+.featured-image-2, .number-2 {
+  align-self: end;
+}
+
+.number-2 {
+  color: #eee;
+  font-size: 200px;
+  justify-self: end;
+  line-height: 160px;
+}
+
+.number-3 {
+  background: black;
+  border-radius: 130px;
+  color: white;
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 100px;
+  height: 130px;
+  line-height: 130px;
+  position: absolute;
+  grid-row: 6 / 7;
+  right: -20px;
+  text-align: center;
+  top: -20px;
+  width: 130px;
+}
+
+.featured-image-3 img {
+  height: 100%;
+}
+
+.number-4 {
+  font-size: 320px;
+  left: -20px;
+  line-height: 320px;
+  position: absolute;
+}
+
+@media (min-width: 600px) {
   
-}
-.team-info-item.active .content p {
-font-weight: 300;
-}
-.team-info-item.active .content {
-  -webkit-animation-delay: .2s;
+  .wrapper {
+    grid-template-columns: repeat(2, 1fr 2fr);
+    margin: 24px auto;
+  }
+  
+  .header {
+    grid-column: 3 / 5;
+    width: 70%;
+  }
+  
+  .featured-image-1 {
+    grid-row: 1 / 3;
+  }
+  
+  .article-1 {
+    grid-row: 3 / 4;
+  }
+  
+  .article-2 {
+    grid-column: 4 / 5;
+    grid-row: 4 / 5;
+  }
+  
+  .featured-image-2, .number-2 {
+    grid-column: 3 / 5;
+    grid-row: 2 / 4;
+  }
+
+  .featured-image-3, .number-3 {
+    grid-row: 4 / 6;
+  }
+  
+  .featured-image-4, .number-4 {
+    grid-column: 3 / 5;
+    grid-row: 5 / 6;
+  }
+  
+  .number-4 {
+    font-size: 320px;
+    grid-row: 5 / 7;
+  }
+  
+  .article-3, .article-4 {
+    grid-row: 6 / 7;
+  }
+  
+  .article-4 {
+    grid-column: 4 / 5;
+  }
+  
 }
 </style>
 
@@ -329,263 +213,44 @@ font-weight: 300;
 </head>
 
 <body translate="no" >
-  <!-- Swiper -->
-   <div class="colored-container">
-
-  <div class="swiper-container verticle-animation">
-     <div class="halfbox team-info">
-        <li class="team-info-item active">
-          <h1 class="heading">Hi, my name is Aqil </h1>
-             <article class="content">
-                <p>
-                  I'm AU/UX designer developer
-                  please don't forget to like <br>
-                  your likes Mean A lot to me
-             
-                  </p>
-                  <p>
-                    Fork on Github <a href="https://github.com/md-aqil">Md Aqil</a>
-                  </p>
-                  <p>
-                    Find My Portfolio: <a href="https://mdaqil.tk">Md Aqil</a>
-                  </p>
-
-            </article>
-      </li>
-        <li class="team-info-item active">
-          <h1 class="heading">Hi, my name is Aqil </h1>
-             <article class="content">
-                <p>
-                  I'm AU/UX designer developer
-                  please don't forget to like <br>
-                  your likes Mean A lot to me
-             
-                  </p>
-                  <p>
-                    Fork on Github <a href="https://github.com/md-aqil">Md Aqil</a>
-                  </p>
-                  <p>
-                    Find My Portfolio: <a href="https://mdaqil.tk">Md Aqil</a>
-                  </p>
-
-            </article>
-      </li>
-        <li class="team-info-item active">
-          <h1 class="heading">Hi, my name is Aqil </h1>
-             <article class="content">
-                <p>
-                  I'm AU/UX designer developer
-                  please don't forget to like <br>
-                  your likes Mean A lot to me
-             
-                  </p>
-                  <p>
-                    Fork on Github <a href="https://github.com/md-aqil">Md Aqil</a>
-                  </p>
-                  <p>
-                    Find My Portfolio: <a href="https://mdaqil.tk">Md Aqil</a>
-                  </p>
-
-            </article>
-      </li>
-       
-     </div>
-    <div class="swiper-wrapper">
-    
-       
-       <div class="swiper-slide">
-          <div class="slidebox">
-            <div class="flex-left">
-                <div class="bordered-img">
-              <div class="tag-box" data-swiper-parallax="-300">
-                fay
-              </div>
-              <img src="http://md-aqil.github.io/images/beautiful-beauty-face-2657838.jpg" alt="">
-              </div>
-            </div>
-          
-            <div class="content-box">
-              <div class="title" data-swiper-parallax="-300">
-                <span>mrs</span>italy
-              </div>
-              <div class="subtitle" data-swiper-parallax="-200">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, id.
-              </div>
-              <button class="btn btn-main">
-                Shop Now
-              </button>
-              
-         
-            </div>
-            
-          </div>
-        </div>
-         <div class="swiper-slide">
-          <div class="slidebox">
-            <div class="flex-left">
-                <div class="bordered-img">
-              <div class="tag-box" data-swiper-parallax="-300">
-                fay
-              </div>
-                            <img src="http://md-aqil.github.io/images/bikini-body-female-881583.jpg" alt="">
-
-              </div>
-            </div>
-          
-            <div class="content-box">
-              <div class="title" data-swiper-parallax="-300">
-                <span>mrs</span>italy
-              </div>
-              <div class="subtitle" data-swiper-parallax="-200">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, id.
-              </div>
-              <button class="btn btn-main">
-                Shop Now
-              </button>
-              
-         
-            </div>
-            
-          </div>
-        </div>
-         <div class="swiper-slide">
-          <div class="slidebox">
-            <div class="flex-left">
-                <div class="bordered-img">
-              <div class="tag-box" data-swiper-parallax="-300">
-                fay
-              </div>
-                            <img src="http://md-aqil.github.io/images/afro-afro-hair-attractive-2603391.jpg" alt="">
-              
-              </div>
-            </div>
-          
-            <div class="content-box">
-              <div class="title" data-swiper-parallax="-300">
-                <span>mrs</span>italy
-              </div>
-              <div class="subtitle" data-swiper-parallax="-200">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, id.
-              </div>
-              <button class="btn btn-main">
-                Shop Now
-              </button>
-              
-         
-            </div>
-            
-          </div>
-        </div>
-         <div class="swiper-slide">
-          <div class="slidebox">
-            <div class="flex-left">
-                <div class="bordered-img">
-              <div class="tag-box" data-swiper-parallax="-300">
-                fay
-              </div>
-                <img src="http://md-aqil.github.io/images/beautiful-bikini-daylight-745767.jpg" alt="">
-
-              </div>
-            </div>
-          
-            <div class="content-box">
-              <div class="title" data-swiper-parallax="-300">
-                <span>mrs</span>italy
-              </div>
-              <div class="subtitle" data-swiper-parallax="-200">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, id.
-              </div>
-              <button class="btn btn-main">
-                Shop Now
-              </button>
-              
-         
-            </div>
-            
-          </div>
-        </div>
-        
-         <div class="swiper-slide">
-          <div class="slidebox">
-            <div class="flex-left">
-                <div class="bordered-img">
-              <div class="tag-box" data-swiper-parallax="-300">
-                fay
-              </div>
-                             <img src="http://md-aqil.github.io/images/adolescent-beautiful-beauty-247878.jpg" alt="">
-
-              </div>
-            </div>
-          
-            <div class="content-box">
-              <div class="title" data-swiper-parallax="-300">
-                <span>mrs</span>italy
-              </div>
-              <div class="subtitle" data-swiper-parallax="-200">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, id.
-              </div>
-              <button class="btn btn-main">
-                Shop Now
-              </button>
-              
-         
-            </div>
-            
-          </div>
-        </div>
-        
-    </div>
-
-   <div class="slider-nav-wrapper">
-    <div class="swiper-button-prev swiper-button-white"></div>
-    <div class="swiper-button-next swiper-button-white"></div>
-  </div>
-   <div class="swiper-pagination"></div>
-  </div>
+  <div class="wrapper">
+  <header class="header"><h1>Innovators of the new genre</h1></header>
+  <figure class="featured-image-1">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/579121/karina-carvalho-87594-sm.jpg" alt="Photo by Karina Carvalho on Unsplash">
+   </figure>
+  <div class="number-1">1</div>
+  <article class="article article-1">
+    <h2>Technical information</h2>
+    <p>In 1985 Aldus Corporation launched its first desktop publishing program Aldus PageMaker for Apple Macintosh computers.</p>
+  </article>
+  <figure class="featured-image-2">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/579121/jc-dela-cuesta-311203-sm.jpg" alt="Photo by JC Dela Cuesta on Unsplash">
+   </figure>
+  <div class="number-2">2</div>
+  <article class="article article-2">
+    <h2>Variants</h2>
+    <p>Released in 1987 for PCs running Windows 1.0.</p>
+  </article>
+  <figure class="featured-image-3">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/579121/seth-doyle-151915-sm.jpg" alt="Photo by Seth Doyle on Unsplash">
+   </figure>
+  <div class="number-3">3</div>
+  <article class="article article-3">
+    <h2>When not to use it</h2>
+    <p>The toppings you may chose for that TV dinner pizza slice when you forgot to shop for foods, the paint you may slap on your face to impress the new boss is your business. But what about your daily bread?</p>
+  </article>
+  <figure class="featured-image-4">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/579121/tim-marshall-189232-sm.jpg" alt="Photo by Tim Marshall on Unsplash">
+   </figure>
+  <div class="number-4">4</div>
+  <article class="article article-4">
+    <h2>So Lorem Ipsum is bad</h2>
+    <p>One of the villagers, Kristina Halvorson from Adaptive Path, holds steadfastly to the notion that design can’t be tested without real content.</p>
+  </article>
 </div>
-    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
-
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js'></script>
-      <script id="rendered-js" >
-var colors = [
-'--dark-green',
-'--light-brown',
-
-'--light-red',
-'--light-teal',
-'--light-gray'];
-
-
-
-var swiperverticle = new Swiper('.swiper-container.verticle-animation', {
-  speed: 600,
-  parallax: true,
-  direction: 'vertical',
-  mousewheel: true,
-
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true },
-
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev' } });
-
-
-
-
-
-swiperverticle.on('slideChange', function () {
-  var index = this.activeIndex;
-
-  // $('.halfbox').css({background: 'var('+colors[index % colors.length]+')'});
-
-  $('.team-info .team-info-item').removeClass('active').eq(this.activeIndex).addClass('active');
-});
-//# sourceURL=pen.js
-    </script>
-
+  
+  
+  
   
 
 </body>
