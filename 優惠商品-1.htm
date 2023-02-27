@@ -17,164 +17,167 @@
 
 
   
-  <title>CodePen - Scrolly Path with Cassie Evans! | @keyframers 4.1</title>
+  <title>CodePen - scroll</title>
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
   
+  <link rel='stylesheet' href='https://unpkg.com/splitting/dist/splitting.css'>
   
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Arimo:wght@500&family=Playfair+Display&display=swap");
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  position: relative;
-}
-
-:root {
-  --duration: 2s;
-  --delay: 0s;
-  --easing: cubic-bezier(0.25, 0, 0.25, 1);
-}
-
-html {
-  font-family: "Playfair Display", serif;
-  background: #e9e5e2;
-  height: 100%;
-}
-
-body {
-  min-height: 100%;
-  padding: 0;
-  margin: 0;
-  padding-bottom: 9rem;
-  -webkit-animation: fade-in 0.5s linear 0.5s both;
-          animation: fade-in 0.5s linear 0.5s both;
-}
-@-webkit-keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-}
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-}
-
-img {
-  max-width: 100%;
-  display: block;
-  filter: grayscale(10%) sepia(10%);
-}
-
-#page {
-  position: relative;
-  padding-top: 2.5rem;
-}
-
-.page-title {
-  font-size: 90px;
-  font-family: "Arimo", sans-serif;
-  font-weight: 500;
-  line-height: 0.8;
-  margin: 0 1rem 1.5rem 1rem;
-  letter-spacing: -0.05em;
-}
-.page-title > .page-title-secondary {
-  padding-bottom: 1rem;
-  opacity: 0.3;
-  --delay: calc(var(--duration) / 4);
-}
-
-.revealer {
-  overflow: hidden;
-}
-
-.banner {
-  width: 100%;
-  max-height: 500px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -webkit-animation: banner var(--duration) calc(var(--duration) / 2) cubic-bezier(0.1, 0, 0.1, 1) both;
-          animation: banner var(--duration) calc(var(--duration) / 2) cubic-bezier(0.1, 0, 0.1, 1) both;
-}
-@-webkit-keyframes banner {
-  from {
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-  }
-  to {
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-}
-@keyframes banner {
-  from {
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-  }
-  to {
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-}
-
-.title {
-  margin: 3rem 1rem;
-  font-size: 2rem;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1.5fr;
-  margin: 0 1rem;
-  grid-gap: 2rem 0;
-}
-.grid .spacer1 {
-  grid-row: 1;
-  grid-column: 3;
-}
-.grid .spacer2 {
-  grid-row: 2;
-  grid-column: 1;
-}
-.grid .spacer3 {
-  grid-row: 3;
-  grid-column: 3;
-}
-.grid .spacer4 {
-  grid-row: 4;
-  grid-column: 1;
-}
-.grid figure {
-  position: relative;
-  margin: 0;
-  overflow: hidden;
-}
-.grid img {
-  width: 100%;
-}
-.grid figcaption {
-  font-family: sans-serif;
-  font-weight: semi-bold;
+.intro-section {
   text-align: center;
-  margin-bottom: 0.5rem;
+  min-height: 70vh;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
 }
 
-#stroke-svg {
+.content-section {
+  --scroll-length: 1.5;
+  height: calc(var(--scroll-length) * 100vh);
+  width: 100%;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+.content-section .content .subheading,
+.content-section .content .paragraph {
+  opacity: 1;
+  opacity: calc(1 + var(--viewport-y));
+}
+
+.figure {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
+}
+.figure > img {
+  display: block;
   width: 100%;
-  z-index: -1;
+  height: 100%;
+  max-width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center center;
+  object-position: center center;
 }
 
-#stroke {
-  --dashOffest: 0;
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 35em;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  color: white;
+  padding: 2em;
+  font-size: 2.5vmin;
 }
+.content * {
+  text-shadow:
+       5px 5px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
+}
+.content > .header {
+  grid-row: 1 / 2;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+}
+.content > .paragraph {
+  grid-row: 2 / 3;
+  line-height: 1.5;
+}
+
+.heading {
+  font-size: 2.75em;
+  margin: 0;
+}
+
+.subheading {
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+
+/* ---------------------------------- */
+.figure {
+  --scale: calc(0.8 + (0.2 * var(--scroll-length) * var(--visible-y)));
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  margin: 0;
+  display: block;
+  overflow: hidden;
+  will-change: transform;
+  -webkit-transform: scale(var(--scale));
+  transform: scale(var(--scale));
+}
+.figure:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  /*background-color: grey;*/
+  opacity: calc(var(--visible-y));
+}
+.figure > img {
+  display: block;
+  will-change: transform;
+  -webkit-transform: scale(calc(1 / var(--scale)));
+  transform: scale(calc(1 / var(--scale)));
+}
+
+/* ---------------------------------- */
+.char {
+  display: inline-block;
+  opacity: calc(1 + ((var(--viewport-y) * 1.5) - var(--char-percent)));
+}
+
+*,
+*:before,
+*:after {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.heading,
+.intro-heading {
+  font-weight: 700;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  font-family: "SF Pro Display", "Helvetica Neue", "Helvetica", "Arial",
+    sans-serif;
+}
+
 </style>
 
   <script>
@@ -193,193 +196,147 @@ img {
 </head>
 
 <body translate="no" >
-  <div id="page">
-  <header>
-    <h1 class="page-title">
-      <div class='revealer'>
-        <div class='revealer-inner'>Cassie Evans</div>
-      </div>
-      <div class='page-title-secondary revealer'>
-        <div class='revealer-inner'>Keyframers</div>
-      </div>
-    </h1>
-  </header>
+ <script src="https://codepen.io/shshaw/pen/QmZYMG.js"></script>
 
-  <img src="https://images.unsplash.com/photo-1620291699655-d958150a3ff8?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyMTA4Nzg3Ng&ixlib=rb-1.2.1&q=80&w=1200&h=600" alt="" class="banner">
+ <section class="intro-section">
+   <h1 class="intro-heading"> Watch</h1>
 
-  <h2 class="title revealer">
-    <div class="revealer-inner">Bestsellers</div>
-  </h2>
+   <p>The latest in time-telling technology.</p>
+ </section>
 
-  <div class="grid">
+ <!-- Photos via Unsplash Source https://source.unsplash.com/ -->
+ <section class="content-section" data-scroll>
+   <figure class="figure"><img src="https://source.unsplash.com/bl_NUhqLC8o/800x800" /></figure>
 
-    <figure>
-      <figcaption class='revealer'>
-        <div class='revealer-inner'>This shirt</div>
-      </figcaption>
-      <div class="revealer">
-        <img class='revealer-img' src="https://images.unsplash.com/photo-1526413232644-8a40f03cc03b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyMTA4ODI5MA&ixlib=rb-1.2.1&q=80&w=400" alt="" />
-      </div>
-    </figure>
+   <div class="content">
+     <header class="header">
+       <div class="subheading">All-Old Techniques</div>
+       <h2 class="heading">Not Evolved,<br />not transformed either.</h2>
+     </header>
+     <p class="paragraph">
+       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum nisi illum rem recusandae. Tempore consequuntur nihil cumque quis nam deserunt earum atque et ullam facere accusamus cum natus, autem numquam.
+     </p>
+   </div>
+ </section>
 
-    <figure>
-      <figcaption class='revealer'>
-        <div class='revealer-inner'>And this dress</div>
-      </figcaption>
-      <div class="revealer">
-        <img class='revealer-img' src="https://images.unsplash.com/photo-1602741070475-fc55f644c3f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyMTA4ODI5MA&ixlib=rb-1.2.1&q=80&w=400" alt="" />
-      </div>
-    </figure>
+ <section class="content-section" data-scroll>
+   <figure class="figure"><img src="https://source.unsplash.com/rCOWMC8qf8A/800x800" /></figure>
+   <div class="content">
+     <header class="header">
+       <div class="subheading">All-Old Techniques</div>
+       <h2 class="heading">Not Evolved,<br />not transformed either.</h2>
+     </header>
+     <p class="paragraph">
+       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum nisi illum rem recusandae. Tempore consequuntur nihil cumque quis nam deserunt earum atque et ullam facere accusamus cum natus, autem numquam.
+     </p>
+   </div>
+ </section>
 
-    <figure>
-      <figcaption class='revealer'>
-        <div class='revealer-inner'>Also this blouse</div>
-      </figcaption>
-      <div class="revealer">
-        <img class='revealer-img' src='https://images.unsplash.com/photo-1614282860993-c9f7e9acdf44?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyMTA4Nzk2OQ&ixlib=rb-1.2.1&q=80&w=400' alt=''>
-      </div>
-    </figure>
+ <section class="content-section" data-scroll>
+   <figure class="figure"><img src="https://source.unsplash.com/mAsKA0jFfeQ/800x800" /></figure>
+   <div class="content">
+     <header class="header">
+       <div class="subheading">All-Old Techniques</div>
+       <h2 class="heading">Not Evolved,<br />not transformed either.</h2>
+     </header>
+     <p class="paragraph">
+       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum nisi illum rem recusandae. Tempore consequuntur nihil cumque quis nam deserunt earum atque et ullam facere accusamus cum natus, autem numquam.
+     </p>
+   </div>
+ </section>
 
-    <figure>
-      <figcaption class='revealer'>
-        <div class='revealer-inner'>The table, actually</div>
-      </figcaption>
+ <section class="content-section" data-scroll>
+   <figure class="figure"><img src="https://source.unsplash.com/P4a43pThV3c/800x800" /></figure>
+   <div class="content">
+     <header class="header">
+       <div class="subheading">All-Old Techniques</div>
+       <h2 class="heading">Not Evolved,<br />not transformed either.</h2>
+     </header>
+     <p class="paragraph">
+       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum nisi illum rem recusandae. Tempore consequuntur nihil cumque quis nam deserunt earum atque et ullam facere accusamus cum natus, autem numquam.
+     </p>
+   </div>
+ </section>
 
-      <div class="revealer">
-        <img class='revealer-img' src='https://images.unsplash.com/photo-1614283232994-7f56849e2359?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyMTA4Nzk2OQ&ixlib=rb-1.2.1&q=80&w=400' alt=''>
-      </div>
-    </figure>
+ <section class="content-section" data-scroll>
+   <figure class="figure"><img src="https://source.unsplash.com/Odhl-kitI2c/800x800" /></figure>
+   <div class="content">
+     <header class="header">
+       <div class="subheading">All-Old Techniques</div>
+       <h2 class="heading">Not Evolved,<br />not transformed either.</h2>
+     </header>
+     <p class="paragraph">
+       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum nisi illum rem recusandae. Tempore consequuntur nihil cumque quis nam deserunt earum atque et ullam facere accusamus cum natus, autem numquam.
+     </p>
+   </div>
+ </section>
 
-    <figure>
-      <figcaption class='revealer'>
-        <div class='revealer-inner'>Whatever she's holding</div>
-      </figcaption>
+ <section class="content-section" data-scroll>
+   <figure class="figure"><img src="https://source.unsplash.com/PIKyHi0jsAI/800x800" /></figure>
+   <div class="content">
+     <header class="header">
+       <div class="subheading">All-Old Techniques</div>
+       <h2 class="heading">Not Evolved,<br />not transformed either.</h2>
+     </header>
+     <p class="paragraph">
+       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum nisi illum rem recusandae. Tempore consequuntur nihil cumque quis nam deserunt earum atque et ullam facere accusamus cum natus, autem numquam.
+     </p>
+   </div>
+ </section>
 
-      <div class="revealer">
-        <img class='revealer-img' src='https://images.unsplash.com/photo-1620916927285-21c5218d64a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyMTA4ODI5MA&ixlib=rb-1.2.1&q=80&w=400' alt=''>
-      </div>
-    </figure>
+ <section class="content-section" data-scroll>
+   <figure class="figure"><img src="https://source.unsplash.com/hBuwVLcYTnA/800x800" /></figure>
+   <div class="content">
+     <header class="header">
+       <div class="subheading">All-Old Techniques</div>
+       <h2 class="heading">Not Evolved,<br />not transformed either.</h2>
+     </header>
+     <p class="paragraph">
+       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum nisi illum rem recusandae. Tempore consequuntur nihil cumque quis nam deserunt earum atque et ullam facere accusamus cum natus, autem numquam.
+     </p>
+   </div>
+ </section>
 
-    <figure>
-      <figcaption class='revealer'>
-        <div class='revealer-inner'>Harmless spray</div>
-      </figcaption>
+ <section class="content-section" data-scroll>
+   <figure class="figure"><img src="https://source.unsplash.com/ZEsfrZjZClQ/800x800" /></figure>
+   <div class="content">
+     <header class="header">
+       <div class="subheading">All-Old Techniques</div>
+       <h2 class="heading">Not Evolved,<br />not transformed either.</h2>
+     </header>
+     <p class="paragraph">
+       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum nisi illum rem recusandae. Tempore consequuntur nihil cumque quis nam deserunt earum atque et ullam facere accusamus cum natus, autem numquam.
+     </p>
+   </div>
+ </section>
 
-      <div class="revealer">
-        <img class='revealer-img' src='https://images.unsplash.com/photo-1620916927612-a28afb1dc0f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyMTA4ODk1Nw&ixlib=rb-1.2.1&q=80&w=400' alt=''>
-      </div>
-    </figure>
-
-    <span class="spacer1"></span>
-    <span class="spacer2"></span>
-    <span class="spacer3"></span>
-    <span class="spacer4"></span>
-  </div>
-
-  <svg id="stroke-svg" preserveAspectRatio="xMidYMid slice" fill-rule="evenodd" stroke-miterlimit="1.5" clip-rule="evenodd" viewBox="0 0 2132 5344">
-    <defs>
-      <mask id="stroke-mask">
-        <path id="mask-stroke" fill="none" stroke="white" stroke-width="5" d="M324.813-52.135C204.651 65.523 458.362 173.469 601.765 189.285c169.887 18.737 410.22-29.224 520.966-82.617 100.731-48.564 154.809-138.521 101.624-165.772-55.127-28.247-560.763 155.569-415.777 300.554 49.997 49.998 502.244 145.465 784.213 38.725 155.512-58.87 188.43-160.067 172.708-189.71-27.518-51.882-247.239 28.961-305.985 65.473-276.859 172.073-515.191 899.522-201.638 1338.54 206.052 288.502 827.828 487.908 785.773 164.706-17.293-132.902-272.903-149.223-367.935-88.64-113.522 72.37-335.863 193.745-231.163 504.727 88.882 264 678.637 273.92 544.444 558.087-147.028 311.346-586.597 149.888-757.298 124.559-379.379-56.295-803.402-136.829-955.247 297.618-59.843 171.216-44.961 489.493 70.837 631.153 162.443 198.723 459.583-129.982 369.648-294.59-96.415-176.467-322.65 22.711-396.282 105.313-97.708 109.612-166.931 399.956-39.123 502.579 267.219 214.564 622.086-28.76 831.909 21.963 561.219 135.67 235.391 679.206 457.463 917.719 221.323 237.708 654.322-95.359 407.084-266.334-358.912-248.2-527.841 403.197-687.761 495.191-241.38 138.854-374.262-119.763-602.689-142.606-73.378-7.337-157.751-.818-224.685 31.794-15.142 7.378-52.177 37.97-69.586 37.97" />
-      </mask>
-
-    </defs>
-
-    <path id="stroke" stroke="grey" mask="url(#stroke-mask)" stroke-dasharray="20" stroke-dashoffset="var(--dashOffset)" fill="none" stroke-width="5" d="M324.813-52.135C204.651 65.523 458.362 173.469 601.765 189.285c169.887 18.737 410.22-29.224 520.966-82.617 100.731-48.564 154.809-138.521 101.624-165.772-55.127-28.247-560.763 155.569-415.777 300.554 49.997 49.998 502.244 145.465 784.213 38.725 155.512-58.87 188.43-160.067 172.708-189.71-27.518-51.882-247.239 28.961-305.985 65.473-276.859 172.073-515.191 899.522-201.638 1338.54 206.052 288.502 827.828 487.908 785.773 164.706-17.293-132.902-272.903-149.223-367.935-88.64-113.522 72.37-335.863 193.745-231.163 504.727 88.882 264 678.637 273.92 544.444 558.087-147.028 311.346-586.597 149.888-757.298 124.559-379.379-56.295-803.402-136.829-955.247 297.618-59.843 171.216-44.961 489.493 70.837 631.153 162.443 198.723 459.583-129.982 369.648-294.59-96.415-176.467-322.65 22.711-396.282 105.313-97.708 109.612-166.931 399.956-39.123 502.579 267.219 214.564 622.086-28.76 831.909 21.963 561.219 135.67 235.391 679.206 457.463 917.719 221.323 237.708 654.322-95.359 407.084-266.334-358.912-248.2-527.841 403.197-687.761 495.191-241.38 138.854-374.262-119.763-602.689-142.606-73.378-7.337-157.751-.818-224.685 31.794-15.142 7.378-52.177 37.97-69.586 37.97" />
-  </svg>
-</div>
-
-<a href="https://youtu.be/sFJa1ThZReA" target="_blank" data-keyframers-credit style="color: #000"></a>
-<script src="https://codepen.io/shshaw/pen/QmZYMG.js"></script>
+ <section class="content-section" data-scroll>
+   <figure class="figure"><img src="https://source.unsplash.com/iFPBRwZ4I-M/800x800" /></figure>
+   <div class="content">
+     <header class="header">
+       <div class="subheading">All-Old Techniques</div>
+       <h2 class="heading">Not Evolved,<br />not transformed either.</h2>
+     </header>
+     <p class="paragraph">
+       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum nisi illum rem recusandae. Tempore consequuntur nihil cumque quis nam deserunt earum atque et ullam facere accusamus cum natus, autem numquam.
+     </p>
+   </div>
+ </section>
     <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js'></script>
-<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/DrawSVGPlugin3.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js'></script>
+  <script src='https://unpkg.com/scroll-out@2.2.2/dist/scroll-out.min.js'></script>
+<script src='https://unpkg.com/splitting/dist/splitting.min.js'></script>
       <script id="rendered-js" >
-gsap.from("#mask-stroke", {
-  drawSVG: "0%",
-  scrollTrigger: {
-    trigger: "#page",
-    start: "-7% top",
-    end: "bottom+=20% bottom",
-    scrub: 1 } });
+console.clear();
+
+ScrollOut({
+  cssProps: {
+    visibleY: true,
+    viewportY: true } });
 
 
 
-gsap.from("#stroke", {
-  "--dashOffset": 1000,
-  delay: 1,
-  scrollTrigger: {
-    trigger: "#page",
-    start: "-5% top",
-    end: "bottom+=20% bottom",
-    scrub: 1 } });
-
-
-
-let text = gsap.utils.toArray(".revealer-inner");
-text.forEach((el, i) => {
-  gsap.from(el, {
-    yPercent: 120,
-    duration: 1,
-    delay: el.classList.contains("page-title-secondary") ? 2 : 1,
-    scrollTrigger: {
-      trigger: el,
-      start: "top center",
-      end: "bottom top",
-      toggleActions: "restart pause resume reset" } });
-
-
-});
-
-let images = gsap.utils.toArray(".revealer-img");
-images.forEach(el => {
-  gsap.from(el, {
-    opacity: 0,
-    yPercent: 10,
-    scale: 1.2,
-    duration: 2,
-    scrollTrigger: {
-      trigger: el,
-      start: "top bottom",
-      end: "bottom top",
-      //markers: true,
-      toggleActions: "restart pause resume pause" } });
-
-
-});
-
-// const observer = new window.IntersectionObserver(([entry]) => {
-//   if (entry.isIntersecting) {
-//     console.log(entry)
-//     entry.target.dataset.visible = true;
-//   } else {
-//     delete entry.target.dataset.visible;
-//   }
-// }, {
-//   root: null,
-//   threshold: 0,
-// })
-
-// document
-//   .querySelectorAll('.revealer')
-//   .forEach(el => {
-//     if (elementInViewport(el)) {
-//       el.dataset.visible = true;
-//     }
-//     observer.observe(el);
-//   });
-
-// function elementInViewport(el) {
-//   var rect = el.getBoundingClientRect();
-
-//   return (
-//       rect.top >= 0 &&
-//       rect.left >= 0 &&
-//       rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-//       rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-//   );
-// }
+Splitting({ target: ".heading" });
 //# sourceURL=pen.js
     </script>
 
