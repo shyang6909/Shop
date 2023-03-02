@@ -17,183 +17,159 @@
 
 
   
-  <title>CodePen - CSS Grid Magazine Layout</title>
-  <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Lato" rel="stylesheet">
+  <title>CodePen - FLIP Image Grid Gallery Transition | 🔍 Magnified Masonry | @keyframers 2.7.0 Live @ CodePen Orlando</title>
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
   
   
 <style>
-*, *:before, *:after { 
+* {
   box-sizing: border-box;
-}
-
-body {
-  background: #eee;
-  color: #191919;
-  font-family: 'Lato', sans-serif;
-}
-
-h1, h2 {
-  font-family: 'Fjalla One', sans-serif;
-  margin-top: 0;
-  text-transform: uppercase;
-}
-
-figure {
-  margin: 0;
-}
-
-img {
-  height: auto;
-  width: 100%;  
-}
-
-.wrapper {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: 1fr 2fr;
-  grid-auto-rows: minmax(100px, auto);
-  margin: 24px;
-  max-width: 1000px;
   position: relative;
 }
 
-.wrapper > * {
-  grid-column: 1 / span 2;
-}
-
-.header {
-  font-size: 1.5em;
-  grid-row: 1 / 2;
-}
-
-header:after {
-  background: #6817ba;
-  content: "";
-  display: block;
-  height: 20px;
-  width: auto;
-}
-
-.article {
-  text-align: right;
-}
-
-.featured-image-1 {
-  grid-row: 2 / 3;
-}
-
-.number-1 {
-  grid-row: 2 / 4;
-}
-
-.featured-image-2, .number-2 {
-  grid-row: 4 / 5;
-}
-
-.number-1, .number-4 {
-  align-self: end;
-  color: rgba(104,23,186,0.5);
-  font-family: 'Fjalla One', sans-serif;
-  font-size: 480px;
-  line-height: 480px;
-  grid-column: 1 / 2;
-}
-
-.article-1, .article-4 {
-  grid-column: 2 / 3;
-}
-
-.featured-image-2, .number-2 {
-  align-self: end;
-}
-
-.number-2 {
-  color: #eee;
-  font-size: 200px;
-  justify-self: end;
-  line-height: 160px;
-}
-
-.number-3 {
-  background: black;
-  border-radius: 130px;
-  color: white;
-  font-family: 'Fjalla One', sans-serif;
-  font-size: 100px;
-  height: 130px;
-  line-height: 130px;
-  position: absolute;
-  grid-row: 6 / 7;
-  right: -20px;
-  text-align: center;
-  top: -20px;
-  width: 130px;
-}
-
-.featured-image-3 img {
+html, body {
   height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.number-4 {
-  font-size: 320px;
-  left: -20px;
-  line-height: 320px;
+img {
+  max-width: 100%;
+  height: auto;
+  transform-origin: top left;
+}
+
+.gallery {
+  /* https://tobiasahlin.com/blog/masonry-with-css/ */
+  display: flex;
+  flex-flow: column wrap;
+  align-content: space-between;
+  overflow: hidden;
+  height: 310vw;
+  /* Re-order items into rows */
+  /* Force new columns */
+}
+.gallery .gallery-image {
+  width: 33.3%;
+}
+.gallery .gallery-image[data-flipping] {
+  opacity: 1;
+  z-index: 3;
+}
+.gallery .gallery-image:nth-child(3n+1) {
+  order: 1;
+}
+.gallery .gallery-image:nth-child(3n+2) {
+  order: 2;
+}
+.gallery .gallery-image:nth-child(3n) {
+  order: 3;
+}
+.gallery::before, .gallery::after {
+  content: "";
+  flex-basis: 100%;
+  width: 0;
+  order: 2;
+}
+
+.gallery-image {
+  margin: 0;
+  display: block;
+  position: relative;
+}
+.gallery-image img {
+  display: block;
+  width: 100%;
+}
+.gallery-image figcaption {
   position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #FFF;
+  text-shadow: 0 0 1px #000;
+  opacity: 0.8;
+  padding: 1em;
+  text-align: left;
+  transition: opacity 0.4s linear;
+  font-family: monospace;
+}
+.gallery-image:hover figcaption {
+  opacity: 1;
 }
 
-@media (min-width: 600px) {
-  
-  .wrapper {
-    grid-template-columns: repeat(2, 1fr 2fr);
-    margin: 24px auto;
-  }
-  
-  .header {
-    grid-column: 3 / 5;
-    width: 70%;
-  }
-  
-  .featured-image-1 {
-    grid-row: 1 / 3;
-  }
-  
-  .article-1 {
-    grid-row: 3 / 4;
-  }
-  
-  .article-2 {
-    grid-column: 4 / 5;
-    grid-row: 4 / 5;
-  }
-  
-  .featured-image-2, .number-2 {
-    grid-column: 3 / 5;
-    grid-row: 2 / 4;
-  }
+.detail {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(25, 25, 25, 0);
+  box-shadow: 0 0 30px #000;
+  display: flex;
+  pointer-events: none;
+  transition: background 0.3s linear;
+}
+.detail .gallery-image {
+  padding: 5vmin;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.detail .gallery-image img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+.detail .gallery-image figcaption {
+  display: none;
+}
 
-  .featured-image-3, .number-3 {
-    grid-row: 4 / 6;
-  }
-  
-  .featured-image-4, .number-4 {
-    grid-column: 3 / 5;
-    grid-row: 5 / 6;
-  }
-  
-  .number-4 {
-    font-size: 320px;
-    grid-row: 5 / 7;
-  }
-  
-  .article-3, .article-4 {
-    grid-row: 6 / 7;
-  }
-  
-  .article-4 {
-    grid-column: 4 / 5;
-  }
-  
+[data-state=detail] .detail {
+  background: rgba(25, 25, 25, 0.85);
+  pointer-events: auto;
+}
+[data-state=detail] .detail .gallery-image {
+  opacity: 1;
+}
+
+[data-state=gallery] .detail .gallery-image {
+  opacity: 0;
+  transition: none;
+}
+
+/* ---------------------------------- */
+body {
+  background: black;
+}
+
+#app {
+  pointer-events: none;
+}
+#app .gallery .gallery-image {
+  pointer-events: auto;
+}
+
+.gallery-image {
+  transition: opacity 0.5s linear;
+}
+
+#app:hover .gallery .gallery-image {
+  opacity: 0.3;
+}
+#app:hover .gallery .gallery-image[data-flipping],
+#app:hover .gallery .gallery-image:hover {
+  opacity: 1;
+  transition-duration: 0.3s;
 }
 </style>
 
@@ -213,44 +189,204 @@ header:after {
 </head>
 
 <body translate="no" >
-  <div class="wrapper">
-  <header class="header"><h1>Innovators of the new genre</h1></header>
-  <figure class="featured-image-1">
-      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/579121/karina-carvalho-87594-sm.jpg" alt="Photo by Karina Carvalho on Unsplash">
-   </figure>
-  <div class="number-1">1</div>
-  <article class="article article-1">
-    <h2>Technical information</h2>
-    <p>In 1985 Aldus Corporation launched its first desktop publishing program Aldus PageMaker for Apple Macintosh computers.</p>
-  </article>
-  <figure class="featured-image-2">
-      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/579121/jc-dela-cuesta-311203-sm.jpg" alt="Photo by JC Dela Cuesta on Unsplash">
-   </figure>
-  <div class="number-2">2</div>
-  <article class="article article-2">
-    <h2>Variants</h2>
-    <p>Released in 1987 for PCs running Windows 1.0.</p>
-  </article>
-  <figure class="featured-image-3">
-      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/579121/seth-doyle-151915-sm.jpg" alt="Photo by Seth Doyle on Unsplash">
-   </figure>
-  <div class="number-3">3</div>
-  <article class="article article-3">
-    <h2>When not to use it</h2>
-    <p>The toppings you may chose for that TV dinner pizza slice when you forgot to shop for foods, the paint you may slap on your face to impress the new boss is your business. But what about your daily bread?</p>
-  </article>
-  <figure class="featured-image-4">
-      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/579121/tim-marshall-189232-sm.jpg" alt="Photo by Tim Marshall on Unsplash">
-   </figure>
-  <div class="number-4">4</div>
-  <article class="article article-4">
-    <h2>So Lorem Ipsum is bad</h2>
-    <p>One of the villagers, Kristina Halvorson from Adaptive Path, holds steadfastly to the notion that design can’t be tested without real content.</p>
-  </article>
+  
+<script src="https://codepen.io/shshaw/pen/QmZYMG.js"></script>
+
+<div id="app" data-state="gallery">
+  <div class="gallery">
+    <!--
+figure.gallery-image*30>img[src="https://source.unsplash.com/collection/2022043/700x900/?=$$"]+figcaption -->
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/CYEdgc-L6wM/800x800/" width="800" height="800" />
+      <figcaption>1</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/or3QAClfeaI/800x600/"  width="800" height="600" />
+      <figcaption>2</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/bjMHQUBZl1A/800x400/"  width="800" height="400" />
+      <figcaption>3</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/WxUInXYgAAk/800x600/"  width="800" height="600" />
+      <figcaption>4</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/F9wrh2miJLA/800x900/" width="800" height="900" />
+      <figcaption>5</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/-93ArahrTKc/800x600/"  width="800" height="600" />
+      <figcaption>6</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/mCW5DyBrWjg/800x700/"  width="800" height="700" />
+      <figcaption>7</figcaption>
+    </figure>
+
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/3Eax7IYlEyc/800x800/" width="800" height="800" />
+      <figcaption>8</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/8qEuawM_txg/800x600/" width="800" height="600" />
+      <figcaption>9</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/UY7R1QhCJ3c/800x800/" />
+      <figcaption>10</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/gdQnsMbhkUs/800x900/"  width="800" height="900" />
+      <figcaption>11</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/I5MxOB3g_tw/800x600/"  width="800" height="600" />
+      <figcaption>12</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/uh4R7i7-akI/800x600/" width="800" height="600" />
+      <figcaption>13</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/fAIhc9FeDrY/800x900/" width="800" height="900" />
+      <figcaption>14</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/RibQG2TR4HU/800x900/" width="800" height="900" />
+      <figcaption>15</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/khrCklfCwiI/800x400/"  width="800" height="400" />
+      <figcaption>16</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/l2tQdtapKX4/800x800/"  width="800" height="800" />
+      <figcaption>17</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/mpWPcRT9D1E/800x900/"  width="800" height="900" />
+      <figcaption>18</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/CW6J55DqTWU/800x900/" width="800" height="900" />
+      <figcaption>19</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/dGIfygn2_DI/800x400/" width="800" height="400" />
+      <figcaption>20</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/iY2Pole688I/800x400/" width="800" height="400" />
+      <figcaption>21</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/8LuoGiFK02E/800x900/" width="800" height="900" />
+      <figcaption>22</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/TYdYrjdpSZ8/800x800/" width="800" height="800" />
+      <figcaption>23</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/0QWazupn9Ak/800x900/" width="800" height="900" />
+      <figcaption>24</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/cyPqQXNJsG8/800x800/" width="800" height="800" />
+      <figcaption>25</figcaption>
+    </figure>
+
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/mawU2PoJWfU/800x600/" width="800" height="600" />
+      <figcaption>26</figcaption>
+    </figure>
+    <figure class="gallery-image">
+      <img src="https://source.unsplash.com/FK4aI8vcR3Q/800x900/" width="800" height="900" />
+      <figcaption>27</figcaption>
+    </figure>
+  </div>
+  <div class="detail">
+    <!--   cloned figure/image goes here!   -->
+  </div>
 </div>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
   
-  
-  
+      <script id="rendered-js" >
+console.clear();
+
+const elApp = document.querySelector("#app");
+
+const elImages = Array.from(document.querySelectorAll(".gallery-image"));
+
+const elDetail = document.querySelector(".detail");
+
+function flipImages(firstEl, lastEl, change) {
+  const firstRect = firstEl.getBoundingClientRect();
+
+  const lastRect = lastEl.getBoundingClientRect();
+
+  // INVERT
+  const deltaX = firstRect.left - lastRect.left;
+  const deltaY = firstRect.top - lastRect.top;
+  const deltaW = firstRect.width / lastRect.width;
+  const deltaH = firstRect.height / lastRect.height;
+
+  change();
+  lastEl.parentElement.dataset.flipping = true;
+
+  const animation = lastEl.animate([
+  {
+    transform: `translateX(${deltaX}px) translateY(${deltaY}px) scaleX(${deltaW}) scaleY(${deltaH})` },
+
+  {
+    transform: 'none' }],
+
+  {
+    duration: 600, // milliseconds
+    easing: 'cubic-bezier(.2, 0, .3, 1)' });
+
+
+  animation.onfinish = () => {
+    delete lastEl.parentElement.dataset.flipping;
+  };
+
+}
+
+elImages.forEach(figure => {
+
+  figure.addEventListener("click", () => {
+    const elImage = figure.querySelector('img');
+
+    elDetail.innerHTML = "";
+
+    const elClone = figure.cloneNode(true);
+    elDetail.appendChild(elClone);
+
+    const elCloneImage = elClone.querySelector('img');
+
+    flipImages(elImage, elCloneImage, () => {
+      elApp.dataset.state = "detail";
+    });
+
+    function revert() {
+
+      flipImages(elCloneImage, elImage, () => {
+        elApp.dataset.state = "gallery";
+        elDetail.removeEventListener('click', revert);
+      });
+
+    }
+
+    elDetail.addEventListener('click', revert);
+
+  });
+});
+//# sourceURL=pen.js
+    </script>
+
   
 
 </body>

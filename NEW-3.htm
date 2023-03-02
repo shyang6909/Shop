@@ -17,243 +17,183 @@
 
 
   
-  <title>法式餐桌藝術</title>
-  
+  <title>CodePen - CSS Grid Magazine Layout</title>
+  <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Lato" rel="stylesheet">
   
   
   
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Allura&family=Poppins:wght@300&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
+*, *:before, *:after { 
   box-sizing: border-box;
 }
 
-:root {
-  --green: #ecfaec;
-  --dark-green: #166639;
-  --white: #ffffff;
-  --black: #202020;
-}
-
 body {
-  min-height: 100vh;
+  background: #eee;
+  color: #191919;
+  font-family: 'Lato', sans-serif;
+}
+
+h1, h2 {
+  font-family: 'Fjalla One', sans-serif;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+figure {
+  margin: 0;
+}
+
+img {
+  height: auto;
+  width: 100%;  
+}
+
+.wrapper {
   display: grid;
-  place-items: center;
-  font-family: "Poppins", sans-serif;
-  background-color: var(--green);
-  background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
-  color: var(--black);
-}
-
-ul {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.container {
-  width: 100%;
-  max-width: 900px;
-}
-
-header {
-  padding: 2em 1em;
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  align-items: center;
-}
-header h1 {
-  font-family: "Allura", serif;
-  color: var(--dark-green);
-}
-header ul {
-  display: flex;
-}
-header li {
-  margin-right: 3em;
-  font-size: 0.85rem;
-  font-weight: bold;
-}
-
-section {
-  width: 100%;
-  padding: 1em;
-}
-
-section h4 {
-  opacity: 0.8;
-}
-
-li.active {
-  color: var(--dark-green);
-  border-bottom: 1px solid var(--dark-green);
-}
-
-.card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: auto;
-  background-color: var(--white);
-  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
-    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-}
-
-.card-info {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  padding: 1em 2em;
-}
-.card-info h1 {
-  font-family: "Allura", serif;
-  font-size: 5rem;
-  color: var(--dark-green);
-  align-self: center;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-}
-.card-info p {
-  font-size: 0.8rem;
-  font-weight: bold;
-  align-self: center;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  line-height: 22px;
-}
-.card-info a {
-  display: grid;
-  grid-template-columns: max-content 20px;
-  align-items: center;
-  column-gap: 7px;
-  color: var(--dark-green);
-  font-size: 0.85rem;
-  font-weight: bold;
-  align-self: center;
-  justify-self: flex-end;
-  transform: translateX(0px);
-  transition: transform 0.3s 0.1s ease-out;
-}
-.card-info a:hover {
-  transform: translateX(5px);
-}
-.card-info a:hover svg {
-  transform: translateX(5px);
-}
-.card-info svg {
-  width: 20px;
-  height: 10px;
-  transform: translateX(0px);
-  transition: transform 0.3s ease-out;
-}
-.card-info svg line {
-  stroke: var(--dark-green);
-}
-
-.card-photo {
-  width: 450px;
-  object-fit: cover;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 2fr;
+  grid-auto-rows: minmax(100px, auto);
+  margin: 24px;
+  max-width: 1000px;
   position: relative;
-  overflow: hidden;
 }
-.card-photo img {
+
+.wrapper > * {
+  grid-column: 1 / span 2;
+}
+
+.header {
+  font-size: 1.5em;
+  grid-row: 1 / 2;
+}
+
+header:after {
+  background: #6817ba;
+  content: "";
   display: block;
-  max-width: 100%;
-  aspect-ratio: 1/1;
+  height: 20px;
+  width: auto;
 }
-.card-photo a {
-  display: grid;
-  grid-template-columns: max-content 20px;
-  align-items: center;
-  column-gap: 7px;
-  color: var(--white);
-  font-size: 1rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  align-self: flex-start;
-  transform: translateX(0px);
-  transition: transform 0.3s 0.1s ease-out;
+
+.article {
+  text-align: right;
+}
+
+.featured-image-1 {
+  grid-row: 2 / 3;
+}
+
+.number-1 {
+  grid-row: 2 / 4;
+}
+
+.featured-image-2, .number-2 {
+  grid-row: 4 / 5;
+}
+
+.number-1, .number-4 {
+  align-self: end;
+  color: rgba(104,23,186,0.5);
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 480px;
+  line-height: 480px;
+  grid-column: 1 / 2;
+}
+
+.article-1, .article-4 {
+  grid-column: 2 / 3;
+}
+
+.featured-image-2, .number-2 {
+  align-self: end;
+}
+
+.number-2 {
+  color: #eee;
+  font-size: 200px;
+  justify-self: end;
+  line-height: 160px;
+}
+
+.number-3 {
+  background: black;
+  border-radius: 130px;
+  color: white;
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 100px;
+  height: 130px;
+  line-height: 130px;
   position: absolute;
-  z-index: 10;
-  bottom: 5%;
-  right: 8%;
+  grid-row: 6 / 7;
+  right: -20px;
+  text-align: center;
+  top: -20px;
+  width: 130px;
 }
-.card-photo a:hover {
-  transform: translateX(5px);
-}
-.card-photo a:hover svg {
-  transform: translateX(5px);
-}
-.card-photo svg {
-  width: 20px;
-  height: 10px;
-  transform: translateX(0px);
-  transition: transform 0.3s ease-out;
-}
-.card-photo svg line {
-  stroke: var(--white);
-  stroke-width: 2;
-}
-.card-photo .mask {
-  position: absolute;
-  top: 0;
+
+.featured-image-3 img {
   height: 100%;
-  width: 50%;
-  z-index: 5;
-  background-color: var(--white);
-}
-#mask-1 {
-  left: 0;
-  transform: translateY(-100%);
-}
-#mask-2 {
-  right: 0;
-  transform: translateY(100%);
 }
 
-@media (max-width: 600px) {
-  .card {
-    grid-template-columns: 1fr;
-    justify-items: center;
-  }
-
-  .card-info {
-    order: 2;
-    height: 400px;
-  }
-  .card-photo {
-    width: 100%;
-    order: 1;
-  }
-
-  .card-photo img {
-    width: 100%;
-  }
-
-  .card-photo .mask {
-    height: 100%;
-  }
+.number-4 {
+  font-size: 320px;
+  left: -20px;
+  line-height: 320px;
+  position: absolute;
 }
 
-@media (max-width: 500px) {
-  header {
-    padding: 1em;
-    grid-template-columns: 1fr 1fr;
-    align-items: flex-start;
+@media (min-width: 600px) {
+  
+  .wrapper {
+    grid-template-columns: repeat(2, 1fr 2fr);
+    margin: 24px auto;
   }
-  header ul {
-    flex-direction: column;
+  
+  .header {
+    grid-column: 3 / 5;
+    width: 70%;
   }
-  header li {
-    width: min-content;
-    margin-right: 0;
+  
+  .featured-image-1 {
+    grid-row: 1 / 3;
   }
-  .card-info h1 {
-    font-size: 3rem;
+  
+  .article-1 {
+    grid-row: 3 / 4;
   }
+  
+  .article-2 {
+    grid-column: 4 / 5;
+    grid-row: 4 / 5;
+  }
+  
+  .featured-image-2, .number-2 {
+    grid-column: 3 / 5;
+    grid-row: 2 / 4;
+  }
+
+  .featured-image-3, .number-3 {
+    grid-row: 4 / 6;
+  }
+  
+  .featured-image-4, .number-4 {
+    grid-column: 3 / 5;
+    grid-row: 5 / 6;
+  }
+  
+  .number-4 {
+    font-size: 320px;
+    grid-row: 5 / 7;
+  }
+  
+  .article-3, .article-4 {
+    grid-row: 6 / 7;
+  }
+  
+  .article-4 {
+    grid-column: 4 / 5;
+  }
+  
 }
 </style>
 
@@ -273,188 +213,44 @@ li.active {
 </head>
 
 <body translate="no" >
-  <div class="container" id="app">
-  <header>
-    <h1>MM .</h1>
-    <ul>
-      <li>Latest</li>
-      <li>Brands</li>
-      <li>Collections</li>
-      <li class="active">Clearance</li>
-    </ul>
-  </header>
-
-  <section>
-    <a href="法式餐桌藝術首頁.htm" class="aBord-none text-secondary nav-link "><h4>法式餐桌藝術 - <span>首頁</span></h4></a>
-  </section>
-
-  <section>
-    <div class="card">
-      <div class="card-info">
-        <h1 id="card-info-title">{{ currentCard.title }}</h1>
-        <p id="card-info-desc">{{ currentCard.desc }}</p>
-        <a href="#">
-          <p>More details</p>
-          <svg viewBox="0 0 20 10">
-            <line x1="0" y1="5" x2="20" y2="5" />
-            <line x1="15" y1="0" x2="20" y2="5" />
-            <line x1="15" y1="10" x2="20" y2="5" />
-          </svg>
-        </a>
-      </div>
-      <div class="card-photo">
-        <div id="mask-1" class="mask"></div>
-        <div id="mask-2" class="mask"></div>
-        <a href="#" @click="nextCard">
-          <p>Next</p>
-          <svg viewBox="0 0 20 10">
-            <line x1="0" y1="5" x2="20" y2="5" />
-            <line x1="15" y1="0" x2="20" y2="5" />
-            <line x1="15" y1="10" x2="20" y2="5" />
-          </svg>
-        </a>
-        <img :src="currentCard.photo">
-      </div>
-    </div>
-  </section>
+  <div class="wrapper">
+  <header class="header"><h1>Innovators of the new genre</h1></header>
+  <figure class="featured-image-1">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/579121/karina-carvalho-87594-sm.jpg" alt="Photo by Karina Carvalho on Unsplash">
+   </figure>
+  <div class="number-1">1</div>
+  <article class="article article-1">
+    <h2>Technical information</h2>
+    <p>In 1985 Aldus Corporation launched its first desktop publishing program Aldus PageMaker for Apple Macintosh computers.</p>
+  </article>
+  <figure class="featured-image-2">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/579121/jc-dela-cuesta-311203-sm.jpg" alt="Photo by JC Dela Cuesta on Unsplash">
+   </figure>
+  <div class="number-2">2</div>
+  <article class="article article-2">
+    <h2>Variants</h2>
+    <p>Released in 1987 for PCs running Windows 1.0.</p>
+  </article>
+  <figure class="featured-image-3">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/579121/seth-doyle-151915-sm.jpg" alt="Photo by Seth Doyle on Unsplash">
+   </figure>
+  <div class="number-3">3</div>
+  <article class="article article-3">
+    <h2>When not to use it</h2>
+    <p>The toppings you may chose for that TV dinner pizza slice when you forgot to shop for foods, the paint you may slap on your face to impress the new boss is your business. But what about your daily bread?</p>
+  </article>
+  <figure class="featured-image-4">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/579121/tim-marshall-189232-sm.jpg" alt="Photo by Tim Marshall on Unsplash">
+   </figure>
+  <div class="number-4">4</div>
+  <article class="article article-4">
+    <h2>So Lorem Ipsum is bad</h2>
+    <p>One of the villagers, Kristina Halvorson from Adaptive Path, holds steadfastly to the notion that design can’t be tested without real content.</p>
+  </article>
 </div>
-    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
-
-  <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js'></script>
-      <script id="rendered-js" >
-const { createApp } = Vue;
-
-createApp({
-  data() {
-    return {
-      cards: [
-      {
-        id: 1,
-        title: "Cincinnati",
-        desc:
-        "In different heights and shapes, the four versions of Floema low tables offer a variety of surfaces to satisfy different needs and uses in a contract environment, from work to moments of relaxation.",
-        photo:
-        "https://images.unsplash.com/photo-1649011327045-624a1bd2c3e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=853&q=80" },
-
-      {
-        id: 2,
-        title: "Daytona",
-        desc:
-        "The Circle Coffee table from Wendelbo emulates almost a visual trick. A frame where mass and gravity is suspended, and the slim and delicate structure support the marble top, like a hovering platform.",
-        photo:
-        "https://images.unsplash.com/photo-1615529182904-14819c35db37?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" },
-
-      {
-        id: 3,
-        title: "Indiana",
-        desc:
-        "With an appearance that is at once light and elegant, the Workshop Coffee Table fits perfectly into any living room, serving as a traditional coffee table as well as side table.",
-        photo:
-        "https://images.unsplash.com/flagged/photo-1588262516915-e342186ecdf6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" },
-
-      {
-        id: 4,
-        title: "Amarillo",
-        desc:
-        "Made from sustainably sourced solid American Oak, the Duo Table is composed of two seperate tops joined together on one side. The tops are solid and carved out to create a gentle lip. ",
-        photo:
-        "https://images.unsplash.com/photo-1622372738946-62e02505feb3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=832&q=80" }],
-
-
-      currentNum: 0 };
-
-  },
-  computed: {
-    currentCard() {
-      return this.cards[this.currentNum];
-    } },
-
-  methods: {
-    playFoward() {
-      let tl = gsap.timeline({
-        defaults: {
-          duration: 0.7,
-          ease: "sine.out" },
-
-        onComplete: () => {
-          this.playReverse();
-          if (this.currentNum >= 3) {
-            this.currentNum = 0;
-          } else {
-            this.currentNum++;
-          }
-        } });
-
-      tl.to("#mask-1", {
-        yPercent: 100,
-        scaleY: 1.4 }).
-
-      to(
-      "#mask-2",
-      {
-        yPercent: -100,
-        scaleY: 1.4 },
-
-      "<").
-
-      to(
-      "#card-info-title",
-      {
-        clipPath: `polygon(0 0, 100% 0, 100% 0%, 0% 0%)` },
-
-      "<0.4").
-
-      to(
-      "#card-info-desc",
-      {
-        clipPath: `polygon(0 0, 100% 0, 100% 0%, 0% 0%)` },
-
-      "<0.3");
-
-    },
-    playReverse() {
-      let tl = gsap.timeline({
-        defaults: {
-          duration: 0.7,
-          ease: "sine.in" } });
-
-
-      tl.to("#mask-1", {
-        yPercent: -100,
-        scaleY: 1.4 }).
-
-      to(
-      "#mask-2",
-      {
-        yPercent: 100,
-        scaleY: 1.4 },
-
-      "<").
-
-      to(
-      "#card-info-title",
-      {
-        clipPath: `polygon(0 0, 100% 0, 100% 100%, 0% 100%)` },
-
-      "<0.2").
-
-      to(
-      "#card-info-desc",
-      {
-        clipPath: `polygon(0 0, 100% 0, 100% 100%, 0% 100%)` },
-
-      "<0.3");
-
-    },
-    nextCard() {
-      this.playFoward();
-    } } }).
-
-mount("#app");
-//# sourceURL=pen.js
-    </script>
-
+  
+  
+  
   
 
 </body>
