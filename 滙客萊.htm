@@ -11,523 +11,167 @@
 
   <meta name="apple-mobile-web-app-title" content="CodePen">
 
-  <link rel="shortcut icon" type="image/x-icon" href="a6koe-iei3t-001.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="img/a6koe-iei3t-001.ico" />
 
   <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111" />
 
 
   
   <title>滙客萊</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
   
-  
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inconsolata|Space+Mono:700'>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css'>
   
 <style>
-/**
- * Base Variables
- */
-/**
- * Base Settings/Overwrite Normalize
- */
-*, *:before, *:after {
-  box-sizing: border-box;
+.content-story-toggle--js .cs--graphics-area {
+  display: grid;
 }
-
-body {
-  font-family: "Inconsolata", monospace;
-  font-feature-settings: "liga" 0;
-  font-size: 100%;
-  line-height: 1.6;
-}
-@media (min-width: 20em) {
-  body {
-    font-size: 102.5%;
-  }
-}
-@media (min-width: 30em) {
-  body {
-    font-size: 105%;
-  }
-}
-@media (min-width: 54em) {
-  body {
-    font-size: 107.5%;
-  }
-}
-@media (min-width: 64em) {
-  body {
-    font-size: 110%;
-  }
-}
-@media (min-width: 76.5em) {
-  body {
-    font-size: 115%;
-  }
-}
-@media (min-width: 114em) {
-  body {
-    font-size: 125%;
-  }
-}
-
-h1, h2 {
-  margin: 0;
-  font-family: "Space Mono", monospace;
-}
-
-@media (min-width: 54em) {
-  h1 {
-    font-size: 3em;
-  }
-}
-@media (min-width: 76.5em) {
-  h1 {
-    font-size: 3.5em;
-  }
-}
-
-p {
-  margin: 0 0 0.75em;
-}
-
-a {
-  color: #0a0a0a;
-  text-decoration: none;
-  transition: color 0.4s ease-in-out;
-}
-a:hover, a:active, a:focus {
-  color: #9f8f68;
-}
-
-figure {
-  margin: 0;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-/**
- * Text Selection
- */
-::-moz-selection {
-  color: #fff;
-  background-color: #9f8f68;
-  text-shadow: none;
-}
-::selection {
-  color: #fff;
-  background-color: #9f8f68;
-  text-shadow: none;
-}
-
-/**
- * Underline Slide from left and back
- */
-/**
- * Button Slide
- * Need to still add hover state in parent element
- * box-shadow: inset 175px 0 0 0 $color-alpha;
- * color: $color-white;
- */
-/**
- * Flex Grid
- */
-/**
- * Box Shadow
- */
-/**
- * Letter Spacing
- */
-.footer__archive, .card__more, .preview__more, .previews__container span, .tabs {
-  font-family: "Space Mono", monospace;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-/**
- * Black Color Overlay
- */
-.card__img:after, .previews > *:first-child:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(10, 10, 10, 0.2);
-  transition: background-color 0.4s ease-in-out;
-}
-
-/**
- * Body
- */
-body {
-  background-color: #f8f9f9;
-}
-
-/**
- * Sections
- */
-section {
-  position: relative;
-}
-
-.section-padding {
-  padding: 4em 0;
-}
-.section-padding--lg {
-  padding: 6em 0;
-}
-.section-padding--sm {
-  padding: 2em 0;
-}
-
-/**
- * Class Container (BEM)
- */
-[class*=__container] {
-  position: relative;
-  z-index: 1;
-}
-
-/**
- * Blog page
- */
-@media (max-width: 54em) {
-  .previews {
-    display: flex;
-    flex-direction: column;
-  }
-}
-.previews > *:first-child {
-  position: relative;
-  height: 30em;
-  background-color: #0a0a0a;
-}
-@media (min-width: 54em) {
-  .previews > *:first-child {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 45%;
-  }
-}
-.previews > *:last-child {
-  min-height: 100vh;
-}
-@media (min-width: 54em) {
-  .previews > *:last-child {
-    margin-left: 45%;
-  }
-}
-
-/**
- * Tabs
- * On the Blog page for posts and categories
- */
-.tabs {
-  display: flex;
-  justify-content: space-around;
-  padding: 1em;
-}
-@media (min-width: 54em) {
-  .tabs {
-    padding-left: 8em;
-    padding-right: 8em;
-  }
-}
-@media (min-width: 114em) {
-  .tabs {
-    padding-left: 10em;
-    padding-right: 10em;
-  }
-}
-.tabs__item {
-  cursor: pointer;
-}
-.tabs__item:not(.active) {
-  position: relative;
-  color: #0a0a0a;
-}
-.tabs__item:not(.active):after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  border-bottom: 3px solid #9f8f68;
-  transition: width 0.4s ease-in-out;
-}
-.tabs__item:not(.active):hover:after {
-  width: 100%;
-}
-.tabs__item.active {
-  border-bottom: 3px solid #9f8f68;
-}
-
-.tab.active {
-  will-change: opacity;
-  -webkit-animation: fade-in 1s both;
-          animation: fade-in 1s both;
-}
-
-/**
- * Blog Post Preview
- * On the Blog page
- */
-.previews__container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  padding: 2em;
-  color: #fff;
-}
-.previews__container span {
-  font-family: "Inconsolata", monospace;
-}
-
-.preview {
-  transition: background-color 0.2s ease-in-out;
-}
-.preview:nth-child(even) {
-  background-color: #fff;
-}
-.preview:hover {
-  background-color: #f5f3ef;
-}
-.preview:hover .preview__more {
-  box-shadow: inset 175px 0 0 0 #9f8f68;
-  color: #fff;
-}
-.preview__img {
-  will-change: opacity;
-  -webkit-animation: fade-in 1s both;
-          animation: fade-in 1s both;
-}
-.preview__link {
-  display: block;
-  padding: 2em 1em;
-}
-@media (min-width: 54em) {
-  .preview__link {
-    padding: 4em 8em;
-  }
-}
-@media (min-width: 114em) {
-  .preview__link {
-    padding-left: 10em;
-    padding-right: 10em;
-  }
-}
-.preview__date {
-  font-family: "Space Mono", monospace;
-  color: #0a0a0a;
-}
-.preview__header {
-  color: #9f8f68;
-  margin-bottom: 0.5em;
-}
-.preview__excerpt {
-  color: #0a0a0a;
-}
-.preview__more {
-  display: inline-block;
-  padding: 0.5em;
-  font-family: "Space Mono", monospace;
-  color: #9f8f68;
-  border: 3px solid #9f8f68;
-  box-shadow: inset 0 0 0 0 #9f8f68;
-  transition: all 0.4s ease-in-out;
-}
-
-/**
- * Category Card
- * On the blog page under category tab
- */
-.cards {
-  display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
-  padding: 2em 1em;
-}
-.cards > * {
-  padding: 0.25em;
-  flex-basis: 100%;
-  max-width: 100%;
-}
-@media (min-width: 54em) {
-  .cards > * {
-    flex-basis: 50%;
-    max-width: 50%;
-  }
-}
-@media (min-width: 114em) {
-  .cards > * {
-    flex-basis: 33.3333333333%;
-    max-width: 33.3333333333%;
-  }
-}
-@media (min-width: 54em) {
-  .cards {
-    padding: 4em 2em;
-  }
-}
-
-.card__link {
-  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.1), 0 1px 2px rgba(10, 10, 10, 0.2);
-  position: relative;
-  display: block;
-  background-color: #fff;
-  transition: background-color 0.2s ease-in-out;
-}
-.card__link:after {
-  box-shadow: 0 3px 6px rgba(10, 10, 10, 0.1), 0 3px 6px rgba(10, 10, 10, 0.2);
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+.content-story-toggle--js .cs--graphics-area .cs--graphics-sequence {
+  grid-column: 1;
+  grid-row: 1;
   opacity: 0;
-  will-change: opacity;
-  transition: opacity 0.4s ease-in-out;
+  transition-property: all;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
 }
-.card__link:hover {
-  background-color: #f5f3ef;
-}
-.card__link:hover:after {
+.content-story-toggle--js .cs--graphics-area .cs--graphics-sequence.is--active {
   opacity: 1;
 }
-.card__link:hover .card__more {
-  box-shadow: inset 175px 0 0 0 #9f8f68;
-  color: #fff;
-}
-.card__img {
+.content-story-toggle--js .cs--content-area .cs--content-sequence {
   position: relative;
-  height: 12em;
-  background-color: #0a0a0a;
+  min-height: 28px;
+  padding: 0 0 0 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
-.card__container {
-  padding: 2em 1em;
-}
-.card__header {
-  color: #9f8f68;
-}
-.card__count {
-  color: #0a0a0a;
-}
-.card__more {
+.content-story-toggle--js .cs--content-area .cs--content-sequence .cs--content-progress-indicator--wrapper {
+  position: absolute;
   display: inline-block;
-  padding: 0.25em;
-  font-family: "Space Mono", monospace;
-  color: #9f8f68;
-  border: 3px solid #9f8f68;
-  box-shadow: inset 0 0 0 0 #9f8f68;
-  transition: all 0.4s ease-in-out;
-}
-
-/**
- * Footer
- */
-.footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 2em;
-  padding-right: 2em;
-}
-@media (min-width: 30em) {
-  .footer {
-    flex-direction: row;
-  }
-}
-.footer__archive {
-  position: relative;
-  color: #0a0a0a;
-}
-.footer__archive:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  border-bottom: 3px solid #9f8f68;
-  transition: width 0.4s ease-in-out;
-}
-.footer__archive:hover:after {
-  width: 100%;
-}
-.footer__social {
-  display: flex;
-  margin-top: 1em;
-}
-@media (min-width: 30em) {
-  .footer__social {
-    margin-top: 0;
-  }
-}
-.footer__social > *:not(:last-child) {
-  margin-right: 1em;
-}
-
-/**
- * Animations
- */
-@-webkit-keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.fade-in {
-  will-change: opacity;
-  -webkit-animation: fade-in 2s both;
-          animation: fade-in 2s both;
-}
-
-/**
- * Absolute Background Cover
- */
-.absolute-bg {
-  position: absolute;
+  width: 3px;
+  height: 100%;
   top: 0;
   left: 0;
-  height: 100%;
+  background-color: #dcdcdc;
+  border-radius: 3px;
+  will-change: max-height;
+  overflow: hidden;
+}
+.content-story-toggle--js .cs--content-area .cs--content-sequence .cs--content-progress-indicator--wrapper .cs--content-progress-indicator--bar {
+  position: absolute;
+  display: inline-block;
   width: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #3c4043;
+  scale: 1 0;
+  transform-origin: top;
 }
-
-/**
- * Color Helpers
- */
-.bg-black {
-  background-color: #0a0a0a;
+.content-story-toggle--js .cs--content-area .cs--content-sequence .cs--content-headline {
+  cursor: pointer;
 }
-
-.bg-white {
-  background-color: #fff;
+.content-story-toggle--js .cs--content-area .cs--content-sequence .cs--content-headline h3 {
+  opacity: 0.6;
+  transition-property: all;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+.content-story-toggle--js .cs--content-area .cs--content-sequence .cs--content-headline h3:hover {
+  opacity: 1;
+}
+.content-story-toggle--js .cs--content-area .cs--content-sequence .cs--content-desc {
+  height: 0;
+  overflow: hidden;
+}
+.content-story-toggle--js .cs--content-area.is--active .cs--content-sequence .cs--content-progress-indicator--wrapper .cs--content-progress-indicator--bar {
+  animation: fillProgress linear;
+  animation-duration: var(--slideDuration, 2s);
+}
+.content-story-toggle--js .cs--content-area.is--active .cs--content-sequence .cs--content-progress-indicator--wrapper .cs--content-progress-indicator--bar.paused {
+  animation: none;
+}
+.content-story-toggle--js .cs--content-area.is--active .cs--content-sequence .cs--content-headline h3 {
+  color: #3c4043;
+  opacity: 1;
+}
+.content-story-toggle--js .cs--content-area.is--active .cs--content-sequence .cs--content-desc {
+  height: auto;
+}
+@keyframes fillProgress {
+  0% {
+    scale: 1 0;
+  }
+  100% {
+    scale: 1 1;
+  }
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+h2 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #3c4043;
+}
+h3 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #3c4043;
+}
+p {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 26px;
+  margin-top: 12px;
+  color: #3c4043;
+}
+a {
+  text-decoration:none;
+}
+img {
+  display: block;
+  width: 100%;
+}
+section {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: 1280px;
+  min-height: 100vh;
+  margin: auto;
+  padding: 0 40px;
+}
+section .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+section .row .width--55 {
+  width: 55%;
+  padding: 40px;
+}
+section .row .width--45 {
+  width: 45%;
+  padding: 40px;
+}
+section .row .width--45 .content--wrapper {
+  padding-bottom: 12px;
+}
+section .row .width--45 .content--wrapper p {
+  margin-top: 16px;
 }
 </style>
 
@@ -547,255 +191,219 @@ section {
 </head>
 
 <body translate="no" >
-  <main>
-  <section class="previews">
-    <div>
-      <figure class="absolute-bg preview__img" style="background-image: url('https://unsplash.it/2000/1200?image=16');"></figure>
-      <figure class="absolute-bg preview__img" style="background-image: url('https://unsplash.it/2000/1200?image=1003');"></figure>
-      <figure class="absolute-bg preview__img" style="background-image: url('https://unsplash.it/2000/1200?image=433');"></figure>
-      <figure class="absolute-bg preview__img" style="background-image: url('https://unsplash.it/2000/1200?image=40');"></figure>
-      <figure class="absolute-bg preview__img" style="background-image: url('https://unsplash.it/2000/1200?image=1074');"></figure>    
-      <div class="previews__container">
-        <span>Welcome to</span>
-        <h1>Trophy</h1>
+  <section>
+  <div class="row content-story-toggle--js" style="--slideDuration: 8s;">
+
+    <!-- Graphics area -->
+    <div class="width--55">
+
+      <div class="cs--graphics-area">
+
+        <!-- Item 1 -->
+        <div class="cs--graphics-sequence">
+          <img src="https://i.imgur.com/muLK4Nm.png" alt="">
+        </div>
+
+        <!-- Item 2 -->
+        <div class="cs--graphics-sequence">
+          <img src="https://i.imgur.com/muLK4Nm.png" alt="">
+        </div>
       </div>
     </div>
 
-    <div>
-      <header>
-        <ul class="tabs">
-          <li class="tabs__item">Posts</li>
-          <li class="tabs__item">Categories</li>
-        </ul>
-      </header>
-      <div class="tab">
-        <ul itemscope itemtype="http://schema.org/Blog">    
-          <li class="preview" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-            <a class="preview__link" href="#" itemprop="url">
-              <span class="preview__date" itemprop="datePublished" datetime="2016-09-08T00:00:00-07:00">Sep 8, 2016</span>
-              <h2 class="preview__header" itemprop="name">Roof Party</h2>
-              <p class="preview__excerpt" itemprop="description">Banh mi pug you probably haven’t heard of them occupy, drinking vinegar humblebrag vinyl locavore master cleanse sartorial bicycle rights 90’s kickstarter hashtag. 3 wolf moon XOXO man braid chartreuse....</p>
-              <span class="preview__more">Read More</span>
-            </a>
-          </li>
-          <li class="preview" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-            <a class="preview__link" href="#" itemprop="url">
-              <span class="preview__date" itemprop="datePublished" datetime="2016-09-07T00:00:00-07:00">Sep 7, 2016</span>
-              <h2 class="preview__header" itemprop="name">Craft Beer</h2>
-              <p class="preview__excerpt" itemprop="description">Tbh vaporware mumblecore iceland echo park DIY. Plaid woke next level enamel pin, vegan cred salvia pug. XOXO sartorial synth gluten-free, cold-pressed mumblecore craft beer helvetica. Vegan lyft squid, vice...</p>
-              <span class="preview__more">Read More</span>
-            </a>
-          </li>   
-          <li class="preview" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-            <a class="preview__link" href="#" itemprop="url">
-              <span class="preview__date" itemprop="datePublished" datetime="2016-09-06T00:00:00-07:00">Sep 6, 2016</span>
-              <h2 class="preview__header" itemprop="name">Next Level Blog</h2>
-              <p class="preview__excerpt" itemprop="description">Humblebrag ramps single-origin coffee, literally jean shorts polaroid mlkshk franzen williamsburg distillery venmo. Skateboard leggings disrupt banjo shoreditch blue bottle. Brooklyn church-key cronut hell of waistcoat, polaroid lomo chambray bitters...</p>
-              <span class="preview__more">Read More</span>
-            </a>
-          </li>
-          <li class="preview" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-            <a class="preview__link" href="#" itemprop="url">
-              <span class="preview__date" itemprop="datePublished" datetime="2016-09-05T00:00:00-07:00">Sep 5, 2016</span>
-              <h2 class="preview__header" itemprop="name">VHS Selfies</h2>
-              <p class="preview__excerpt" itemprop="description">8-bit typewriter scenester, crucifix tousled tilde leggings brunch chicharrones salvia deep v man bun. Master cleanse man braid disrupt banjo, deep v cray tumblr cronut. Truffaut street art everyday carry...</p>
-              <span class="preview__more">Read More</span>
-            </a>
-          </li>     
-          <li class="preview" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-            <a class="preview__link" href="#" itemprop="url">
-              <span class="preview__date" itemprop="datePublished" datetime="2016-09-04T00:00:00-07:00">Sep 4, 2016</span>
-              <h2 class="preview__header" itemprop="name">Four Dollar Toast</h2>
-              <p class="preview__excerpt" itemprop="description">Flexitarian fixie keytar vice craft beer. Forage normcore cred austin brunch, put a bird on it actually. Chia put a bird on it skateboard, salvia paleo heirloom semiotics knausgaard selvage...</p>
-            <span class="preview__more">Read More</span>
-          </a>
-        </li>
-      </ul>
-      <footer class="section-padding--sm footer">
-        <a class="footer__archive" href="#">Archive</a>
-        <ul class="footer__social">
-          <li><a class="fa fa-lg fa-envelope-o" href="/cdn-cgi/l/email-protection#2b5f4344464a58055d4a4e5f436b4c464a424705484446"></a></li>
-          <li><a class="fa fa-lg fa-github" href="https://github.com/thomasvaeth" target="_blank"></a></li>
-          <li><a class="fa fa-lg fa-codepen" href="https://codepen.io/thomasvaeth/" target="_blank"></a></li>
-          <li><a class="fa fa-lg fa-linkedin" href="https://www.linkedin.com/in/thomasvaeth" target="_blank"></a></li>
-          <li><a class="fa fa-lg fa-twitter" href="https://twitter.com/thomasvaeth" target="_blank"></a></li>
-          <li><a class="fa fa-lg fa-facebook" href="https://www.facebook.com/thomas.vaeth" target="_blank"></a></li>
-          <li><a class="fa fa-lg fa-instagram" href="https://www.instagram.com/thomas.vaeth/" target="_blank"></a></li> 
-        </ul>
-      </footer>
-    </div>
+    <!-- Content area -->
+    <div class="width--45">
 
-    <div class="tab">
-      <ul class="cards">
-        <li class="card">
-          <a class="card__link" href="#">
-            <div class="card__img">
-              <figure class="absolute-bg" style="background-image: url('https://i.imgur.com/oLd1Pnu.jpg');"></figure>
-            </div>
-            <div class="card__container">
-              <h2 class="card__header">Brunch</h2>
-              <p class="card__count">3 Posts</p>
-              <span class="card__more">View All</span>
-            </div>
-          </a>
-        </li>
-        <li class="card">
-          <a class="card__link" href="#">
-            <div class="card__img">
-              <figure class="absolute-bg" style="background-image: url('https://i.imgur.com/2oLdfz7.jpg');"></figure>
-            </div>
-            <div class="card__container">
-              <h2 class="card__header">Gluten-free</h2>
-              <p class="card__count">2 Posts</p>
-              <span class="card__more">View All</span>
-            </div>
-          </a>
-        </li>
-        <li class="card">
-          <a class="card__link" href="#">
-            <div class="card__img">
-              <figure class="absolute-bg" style="background-image: url('https://i.imgur.com/0YfKSgZ.jpg');"></figure>
-            </div>  
-            <div class="card__container">
-              <h2 class="card__header">Cities</h2>
-              <p class="card__count">3 Posts</p>
-              <span class="card__more">View All</span>
-            </div>
-          </a>
-        </li>
-        <li class="card">
-          <a class="card__link" href="#">
-            <div class="card__img">
-              <figure class="absolute-bg" style="background-image: url('https://i.imgur.com/oLd1Pnu.jpg');"></figure>
-            </div>
-            <div class="card__container">
-              <h2 class="card__header">Juice</h2>
-              <p class="card__count">2 Posts</p>
-              <span class="card__more">View All</span>
-            </div>
-          </a>
-        </li>
-      </ul>
-      <footer class="section-padding--sm footer">
-        <a class="footer__archive" href="#">Archive</a>
-        <ul class="footer__social">
-          <li><a class="fa fa-lg fa-envelope-o" href="/cdn-cgi/l/email-protection#f98d919694988ad78f989c8d91b99e94989095d79a9694"></a></li>
-          <li><a class="fa fa-lg fa-github" href="https://github.com/thomasvaeth" target="_blank"></a></li>
-          <li><a class="fa fa-lg fa-codepen" href="https://codepen.io/thomasvaeth/" target="_blank"></a></li>
-          <li><a class="fa fa-lg fa-linkedin" href="https://www.linkedin.com/in/thomasvaeth" target="_blank"></a></li>
-          <li><a class="fa fa-lg fa-twitter" href="https://twitter.com/thomasvaeth" target="_blank"></a></li>
-          <li><a class="fa fa-lg fa-facebook" href="https://www.facebook.com/thomas.vaeth" target="_blank"></a></li>
-          <li><a class="fa fa-lg fa-instagram" href="https://www.instagram.com/thomas.vaeth/" target="_blank"></a></li>  
-        </ul>
-      </footer>
-    </div>
-  </section>
-</main>
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+      <!-- Intro -->
+      <div class="content--wrapper">
+        <h2>༺ 健康產業<br>未來趨勢༻</h2>
+        <p>愛美愛年輕已經不只夢想了~給自己跟您的身體一次機會</p>
+      </div>
 
-  
+      <!-- Item 1 -->
+      <div class="cs--content-area">
+        <div class="cs--content-sequence">
+
+          <!-- Progress indicator -->
+          <div class="cs--content-progress-indicator--wrapper">
+            <div class="cs--content-progress-indicator--bar"></div>
+          </div>
+
+          <!-- Title -->
+          <div class="cs--content-headline">
+            <h3>青春永恆 / 身強體壯 </h3>
+          </div>
+
+          <!-- Desc -->
+          <div class="cs--content-desc">
+            <p>衰老是歲月的流逝，疲憊是工作的付出</p>
+            <p>如何讓自己年老而不衰 ?</p>
+            <p>如何讓自己不再那麼疲憊 ?</p>
+            <p><a href="滙客萊 - 1.htm" style="color:black; " ><strong>讓我來幫助您 GO~</strong></a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="cs--content-area">
+        <div class="cs--content-sequence">
+
+          <!-- Progress indicator -->
+          <div class="cs--content-progress-indicator--wrapper">
+            <div class="cs--content-progress-indicator--bar"></div>
+          </div>
+
+          <!-- Title -->
+          <div class="cs--content-headline">
+            <h3>養顏美容好幫手</h3>
+          </div>
+
+          <!-- Desc -->
+          <div class="cs--content-desc">
+            <p>臉部肌膚的完美是取至於腸胃道的機能</p>
+            <p>與其使用在好在貴的保養品</p>
+            <p>不如給自己一個健康的腸胃道</p>
+            <p><a href="滙客萊 - 2.htm" style="color:black; " ><strong>讓我們帶您認識益生菌 GO~</strong></a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.0/gsap.min.js'></script>
       <script id="rendered-js" >
-// Full blog theme demo and download available at http://thomasvaeth.com/trophy/
-var Tabs = function () {
-  var s;
-
-  return {
-    settings: {
-      tabs: document.getElementsByClassName('tabs__item'),
-      tab: document.getElementsByClassName('tab') },
+// Get all story elements on current page
+let contentStoryToggleElement = document.querySelectorAll(
+".content-story-toggle--js");
 
 
-    init: function () {
-      s = this.settings;
-      this.display();
-      this.click();
-    },
+// For each element =>
+contentStoryToggleElement.forEach(wrapper => {
+  // Variables
+  // --------------------------------------------------------------------------------
+  let imgSequences = wrapper.querySelectorAll(".cs--graphics-sequence");
+  let contentProgressBar = wrapper.querySelectorAll(
+  ".cs--content-progress-indicator--bar");
 
-    display: function () {
-      if (s.tab.length) {
-        [].forEach.call(s.tab, function (tab) {
-          tab.style.display = 'none';
-        });
-        s.tab[0].style.display = 'block';
-        s.tab[0].classList.add('active');
-        s.tabs[0].classList.add('active');
+  let contentDesc = wrapper.querySelectorAll(".cs--content-desc");
+  let contentArea = wrapper.querySelectorAll(".cs--content-area");
+  let contentArray = Array.from(contentArea);
+  var intervalId;
+
+  // Events
+  // --------------------------------------------------------------------------------
+
+  // Give first element active class
+  contentArray[0].classList.add("is--active");
+  toggleSequences();
+
+  // Autoplay
+  autoplaySequence();
+
+  // Activate manual navigation on click
+  contentArea.forEach(item => {
+    item.addEventListener("click", e => {
+      // Break autoplay function
+      stopInterval();
+      // Reset all opened accordion descriptions
+      if (!e.currentTarget.classList.contains("is--active")) {
+        gsap.to(contentDesc, { height: "0", duration: 0.25 });
+        headerClicked(e);
       }
-    },
+    });
+  });
 
-    click: function () {
-      if (s.tabs.length) {
-        var currentIdx = 0,
-        prevIdx = currentIdx;
+  // Functions
+  // --------------------------------------------------------------------------------
 
-        [].forEach.call(s.tabs, function (tab, idx) {
-          tab.addEventListener('click', function () {
-            prevIdx = currentIdx;
-            currentIdx = idx;
+  // Autoplay
+  function autoplaySequence() {
+    let slide = 1;
 
-            if (prevIdx !== currentIdx) {
-              s.tab[prevIdx].style.display = 'none';
-              s.tab[prevIdx].classList.remove('active');
-              s.tabs[prevIdx].classList.remove('active');
-              s.tab[currentIdx].style.display = 'block';
-              s.tab[currentIdx].classList.add('active');
-              s.tabs[currentIdx].classList.add('active');
-            }
-          });
-        });
+    // Get duration by inline style
+    let duration = wrapper.style.getPropertyValue("--slideDuration");
+    // Turn duration into js usable value
+    const timeout = duration.replace("s", "000");
+
+    intervalId = setInterval(() => {
+      activeSlide(slide);
+    }, timeout);
+
+    // Slide behaviors
+    function activeSlide(i) {
+      let activeWrapper = contentArray[i];
+      let expandableItem = activeWrapper.querySelector(".cs--content-desc");
+
+      // Reset all opened accordion descriptions
+      gsap.to(contentDesc, { height: "0", duration: 0.25 });
+      // Expand accordion description
+      gsap.to(expandableItem, { height: "auto", duration: 0.25 });
+      // Toggle active class on active element
+      activeWrapper.classList.add("is--active");
+      // Remove active class from all elements except current active
+      contentArea.forEach(header => {
+        if (header !== activeWrapper) {
+          header.classList.remove("is--active");
+        }
+      });
+      // Toggle fitting graphic based on active class of the content area
+      toggleSequences();
+
+      // Increase value of 'slide'
+      if (slide >= contentArray.length - 1) {
+        slide = 0;
+      } else {
+        slide++;
       }
-    } };
+    }
+  }
 
-
-}();
-
-var Preview = function () {
-  var s;
-
-  return {
-    settings: {
-      img: document.getElementsByClassName('preview__img'),
-      post: document.getElementsByClassName('preview') },
-
-
-    init: function () {
-      s = this.settings;
-      this.display();
-      this.mouseenter();
-    },
-
-    display: function () {
-      if (s.img.length) {
-        [].forEach.call(s.img, function (img) {
-          img.style.display = 'none';
-        });
-        s.img[0].style.display = 'block';
+  function stopInterval() {
+    // Clear interval
+    clearInterval(intervalId);
+    // Disable all progress bar animations
+    contentProgressBar.forEach(p => {
+      if (!p.classList.contains("paused")) {
+        p.classList.add("paused");
       }
-    },
+    });
+  }
 
-    mouseenter: function () {
-      if (s.post.length) {
-        var currentIdx = 0,
-        prevIdx = currentIdx;
+  // Toggle sequences
+  function headerClicked(element) {
+    let expandableItem = element.currentTarget.querySelector(
+    ".cs--content-desc");
 
-        [].forEach.call(s.post, function (preview, idx) {
-          preview.addEventListener('mouseenter', function () {
-            prevIdx = currentIdx;
-            currentIdx = idx;
 
-            if (prevIdx !== currentIdx) {
-              s.img[prevIdx].style.display = 'none';
-              s.img[currentIdx].style.display = 'block';
-            }
-          });
-        });
+    // Expand accordion description
+    gsap.to(expandableItem, { height: "auto", duration: 0.25 });
+    // Toggle active class on clicked element
+    element.currentTarget.classList.add("is--active");
+    // Remove active class from all elements except current clicked
+    contentArea.forEach(header => {
+      if (header !== element.currentTarget) {
+        header.classList.remove("is--active");
       }
-    } };
+    });
+    // Toggle fitting graphic based on active class of the content area
+    toggleSequences();
+  }
 
-}();
+  // Toggle graphics
+  function toggleSequences() {
+    let imgArray = Array.from(imgSequences);
+    let active = 0;
 
-document.addEventListener('DOMContentLoaded', function () {
-  Tabs.init();
-  Preview.init();
+    for (let i = 0; i < contentArray.length; i++) {
+      imgArray[i].classList.remove("is--active");
+      if (contentArray[i].classList.contains("is--active")) {
+        active = i;
+      }
+    }
+    imgArray[active].classList.add("is--active");
+  }
 });
 //# sourceURL=pen.js
     </script>
