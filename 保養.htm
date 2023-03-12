@@ -7,925 +7,399 @@
 
   <meta charset="UTF-8">
   
-  <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
-
-  <meta name="apple-mobile-web-app-title" content="CodePen">
-
-  <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
-
-  <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111" />
+  <link rel="shortcut icon" type="image/x-icon" href="a6koe-iei3t-001.ico" />
 
 
   
-  <title>CodePen - Mousemove mirror effect  | GSAP</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Antic+Didone&display=swap" rel="stylesheet">
+  <title>滙客萊</title>
   
   
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
   
 <style>
-@font-face {
-  font-family: "Antic Didone", serif;
-}
-html {
-  font-size: 6.9444444444vw;
-}
-
-:root {
-  --main-font: "Antic Didone", serif;
-  --black: #000;
-  --white: #fff;
-  --grey: #7d7d7d;
-  --greyLight: #cbcbcb;
-}
-
-body {
-  font-size: 14px;
-  font-family: var(--main-font);
-  color: var(--white);
-  background: var(--black);
-}
-
-.overflow-hidden {
-  overflow: hidden;
-}
-
-.title {
-  color: var(--black);
-  font-family: var(--main-font);
-  font-size: var(--font-size-h1);
-  font-weight: 300;
-  letter-spacing: var(--letter-spacing-h1);
-  line-height: var(--line-height-h1);
-}
-
-.title-h2 {
-  color: var(--black);
-  font-family: var(--main-font);
-  font-size: var(--font-size-h2);
-  font-weight: normal;
-  letter-spacing: var(--letter-spacing-h2);
-  line-height: var(--line-height-h2);
-}
-
-.up-text {
-  text-transform: uppercase;
-}
-
-a {
-  font-size: 20px;
-}
-
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
 * {
+  box-sizing: border-box !important;
+  font-family: "Open Sans", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 12px !important;
+  height: 10px;
+  background-color: #ffffff;
+  border-top: 1px solid #090909;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1a1a1a;
+  height: 5px;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  cursor: none;
 }
 
-img,
-svg,
-video {
-  display: block;
-  max-width: 100%;
+h2 {
+  text-transform: uppercase;
+  font-weight: 100;
+  letter-spacing: 50px;
+  float: left;
+  text-align: center;
   width: 100%;
 }
 
-img {
-  display: block;
-  user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
+#projectsApp {
+  width: 100%;
+  float: left;
 }
 
-button {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
+.projects {
+  width: 23%;
+  float: left;
+  min-height: 50px;
+  height: 50px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  margin: 10px 1% 10px 1%;
+  overflow: hidden;
+  transition: all 0.5s ease, opacity 0.1s;
+  -webkit-transition: all 0.5s ease, opacity 0.1s;
 }
-
-/* extra long transition to hide blue autofill background */
-input:-webkit-autofill,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:focus {
-  -webkit-transition: background-color 100000000000000000000000000000s 0s, color 100000000000000000000000000000s 0s;
-  transition: background-color 100000000000000000000000000000s 0s, color 100000000000000000000000000000s 0s;
+.projects.shrunk {
+  pointer-events: none;
+  height: 0px !important;
+  overflow: hidden;
+  width: 0px !important;
+  padding: 0px;
+  transition: all 0.9s ease;
+  -webkit-transition: all 0.9s ease;
 }
-
-/* Remove Safari autofill*/
-input::-webkit-contacts-auto-fill-button {
+.projects.hidden {
+  opacity: 0;
   visibility: hidden;
-  display: none !important;
-  pointer-events: none;
-  position: absolute;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+}
+.projects .backArrow {
+  display: none;
+}
+.projects.midTransition {
+  width: 100% !important;
+  min-height: 100% !important;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  bottom: 0;
   right: 0;
+  margin: 0px;
 }
-
-input[type=text],
-input[type=number],
-input[type=email],
-input[type=tel],
-textarea {
-  /* remove autofill blue background */
-  box-shadow: inset 0 0 0 150px rgba(255, 255, 255, 0) !important;
-  -webkit-box-shadow: inset 0 0 0 150px rgba(255, 255, 255, 0) !important;
-  -webkit-text-fill-color: currentColor !important;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  background-color: transparent;
-}
-
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
-.split-line {
-  white-space: nowrap;
-}
-
-.cursor {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 100%;
-  border: 1px solid var(--white);
-  -webkit-transition: all 0.1s;
-  transition: all 0.1s;
+.projects.openedProject {
+  width: 40px !important;
+  height: 100% !important;
+  min-height: 100%;
   position: fixed;
-  pointer-events: none;
-  left: 0;
-  top: 0;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  -webkit-transition: width 0.3s, height 0.3s;
-  transition: width 0.3s, height 0.3s;
-  transition-delay: 0.4s;
-  z-index: 999;
-}
-.cursor.click:not(.watch) {
-  width: 0.4rem;
-  height: 0.4rem;
-}
-
-.cursor.watch {
-  width: 1.36rem;
-  height: 1.36rem;
-  transition-delay: 0s;
-}
-
-@-webkit-keyframes sliderLineOne {
-  0% {
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-  100% {
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes sliderLineOne {
-  0% {
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-  100% {
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
-  }
-}
-@-webkit-keyframes sliderLineTwo {
-  0% {
-    -webkit-transform: translateX(0%);
-    transform: translateX(0%);
-  }
-  100% {
-    -webkit-transform: translateX(-200%);
-    transform: translateX(-200%);
-  }
-}
-@keyframes sliderLineTwo {
-  0% {
-    -webkit-transform: translateX(0%);
-    transform: translateX(0%);
-  }
-  100% {
-    -webkit-transform: translateX(-200%);
-    transform: translateX(-200%);
-  }
-}
-.line-stroke {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-}
-.line-stroke__wrapp {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-}
-.line-stroke__item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-}
-.line-stroke__item div {
-  display: block;
-  white-space: nowrap;
-  margin-left: 0.1rem;
-}
-.line-stroke__1 {
-  -webkit-animation: sliderLineOne 90s linear infinite;
-  animation: sliderLineOne 90s linear infinite;
-}
-.line-stroke__2 {
-  -webkit-animation: sliderLineTwo 90s -45s linear infinite;
-  animation: sliderLineTwo 90s -45s linear infinite;
-}
-
-.header {
-  position: fixed;
+  margin: 0px;
   top: 0;
   left: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: 100%;
-  height: auto;
-  padding: 0.25rem 0.3rem;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
   z-index: 100;
 }
-.header::before {
-  content: "";
+.projects.openedProject .backArrow {
+  display: block;
   position: absolute;
+  float: left;
+  font-size: 30pt;
+  color: #fff;
+  width: 100%;
+  float: left;
+  text-align: center;
+  margin: 0px;
+  top: 45%;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+}
+.projects.openedProject .info {
+  background: rgba(55, 55, 55, 0.9) !important;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+}
+.projects.openedProject:hover .info {
+  background: rgba(55, 55, 55, 0.7) !important;
+}
+.projects.openedProject:hover .backArrow {
+  transform: scale(1.2);
+}
+.projects:nth-child(1), .projects:nth-child(2) {
+  width: 48%;
+}
+.projects .beforeTitle {
+  float: left;
+  opacity: 1;
+  background: #fff;
+  padding: 10px 5px 10px 5px;
+  font-weight: 100;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  position: absolute;
+  width: 90%;
+  text-align: center;
+  top: 45%;
+  margin: 0px 5% 0px 5%;
+}
+.projects.openedProject .beforeTitle, .projects.openedProject h1, .projects.openedProject hr {
+  display: none;
+}
+.projects.openedProject .info {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  margin-top: 0;
+  margin-left: 0px;
+  border-radius: 0px;
+  opacity: 1;
+  background: rgba(1, 154, 109, 0.8);
+}
+.projects:hover .beforeTitle, .projects.midTransition .beforeTitle {
+  opacity: 0;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+}
+.projects:hover .info, .projects.midTransition .info {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  margin-top: 0;
+  margin-left: 0px;
+  border-radius: 0px;
+  opacity: 1;
+  background: rgba(1, 154, 109, 0.8);
+}
+.projects:hover .info h1, .projects.midTransition .info h1 {
+  opacity: 1;
+  transform: translate(0%, 0);
+  -webkit-transform: translate(0%, 0);
+}
+.projects:hover .info hr, .projects.midTransition .info hr {
+  width: 70%;
+  margin: 0px 15% 0px 15%;
+  left: 0px;
+  opacity: 1;
+}
+.projects .info {
+  width: 50px;
+  height: 50px;
+  left: 50%;
+  top: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
+  float: left;
+  opacity: 0;
+  position: absolute;
+  background: rgba(1, 154, 109, 0);
+  overflow: hidden;
+  transition: all 0.2s ease, opacity 0.1s;
+  -webkit-transition: all 0.2s ease, opacity 0.1s;
+  transition-delay: 0.1s;
+  -webkit-transition-delay: 0.1s;
+}
+.projects .info .fadeTitle {
+  float: left;
+  width: 100%;
+  color: #fff;
+  font-weight: 100;
+  text-transform: uppercase;
+  font-size: 12pt;
+  text-align: center;
+  letter-spacing: 5px;
+  position: absolute;
+  margin: 0px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  padding: 0px 10px 5px 10px;
+  top: 45%;
+  transform: translate(0%, -25px);
+  -webkit-transform: translate(0%, -25px);
+  transition-delay: 0.4s;
+  -webkit-transition-delay: 0.4s;
+}
+.projects .info hr {
+  outline: none;
+  height: 3px;
+  border: 0px;
+  float: left;
+  background-color: #fff;
+  width: 2px;
+  left: 50%;
+  margin-left: -1px;
+  opacity: 0;
+  position: absolute;
+  top: 53%;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  transition-delay: 0.5s;
+  -webkit-transition-delay: 0.5s;
+}
+
+.selectedArea {
+  width: 100%;
+  min-height: 0%;
+  max-height: 0px;
+  float: left;
+  background: #fff;
+  position: absolute;
+  z-index: 10;
+  padding: 0px 0px 0px 40px;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
   top: 0;
   left: 0;
+  transition: all 0s ease;
+  -webkit-transition: all 0s ease;
+}
+.selectedArea.opened {
+  opacity: 1;
+  pointer-events: all;
+  min-height: 100%;
+  max-height: 100000%;
+}
+.selectedArea.opened .copyArea.fadeIn, .selectedArea.opened h1 span, .selectedArea.opened h1 {
+  opacity: 1;
+  -webkit-transform: translate(0px, 0%);
+  transform: translate(0px, 0%);
+}
+.selectedArea:after {
+  content: "";
   width: 100%;
-  height: 1.92rem;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(-77.6%, #111317), color-stop(-65.76%, rgba(17, 19, 23, 0.991353)), color-stop(-53.92%, rgba(17, 19, 23, 0.96449)), color-stop(-42.08%, rgba(17, 19, 23, 0.91834)), color-stop(-30.24%, rgba(17, 19, 23, 0.852589)), color-stop(-18.4%, rgba(17, 19, 23, 0.768225)), color-stop(-6.56%, rgba(17, 19, 23, 0.668116)), color-stop(5.28%, rgba(17, 19, 23, 0.557309)), color-stop(17.12%, rgba(17, 19, 23, 0.442691)), color-stop(28.96%, rgba(17, 19, 23, 0.331884)), color-stop(40.8%, rgba(17, 19, 23, 0.231775)), color-stop(52.64%, rgba(17, 19, 23, 0.147411)), color-stop(64.48%, rgba(17, 19, 23, 0.0816599)), color-stop(76.32%, rgba(17, 19, 23, 0.03551)), color-stop(88.16%, rgba(17, 19, 23, 0.0086472)), to(rgba(17, 19, 23, 0)));
-  background: linear-gradient(180deg, #111317 -77.6%, rgba(17, 19, 23, 0.991353) -65.76%, rgba(17, 19, 23, 0.96449) -53.92%, rgba(17, 19, 23, 0.91834) -42.08%, rgba(17, 19, 23, 0.852589) -30.24%, rgba(17, 19, 23, 0.768225) -18.4%, rgba(17, 19, 23, 0.668116) -6.56%, rgba(17, 19, 23, 0.557309) 5.28%, rgba(17, 19, 23, 0.442691) 17.12%, rgba(17, 19, 23, 0.331884) 28.96%, rgba(17, 19, 23, 0.231775) 40.8%, rgba(17, 19, 23, 0.147411) 52.64%, rgba(17, 19, 23, 0.0816599) 64.48%, rgba(17, 19, 23, 0.03551) 76.32%, rgba(17, 19, 23, 0.0086472) 88.16%, rgba(17, 19, 23, 0) 100%);
-  opacity: 0.8;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-  pointer-events: none;
+  height: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  background: red;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.6) 10%, white 90%);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, rgba(255, 255, 255, 0.6) 10%, white 90%);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, rrgba(255, 255, 255, 0.6) 10%, white 90%);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.6) 10%, white 90%);
+  /* Standard syntax */
+  top: 0;
+  left: 0;
   z-index: -1;
 }
-.header::after {
-  content: "";
-  position: absolute;
-  top: 2.7rem;
-  right: -0.5rem;
-  width: 8.41rem;
-  height: 8.41rem;
-  border: 1px solid var(--white);
-  border-radius: 50%;
-  opacity: 0.2;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-  pointer-events: none;
-}
-.header-logo {
-  width: 0.38rem;
-  margin-top: -0.05rem;
-  margin-left: -0.05rem;
-}
-.header-logo img {
-  margin-bottom: -0.05rem;
-}
-.header-menu {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+.selectedArea h1 {
+  float: left;
   width: 100%;
-  height: 100%;
-  max-width: 11rem;
-  font-size: 0.14rem;
-  margin: 0 0 0 auto;
-}
-.header-menu::before {
-  content: "";
-  position: absolute;
-  top: -0.25rem;
-  right: -1px;
-  width: 0;
-  height: 100vh;
-  border-left: 1px solid var(--white);
-  opacity: 0.2;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-  pointer-events: none;
-}
-.header-item {
-  position: relative;
-  min-width: 2.56rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--white);
-}
-.header-item:first-child::before, .header-item:last-child::before {
-  content: "";
-  position: absolute;
-  top: -0.25rem;
-  left: -1px;
-  width: 0;
-  height: 100vh;
-  border-left: 1px solid var(--white);
-  opacity: 0.2;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-  pointer-events: none;
-}
-.header-burger {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-  -ms-flex-align: end;
-  align-items: flex-end;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 0.08rem;
-  width: 0.6rem;
-  background: transparent;
-  border: none;
-}
-.header-burger span {
-  width: 0.32rem;
-  height: 0;
-  border: 1px solid var(--white);
-}
-.header-burger span:first-child {
-  width: 0.16rem;
-}
-
-.hero {
-  position: relative;
-  max-height: 100vh;
-  margin-top: min(2.7rem, 37vh);
-  -webkit-transition: margin 2s;
-  transition: margin 2s;
-}
-.hero.full {
-  margin-top: 0;
-}
-.hero-close {
-  position: absolute;
-  top: 1.8rem;
-  left: 50%;
-  font-size: 0.14rem;
-  color: var(--white);
-  width: 0.7rem;
-  height: 0.7rem;
-  font-size: 0.14rem;
-  font-family: var(--main-font);
-  background: transparent;
-  border: 1px solid var(--white);
-  border-radius: 50%;
-  opacity: 0;
-  user-select: none;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: 0.4s;
-  z-index: 10;
-}
-.hero-close:hover {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-color: #ffffff33;
-}
-.hero-close.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.wonderland {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  margin: 0px;
+  padding: 80px 5px 80px 5px;
+  background-size: cover;
+  background-position: center;
   text-align: center;
-  user-select: none;
-  pointer-events: none;
-  z-index: 3;
-}
-.wonderland-title {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  font-size: 2.15rem;
-  font-weight: 400;
+  font-size: 28pt;
   text-transform: uppercase;
-  line-height: 0.68;
-  -webkit-transform: translate(-50%, -100%);
-  transform: translate(-50%, -100%);
+  font-weight: 100;
+  letter-spacing: 5px;
+  color: #1a1a1a;
+  opacity: 0;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
 }
-.wonderland-line {
-  max-width: 100%;
-  font-size: 0.3rem;
-  text-transform: uppercase;
-  margin-top: 0.2rem;
-  opacity: 0.85;
-  overflow: hidden;
-}
-.wonderland-descr {
-  display: block;
-  width: 100%;
-  max-width: 4.3rem;
-  font-size: 0.14rem;
-  line-height: 1.3;
-  margin: min(1.59rem, 16vh) auto 0;
-  opacity: 0.85;
-}
-.wonderland-full {
-  position: relative;
-  font-size: 0.14rem;
-  font-family: var(--main-font);
-  text-transform: uppercase;
-  color: var(--white);
-  background: transparent;
-  border: none;
-  margin-top: 0.27rem;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  opacity: 1;
-  user-select: none;
-  pointer-events: none;
-}
-.wonderland-cursor {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 0.1rem;
-  width: 100%;
-  max-width: 0.9rem;
-  height: 100%;
-  font-size: 0.14rem;
-  font-family: var(--main-font);
+.selectedArea h1 span {
+  background: #fff;
+  padding: 10px 80px 10px 80px;
   text-align: center;
-  text-transform: uppercase;
-  color: var(--white);
-  background: transparent;
-  border: none;
   opacity: 0;
-  margin: 0 auto;
-  transition: 0.4s;
-  transition-delay: 0s;
+  -webkit-transform: translate(0%, -100%);
+  transform: translate(0%, -100%);
+  transition: all 0.8s ease;
+  -webkit-transition: all 0.8s ease;
 }
-.cursor.watch .wonderland-cursor {
-  opacity: 1;
-  transition-delay: 0.3s;
-}
-.wonderland-cursor svg {
-  width: 0.11rem;
-  height: auto;
-}
-
-.banner {
+.selectedArea .copyArea.fadeIn {
+  width: 880px;
+  float: left;
   position: relative;
-  height: calc(100vh - min(3.37rem, 47.7vh));
-  overflow: hidden;
-  -webkit-transition: 2s;
-  transition: 2s;
-}
-.banner-img {
-  position: relative;
-  height: 100vh;
-}
-.banner-img img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center 70%;
-     object-position: center 70%;
-}
-.banner-info {
-  position: absolute;
-  bottom: 0.7rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-  -ms-flex-align: end;
-  align-items: flex-end;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0 0.9rem 0 0.3rem;
-  z-index: 2;
-}
-.banner-title {
-  font-size: 1.63rem;
-  text-transform: uppercase;
-  color: var(--white);
-  margin-bottom: -0.4rem;
-  margin-left: -0.07rem;
+  left: 50%;
+  margin-left: -450px;
+  padding: 10px 25px 10px 25px;
+  margin-top: 15px;
+  margin-bottom: 85px;
   opacity: 0;
-  -webkit-transition: 1.2s;
-  transition: 1.2s;
-  -webkit-transition-delay: 0s;
-  transition-delay: 0s;
+  -webkit-transform: translate(0%, 100%);
+  transform: translate(0%, 100%);
+  transition: all 0.8s ease;
+  -webkit-transition: all 0.8s ease;
+  transition-delay: 0.2s;
+  -webkit-transition-delay: 0.2s;
 }
-.banner-left {
-  position: relative;
-  width: 2.56rem;
-  border: none;
-  background: transparent;
-  margin-bottom: -0.7rem;
-  -webkit-transform: translateY(100%);
-  transform: translateY(100%);
-  -webkit-transition: 1.7s;
-  transition: 1.7s;
-}
-.banner-left img {
+.selectedArea .copyArea.fadeIn p {
+  float: left;
   width: 100%;
-}
-/* .banner-close {
-  position: absolute;
-  bottom: -0.25rem;
-  width: 100%;
-  font-size: 0.14rem;
-  font-family: var(--main-font);
-  color: var(--white);
-  background: transparent;
-  text-align: right;
-  text-transform: capitalize;
-  white-space: nowrap;
-  border: none;
-  -webkit-transform: translateY(100%);
-  transform: translateY(100%);
-  -webkit-transition: 0.6s;
-  transition: 0.6s;
-  -webkit-transition-delay: 0s;
-  transition-delay: 0s;
-} */
-.banner-social {
-  position: absolute;
-  bottom: -0.25rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.4rem;
-}
-.banner-social__item {
-  font-size: 0.14rem;
-  font-family: var(--main-font);
-  text-transform: uppercase;
-  text-decoration: none;
-  white-space: nowrap;
-  color: var(--white);
-  background: transparent;
-  -webkit-transform: translateY(100%);
-  transform: translateY(100%);
-  -webkit-transition: 0.6s;
-  transition: 0.6s;
-  -webkit-transition-delay: 0s;
-  transition-delay: 0s;
+  font-size: 12pt;
+  line-height: 24pt;
+  letter-spacing: 1px;
+  font-weight: 100;
+  color: #2a2a2a;
 }
 
-.hero.full .banner {
-  height: calc(100vh + 0.6rem);
-  margin-top: -0.6rem;
-}
-.hero.full .banner-title {
-  -webkit-transition-delay: 0.6s;
-  transition-delay: 0.6s;
-  opacity: 1;
-}
-.hero.full .banner-left {
-  margin-bottom: 0;
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-}
-.hero.full .banner-close {
-  -webkit-transition: 0.8s;
-  transition: 0.8s;
-  -webkit-transition-delay: 1s;
-  transition-delay: 1s;
+.noTransition {
+  transition: all 0s ease !important;
+  -webkit-transition: all 0s ease !important;
+  transition-delay: 0s !important;
+  -webkit-transition-delay: 0s !important;
 }
 
-.mirror {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.mirror img {
-  display: block;
-  width: 100vw;
-  max-width: none;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-  pointer-events: none;
-}
-.mirror-item {
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-}
-.mirror-img {
-  width: 100%;
-  height: 100%;
-}
-.mirror-main {
-  display: grid;
-  grid-template-columns: 9fr 9fr 4fr;
-  grid-template-rows: 100%;
-  width: 100%;
-  height: 100%;
-}
-.mirror-main .mirror-item {
-  width: calc(100% + 0.3rem);
-  margin-left: -0.3rem;
-}
-.mirror-main .mirror-item:not(:first-child) .mirror-img {
-  margin-left: 0.3rem;
-  overflow: hidden;
-}
-.mirror-main .mirror-item:not(:first-child) .mirror-img__mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0.3rem;
-  -webkit-mask-image: url(https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/mask-left_new.png);
-  mask-image: url(https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/mask-left_new.png);
-  -webkit-mask-position: left;
-  mask-position: left;
-  -webkit-mask-repeat: repeat-y;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: 0.3rem 100vh;
-  overflow: hidden;
-  margin-left: 0;
-  z-index: 1;
-}
-.mirror-left img {
-  -o-object-position: -30vw 70%;
-     object-position: -30vw 70%;
-}
-.mirror-center img {
-  -o-object-position: -30vw 70%;
-     object-position: -30vw 70%;
-}
-.mirror-right img {
-  -o-object-position: -82vw 70%;
-     object-position: -82vw 70%;
-}
-.mirror-additional {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-.mirror-light {
-  display: none;
-}
-.mirror-over {
-  position: absolute;
-  top: 0;
-  height: 100%;
-}
-.mirror-over__left {
-  left: 0;
-  width: 6.4rem;
-  -webkit-transform: translateX(-20%);
-  transform: translateX(-20%);
-  opacity: 0.7;
-}
-.mirror-over__left img {
-  -o-object-position: -30vw 70%;
-     object-position: -30vw 70%;
-}
-.mirror-over__center {
-  left: 47%;
-  width: 2.4rem;
-  -webkit-transform: translateX(-15%);
-  transform: translateX(-15%);
-  opacity: 0.7;
-}
-.mirror-over__center img {
-  -o-object-position: -62vw 70%;
-     object-position: -62vw 70%;
-}
-.mirror-over__right {
-  right: 1.5rem;
-  width: 3.5rem;
-  -webkit-transform: translateX(-10%);
-  transform: translateX(-10%);
-  opacity: 0.7;
-}
-.mirror-over__right img {
-  -o-object-position: -62vw 70%;
-     object-position: -62vw 70%;
-}
-.mirror-over .mirror-img:first-child {
-  position: absolute;
-  top: 0;
-  right: -1px;
-  width: 100%;
-  height: 100%;
-  -webkit-mask-image: url(https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/mask-left_new.png);
-  mask-image: url(https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/mask-left_new.png);
-  -webkit-mask-position: left;
-  mask-position: left;
-  -webkit-mask-repeat: repeat-y;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: calc(0.5rem + 1px) 100vh;
-}
-.mirror-over .mirror-img__main {
-  -webkit-clip-path: polygon(0.5rem 0, calc(100% - 0.5rem) 0, calc(100% - 0.5rem) 100%, 0.5rem 100%);
-          clip-path: polygon(0.5rem 0, calc(100% - 0.5rem) 0, calc(100% - 0.5rem) 100%, 0.5rem 100%);
-}
-.mirror-over .mirror-img:last-child {
-  position: absolute;
-  top: 0;
-  left: -1px;
-  width: 100%;
-  height: 100%;
-  -webkit-mask-image: url(https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/mask_new.png);
-  mask-image: url(https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/mask_new.png);
-  -webkit-mask-position: right;
-  mask-position: right;
-  -webkit-mask-repeat: repeat-y;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: calc(0.5rem + 1px) 100vh;
-}
-.mirror-over:not(:first-child) .mirror-img__left .mirror-light {
-  position: absolute;
-  top: 0;
-  left: -5px;
-  display: block;
-  width: 0.5rem;
-  height: 100%;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(50%, #ffffff), color-stop(70%, #ffffff), to(rgba(255, 255, 255, 0)));
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 50%, #ffffff 70%, rgba(255, 255, 255, 0) 100%);
-  -webkit-filter: blur(5px);
-  filter: blur(5px);
-  -webkit-transform: translateX(-100%);
-  transform: translateX(-100%);
-}
-.mirror-over:not(:last-child) .mirror-img__right .mirror-light {
-  position: absolute;
-  top: 0;
-  right: -5px;
-  display: block;
-  width: 0.5rem;
-  height: 100%;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(50%, #ffffff), color-stop(70%, #ffffff), to(rgba(255, 255, 255, 0)));
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 50%, #ffffff 70%, rgba(255, 255, 255, 0) 100%);
-  -webkit-filter: blur(5px);
-  filter: blur(5px);
-  -webkit-transform: translateX(100%);
-  transform: translateX(100%);
-}
-.mirror-light {
-  display: none;
-}
-.mirror-filter {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  -webkit-mask: -webkit-gradient(linear, right top, left top, from(red), to(transparent));
-  -webkit-mask: linear-gradient(to left, red, transparent);
-  -webkit-filter: blur(8px);
-  filter: blur(8px);
-  z-index: 1;
-}
-.mirror-wrapp.active .mirror-over {
-  -webkit-transform: none;
-  transform: none;
-}
+@media screen and (max-width: 920px) {
+  .projects {
+    width: 48%;
+  }
+  .projects hr {
+    top: 60% !important;
+  }
+  .projects:nth-child(1), .projects:nth-child(2) {
+    width: 48%;
+  }
+  .projects:nth-child(1) hr, .projects:nth-child(2) hr {
+    top: 53% !important;
+  }
 
-.bottom-info {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: baseline;
-  -ms-flex-align: baseline;
-  align-items: baseline;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  gap: 3.7rem;
-  width: 100%;
-  font-size: 0.14rem;
-  color: var(--white);
-  padding: 0.25rem 0.9rem 0.25rem 0.3rem;
-  overflow: hidden;
-  z-index: 1;
+  .selectedArea .copyArea.fadeIn {
+    width: 100%;
+    margin-left: 0%;
+    left: 0%;
+  }
+  .selectedArea h1 {
+    font-size: 20pt;
+  }
+  .selectedArea h1 span {
+    padding: 10px 25px 10px 25px;
+  }
 }
-.bottom-info__descr {
-  width: 100%;
-  text-transform: capitalize;
-}
-.bottom-info__social {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 0.3rem;
-  min-width: 48.5vw;
-  margin-top: auto;
-  margin-bottom: 0;
-  -webkit-transition: 0.8s;
-  transition: 0.8s;
-  -webkit-transition-delay: 1s;
-  transition-delay: 1s;
-}
-.bottom-info__item {
-  font-size: 0.14rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--white);
-}
-.bottom-info__scroll {
-  width: 2.56rem;
-  text-transform: capitalize;
-  white-space: nowrap;
-  margin-top: auto;
-  margin-bottom: -0.25rem;
-  -webkit-transform: translateY(100%);
-  transform: translateY(100%);
-  -webkit-transition: 0.6s;
-  transition: 0.6s;
-  -webkit-transition-delay: 0s;
-  transition-delay: 0s;
-}
-.bottom-info.scroll .bottom-info__social {
-  margin-bottom: -0.25rem;
-  -webkit-transform: translateY(100%);
-  transform: translateY(100%);
-  -webkit-transition-delay: 0s;
-  transition-delay: 0s;
-}
-.bottom-info.scroll .bottom-info__scroll {
-  margin-bottom: 0;
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  -webkit-transition: 0.8s;
-  transition: 0.8s;
-  -webkit-transition-delay: 1s;
-  transition-delay: 1s;
+@media screen and (max-width: 620px) {
+  .projects {
+    width: 98% !important;
+  }
+  .projects hr {
+    top: 55% !important;
+  }
+  .projects:nth-child(1), .projects:nth-child(2) {
+    width: 48%;
+  }
+  .projects:nth-child(1) hr, .projects:nth-child(2) hr {
+    top: 55% !important;
+  }
 }
 </style>
 
@@ -945,358 +419,219 @@ input[type=number] {
 </head>
 
 <body translate="no" >
-  <header class="header">
-   <a href="#" class="header-logo">
-      <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/logo.svg" alt="">
-   </a>
-   <div class="header-menu">
-      <a href="滙客萊.htm" class="header-item"><strong>健康產業</strong></a>
-      <a href="#" class="header-item"><strong>⚤保養肌膚⚢</strong></a>
-      <a href="法式餐桌藝術首頁.htm" class="header-item"><strong>家具裝飾</strong></a>
-   </div>
-   <button class="header-burger">
-      <span></span>
-      <span></span>
-   </button>
-</header>
+  <h2><strong>დ 永保青春</strong> </h2>
 
-<div class="cursor">
-   <button class="wonderland-cursor">
-     watch full series
-     <svg viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10.1047 6.08511L11 7.05319L5.5 13L1.02459e-06 7.05319L0.895301 6.08511L4.86046 10.3723L4.86046 -1.02689e-06L6.13953 -1.01163e-06L6.13953 10.3723L10.1047 6.08511Z" fill="white"/>
-</svg>
-
-  </button>
-</div>
-
-<main class="main">
-  <div class="smooth-wrapper">
-    <div id="smooth-content">
-      <section id="hero" class="hero">
-        <button id="close-collection" class="hero-close">Back</button>
-        <div class="wonderland">
-          <h1 class="wonderland-title">wonderland</h1>
-          <div class="wonderland-line line-stroke">
-            <div class="line-stroke__wrapp">
-              <div class="line-stroke__item line-stroke__1">
-                <div>༺健康-是永恆的財富༻</div>
-                <div>༺美麗-是職場最強的武器༻</div>
-                <div>༺青春-是夢寐以求的目標༻</div>
-              </div>
-            </div>
-          </div>
-          <div class="wonderland-descr" split-lines><h1>ཉིཾ健康與青春之間一直有著緊密的聯繫~讓我們一起重返青春ཉིཾ</h1></div>
-          <button class="wonderland-full">watch full series</button>
-        </div>
-        <div class="banner mirror-wrapp">
-          <div class="banner-img">
-            <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-          </div>
-          <div class="mirror">
-            <div class="mirror-main">
-              <div class="mirror-item mirror-left">
-                <div class="mirror-img mirror-img__mask">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                </div>
-                <div class="mirror-img">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                </div>
-              </div>
-              <div class="mirror-item mirror-center">
-                <div class="mirror-img mirror-img__mask">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                </div>
-                <div class="mirror-img">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                </div>
-              </div>
-              <div class="mirror-item mirror-right">
-                <div class="mirror-img mirror-img__mask">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                </div>
-                <div class="mirror-img">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="mirror-additional">
-              <div class="mirror-item mirror-over mirror-over__left">
-                <div class="mirror-img mirror-img__left">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                  <div class="mirror-light"></div>
-                </div>
-                <div class="mirror-img mirror-img__main">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                </div>
-                <div class="mirror-img mirror-img__right">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                  <div class="mirror-light"></div>
-                </div>
-              </div>
-              <div class="mirror-item mirror-over mirror-over__center">
-                <div class="mirror-img mirror-img__left">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                  <div class="mirror-light"></div>
-                </div>
-                <div class="mirror-img mirror-img__main">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                </div>
-                <div class="mirror-img mirror-img__right">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                  <div class="mirror-light"></div>
-                </div>
-              </div>
-              <div class="mirror-item mirror-over mirror-over__right">
-                <div class="mirror-img mirror-img__left">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                  <div class="mirror-light"></div>
-                </div>
-                <div class="mirror-img mirror-img__main">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                </div>
-                <div class="mirror-img mirror-img__right">
-                  <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-                  <div class="mirror-light"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="banner-info">
-            <div class="banner-title">She.silent</div>
-            <div class="banner-left">
-              <img src="https://zajno-storage0.s3.us-west-1.amazonaws.com/dev/codepen/wonderland/banner.jpg" alt="">
-              <div class="banner-social">
-                <a href="#" class="banner-social__item">Instagram</a>
-                <a href="#" class="banner-social__item">Twitter</a>
-                <a href="#" class="banner-social__item">Facebook</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="bottom-info" class="bottom-info">
-        <div class="bottom-info__descr">1/2 series. The lost land</div>
-        <div class="bottom-info__social">
-          <a href="#" class="bottom-info__item">Instagram</a>
-          <a href="#" class="bottom-info__item">Twitter</a>
-          <a href="#" class="bottom-info__item">Facebook</a>
-        </div>
-      </section>
+<div id="projectsApp">
+  
+  <div class="projects" :id="project.ID" v-for="project in projects" :style="{ backgroundImage: 'url(' + project.bImage + ')' }" v-on:click="selectProjects(project.ID)">
+    <h3 class="beforeTitle"> {{ project.category }}</h3>
+    <div class="info">
+      <h1 class="fadeTitle"> {{ project.category }}</h1>
+      <hr>
     </div>
+    <p class="backArrow"><i class="fa fa-angle-double-left" aria-hidden="true"></i></p>
   </div>
-</main>
+
+  <div class="selectedArea">
+    <h1 :style="{ backgroundImage: 'url(' + highlightedContent.bImage + ')' }"><span>{{ highlightedContent.category }}</span></h1>
+    <div v-html="highlightedContent.copy" class="copyArea fadeIn"></div>
+  </div>
+
+</div>
     <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
 
-  <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
-<script src='https://assets.codepen.io/16327/SplitText3.min.js'></script>
-<script src='https://assets.codepen.io/16327/ScrollSmoother.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js'></script>
       <script id="rendered-js" >
-// Split text by lines and chars
-new SplitText('[split-lines]', { type: 'lines', linesClass: "split-line" });
-new SplitText('[split-chars]', { type: 'lines chars', linesClass: "split-line", charsClass: "split-char" });
+var isSelected = false;
+const myProjects = [
+{
+  ID: "-webDesign",
+  category: "Web Design",
+  bImage: "https://i.imgur.com/XmlS3n8.jpg",
+  copy:
+  `<p>Lorem ipsum dolor sit amet, vehicula ullamco vel nullam, non vulputate purus sit vel est, egestas nec a.</p> <p>Curabitur rutrum, pellentesque ipsum hendrerit. Nulla eu. In ipsum ac ultrices eget pretium, dictum velit a. Arcu aliquam nunc consectetuer. Mauris quisque interdum integer mauris fusce. Quam tellus molestie lobortis at diam, ut ac suscipit ante purus, auctor nec iaculis libero leo i</p><p>Lorem ipsum dolor sit amet, vehicula ullamco vel nullam, non vulputate purus sit vel est, egestas nec a.</p> <p>Curabitur rutrum, pellentesque ipsum hendrerit. Nulla eu. In ipsum ac ultrices eget pretium, dictum velit a. Arcu aliquam nunc consectetuer. Mauris quisque interdum integer mauris fusce. Quam tellus molestie lobortis at diam, ut ac su
+    scipit ante purus, auctor nec iaculis libero leo i</p><p>Lorem ipsum dolor sit amet, vehicula ullamco vel nullam, non vulputate purus sit vel est, egestas nec a.</p> <p>Curabitur rutrum, pellentesque ipsum hendrerit. Nulla eu. In ipsum ac ultrices eget pretium, dictum velit a. Arcu aliquam nunc consectetuer. Mauris quisque interdum integer mauris fusce. Quam tellus molestie lobortis at diam, ut ac suscipit ante purus, auctor nec iaculis libero leo i</p><p>Lorem ipsum dolor sit amet, vehicula ullamco vel nullam, non vulputate purus sit vel est, egestas nec a.</p> <p>Curabitur rutrum, pellentesque ipsum hendrerit. Nulla eu. In ipsum ac ultrices eget pretium, dictum velit a. Arcu aliquam nunc consectetuer. Mauris quisque interdum integer mauris fusce. Quam tellus molestie lobortis at diam, ut ac suscipit ante purus, auctor nec iaculis libero leo i</p>` },
 
-document.addEventListener('DOMContentLoaded', () => {
-  window.addEventListener('load', () => {
-    // cursor animaton
-    const cursor = document.querySelector('.cursor');
-    const banner = document.querySelector('.banner');
+{
+  ID: "-graphicDesign",
+  category: "Graphic Design",
+  bImage:
+  "https://i1.wp.com/diymarketers.com/wp-content/uploads/2016/10/Graphic-designer-at-work.-Color-samples-000089125041_Small.jpg?fit=800%2C533",
+  copy:
+  "<p>Lorem ipsum dolor sit amet, vehicula ullamco vel nullam, non vulputate purus sit vel est, egestas nec a.</p> <p>Curabitur rutrum, pellentesque ipsum hendrerit. Nulla eu. In ipsum ac ultrices eget pretium, dictum velit a. Arcu aliquam nunc consectetuer. Mauris quisque interdum integer mauris fusce. Quam tellus molestie lobortis at diam, ut ac suscipit ante purus, auctor nec iaculis libero leo i</p>" },
 
-    document.addEventListener('mousedown', function () {
-      cursor.classList.add('click');
-    });
+{
+  ID: "-photography",
+  category: "Photography",
+  bImage:
+  "https://agc.creativelive.com/agc/pages/channel-hero/Photo_Hero_1600x900.jpg",
+  copy:
+  "<p>Lorem ipsum dolor sit amet, vehicula ullamco vel nullam, non vulputate purus sit vel est, egestas nec a.</p> <p>Curabitur rutrum, pellentesque ipsum hendrerit. Nulla eu. In ipsum ac ultrices eget pretium, dictum velit a. Arcu aliquam nunc consectetuer. Mauris quisque interdum integer mauris fusce. Quam tellus molestie lobortis at diam, ut ac suscipit ante purus, auctor nec iaculis libero leo i</p>" },
 
-    document.addEventListener('mouseup', function () {
-      cursor.classList.remove('click');
-    });
+{
+  ID: "-brandDevelopment",
+  category: "Branding",
+  bImage:
+  "https://i0.wp.com/webdesignledger.com/wp-content/uploads/2014/05/7-logo-sketches.jpg?w=970",
+  copy:
+  "<p>Lorem ipsum dolor sit amet, vehicula ullamco vel nullam, non vulputate purus sit vel est, egestas nec a.</p> <p>Curabitur rutrum, pellentesque ipsum hendrerit. Nulla eu. In ipsum ac ultrices eget pretium, dictum velit a. Arcu aliquam nunc consectetuer. Mauris quisque interdum integer mauris fusce. Quam tellus molestie lobortis at diam, ut ac suscipit ante purus, auctor nec iaculis libero leo i</p>" },
 
-    document.addEventListener('mousemove', e => {
-      cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
-    });
+{
+  ID: "-htmlEmails",
+  category: "HTML Emails",
+  bImage: "http://i.huffpost.com/gen/1644197/images/o-EMAIL-facebook.jpg",
+  copy:
+  "<p>Lorem ipsum dolor sit amet, vehicula ullamco vel nullam, non vulputate purus sit vel est, egestas nec a.</p> <p>Curabitur rutrum, pellentesque ipsum hendrerit. Nulla eu. In ipsum ac ultrices eget pretium, dictum velit a. Arcu aliquam nunc consectetuer. Mauris quisque interdum integer mauris fusce. Quam tellus molestie lobortis at diam, ut ac suscipit ante purus, auctor nec iaculis libero leo i</p>" },
 
-    // mirror animation
-    let mirrorElements = document.querySelectorAll('.mirror-wrapp.active');
-
-    let cursorDirection = 1;
-    let cursorDirectionCurrent = 1;
-
-    function animateMirror(e) {
-      let procentLight = Math.min(Math.max((Math.floor(e.clientX / window.innerWidth * 100) - 20) * 2, 0) - 100, 0);
-
-      gsap.
-      timeline({
-        defaults: {
-          ease: "power1.out" } }).
+{
+  ID: "-wordPress",
+  category: "WordPress",
+  bImage:
+  "https://appdevelopermagazine.com/images/news_images/Why-Continuos-Delivery-is-Key-for-Success-App-Developer-Magazine_roguohry.jpg",
+  copy:
+  "<p>Lorem ipsum dolor sit amet, vehicula ullamco vel nullam, non vulputate purus sit vel est, egestas nec a.</p> <p>Curabitur rutrum, pellentesque ipsum hendrerit. Nulla eu. In ipsum ac ultrices eget pretium, dictum velit a. Arcu aliquam nunc consectetuer. Mauris quisque interdum integer mauris fusce. Quam tellus molestie lobortis at diam, ut ac suscipit ante purus, auctor nec iaculis libero leo i</p>" }];
 
 
-      to(".mirror-over", {
-        duration: 1,
-        x: e.clientX / 7,
-        stagger: e.movementX < 0 ? -0.2 : 0.2,
-        ease: "power1.out" }).
 
-      to(".mirror-over", {
-        duration: 0.5,
-        alpha: .9,
-        stagger: e.movementX < 0 ? -0.17 : 0.17,
-        ease: "power1.out" },
-      '<').
-      to(".mirror-over", {
-        duration: 0.5,
-        alpha: 1,
-        stagger: e.movementX < 0 ? -0.2 : 0.2,
-        ease: "power1.out" },
-      '<0.5').
-      to(".mirror-img__left .mirror-light", {
-        duration: 0.7,
-        x: procentLight,
-        stagger: e.movementX < 0 ? -0.1 : 0.1 },
-      '<-0.2').
-      to(".mirror-img__right .mirror-light", {
-        duration: 0.7,
-        x: -procentLight,
-        stagger: e.movementX < 0 ? -0.1 : 0.1 },
-      '<-0.2');
-    }
+var theHighlightedContent = { ID: "", category: "", bImage: "", copy: "" };
+var selectedProject;
+var scrollBackTo;
 
-    function setWidthMirror() {
-      mirrorElements.forEach(mirror => {
-        let widthMirror = mirror.offsetWidth + 'px';
-        mirror.querySelectorAll('img').forEach(mirrorImg => {
-          mirrorImg.style.width = widthMirror;
-        });
-      });
-    }
+var app = new Vue({
+  el: "#projectsApp",
+  data() {
+    return {
+      projects: myProjects,
+      highlightedContent: theHighlightedContent };
 
-    setWidthMirror();
+  },
+  methods: {
+    selectProjects: function (thisId) {
+      var self = "#" + thisId;
+      if ($(self).hasClass("openedProject")) {
+        isSelected = false;
 
-    // resize window
-    window.addEventListener('resize', () => {
-      setWidthMirror();
-    });
+        if ($(self).hasClass('noTransition')) {
+          var timeoutA = 0;
+          var timeoutB = 0;
+          var timeoutC = 0;
+        } else {
+          var timeoutA = 800;
+          var timeoutB = 1200;
+          var timeoutC = 1600;
+        }
 
-    // open collection
-    banner.addEventListener('click', () => {
-      if (!document.getElementById('hero').classList.contains('full')) {
-        document.getElementById('hero').classList.add('full');
-        document.getElementById('bottom-info').classList.add('scroll');
-        cursor.classList.remove('watch');
 
-        gsap.
-        timeline({
-          defaults: {
-            ease: 'none' },
 
-          onComplete: () => {
-            document.querySelector('.hero-close').classList.add('active');
-          } }).
+        $(self).addClass("midTransition");
+        $(self).removeClass("openedProject");
 
-        to(".wonderland-descr .split-line", {
-          scaleY: 0,
-          alpha: 0,
-          ease: "sine.in",
-          transformOrigin: "top",
-          duration: 0.8 },
-        '<').
-        to(".wonderland-full", {
-          scaleY: 0,
-          alpha: 0,
-          ease: "sine.in",
-          transformOrigin: "top",
-          duration: 0.8 },
-        '<').
-        to(".mirror-over", {
-          duration: 2,
-          x: 0,
-          alpha: 1,
-          ease: "power1.out" },
-        '<').
-        call(() => {
-          document.getElementById('hero').querySelector('.mirror-wrapp').classList.add('active');
-          mirrorElements = document.querySelectorAll('.mirror-wrapp.active');
-          mirrorElements.forEach(mirrorElement => {
-            mirrorElement.addEventListener('mousemove', animateMirror, true);
-          });
-        });
+
+
+
+        setTimeout(function () {
+
+          $(self).removeClass("midTransition");
+          $(".selectedArea").removeClass("opened");
+
+        }, timeoutA);
+
+        setTimeout(function () {
+          $("#projectsApp .projects").removeClass("hidden");
+          $("#projectsApp .projects").removeClass("shrunk");
+        }, timeoutB);
+        setTimeout(function () {
+          // window.scrollTo(0, scrollBackTo);
+          $("html, body").animate({ scrollTop: scrollBackTo }, 500);
+          $(self).addClass('noTransition');
+        }, timeoutC);
+
+      } else {
+        isSelected = true;
+        scrollBackTo = $(self).offset().top;
+
+        if ($(self).hasClass('noTransition')) {
+          $(".selectedArea").addClass("noTransition");
+          $(".copyArea.fadeIn").addClass("noTransition");
+          var timeoutD = 0;
+        } else {
+          $(".selectedArea").removeClass("noTransition");
+          $(".copyArea.fadeIn").removeClass("noTransition");
+          var timeoutD = 800;
+        }
+
+        $(self).addClass("midTransition");
+        $("#projectsApp .projects").addClass("hidden");
+        $(self).removeClass("hidden");
+
+        setTimeout(function () {
+          $(".selectedArea").addClass("opened");
+          $(self).addClass("openedProject");
+          $(self).removeClass("midTransition");
+          $("#projectsApp .projects").addClass("shrunk");
+
+          $(self).removeClass("shrunk");
+
+          window.scrollTo(0, 0);
+
+
+        }, timeoutD);
       }
-    });
 
-    // close collection
-    document.querySelector('.hero-close').addEventListener('click', event => {
-      event.stopPropagation();
-      document.getElementById('hero').classList.remove('full');
-      document.getElementById('bottom-info').classList.remove('scroll');
+      for (var i = 0; i < this.projects.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+        if (thisId == this.projects[i].ID) {
+          this.highlightedContent = this.projects[i];
+        }
+      }window.CP.exitedLoop(0);
+    } } });
 
-      mirrorElements.forEach(mirrorElement => {
-        mirrorElement.removeEventListener('mousemove', animateMirror, true);
-        mirrorElement.classList.remove('active');
-      });
 
-      document.querySelector('.hero-close').classList.remove('active');
 
-      gsap.
-      timeline({
-        defaults: {
-          ease: 'none' },
-
-        onComplete: () => {
-          document.getElementById('hero').querySelector('.mirror-wrapp').classList.remove('active');
-        } }).
-
-      to(".mirror-over", {
-        duration: 2,
-        x: '-10%',
-        alpha: .7,
-        overwrite: true,
-        ease: "power1.out" },
-      '<').
-      to(".wonderland-descr .split-line", {
-        scaleY: 1,
-        alpha: 1,
-        ease: "sine.in",
-        transformOrigin: "top",
-        duration: 0.5 },
-      '<+0.5').
-      to(".wonderland-full", {
-        scaleY: 1,
-        alpha: 1,
-        ease: "sine.in",
-        transformOrigin: "top",
-        duration: 0.5 },
-      '<').
-      to(".mirror-img__left .mirror-light", {
-        duration: 0.7,
-        x: '-100%',
-        stagger: 0.1 },
-      '<').
-      to(".mirror-img__right .mirror-light", {
-        duration: 0.7,
-        x: '100%',
-        stagger: 0.1 },
-      '<');
-    });
-
-    banner.addEventListener('mouseenter', () => {
-      if (!document.getElementById('hero').classList.contains('full')) {
-        cursor.classList.add('watch');
-        gsap.to(".wonderland-full", {
-          alpha: 0,
-          ease: "sine.in",
-          duration: 0.4 });
-
-      }
-    });
-
-    banner.addEventListener('mouseleave', () => {
-      cursor.classList.remove('watch');
-      gsap.to(".wonderland-full", {
-        alpha: 1,
-        ease: "sine.in",
-        duration: 0.4 });
-
-    });
-  });
+$(document).ready(function () {
+  resizeProjectDivs();
+  // resizeProjectDivs();
 });
+var resizeTimer;
+$(window).on("resize", function (e) {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function () {
+    if (isSelected == false) {
+      resizeProjectDivs();
+    }
+  }, 250);
+});
+
+function resizeProjectDivs() {
+  var midRange = false;
+  var smallRange = false;
+  var winWidth = $(window).width();
+  if (winWidth < 920 && 620 < winWidth) {
+    midRange = true;
+  }
+  if (winWidth < 720) {
+    smallRange = true;
+  }
+  var i = 0;
+
+  $("#projectsApp .projects").each(function () {
+    var pWidth = $(this).width();
+    var pHeight;
+    if (i < 2) {
+      pHeight = pWidth;
+    } else {
+      if (midRange == true) {
+        pHeight = pWidth * 0.5;
+      } else if (smallRange == true) {
+        pHeight = pWidth;
+      } else {
+        pHeight = pWidth * 1.5;
+      }
+    }
+    $(this).css("height", pHeight + "px");
+    i++;
+  });
+}
 //# sourceURL=pen.js
     </script>
 
